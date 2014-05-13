@@ -26,9 +26,8 @@ import mooklabs.nausicaamod.glider.GliderWing;
 import mooklabs.nausicaamod.glider.MetalPlate;
 import mooklabs.nausicaamod.godwarrior.EntityGodWarrior;
 import mooklabs.nausicaamod.godwarrior.GodWarriorControl;
-import mooklabs.nausicaamod.godwarrior.GodWarriorControlGui;
 import mooklabs.nausicaamod.inventorytab.InventoryTabNausicaa;
-import mooklabs.nausicaamod.inventorytab.NausicaaGuiInventory;
+import mooklabs.nausicaamod.inventorytab.NPlayerHandler;
 import mooklabs.nausicaamod.mobs.EntityBug;
 import mooklabs.nausicaamod.mobs.EntityFoxSquirrel;
 import mooklabs.nausicaamod.mobs.EntityHorseclaw;
@@ -74,14 +73,12 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import tconstruct.client.tabs.TabRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -398,6 +395,7 @@ public class Main extends MMod{
 		TabRegistry.registerTab(new InventoryTabNausicaa());
 		itemBlockNameReg();
 
+		//{{EVERYTHING
 		// {{/////////////////////////////ITEMSTACKS////////////////////////////////////
 
 		// vanilla
@@ -476,7 +474,7 @@ public class Main extends MMod{
 		// }}
 		// }}
 
-		// }}
+		
 
 		// {{/////////////////////////////RECIPIES////////////////////////////////////
 
@@ -543,6 +541,8 @@ public class Main extends MMod{
 		GameRegistry.addRecipe(handleStack, "sss", "s s", "c c", 'c', leatherStack, 's', metalPlateStack);
 
 		// }}//////////////////////////Smelting recipes////////////////////////////////////
+		
+		//{{SMELTING
 		GameRegistry.addSmelting(unfiredCeramicHelmetStack, ceramicHelmetStack, 0.0f);
 		GameRegistry.addSmelting(unfiredCeramicChestplateStack, ceramicChestplateStack, 0.0f);
 		GameRegistry.addSmelting(unfiredCeramicLegsStack, ceramicLegsStack, 0.0f);
@@ -552,14 +552,26 @@ public class Main extends MMod{
 		GameRegistry.addSmelting(unfiredCeramicKnife, claymoreStack, 0.0f);
 
 		GameRegistry.addSmelting(wetClay, ceramicIngotStack, 0.0f);
-		// }}
-
+		//}}
+		
 		// Inventory tabs????
 		// TODO ??????????????
 		/* EntityPlayer player = Minecraft.getMinecraft().thePlayer; GuiInventory inventory = new GuiInventory(player); TabRegistry.addTabsToInventory(inventory); */
 
 		// CRIT NausicaaWorldType.addRemoveNeededBiomes();
+		//}}
+	
+
+        playerTracker = new NPlayerHandler();
+        // GameRegistry.registerPlayerTracker(playerTracker);
+        FMLCommonHandler.instance().bus().register(playerTracker);
+        MinecraftForge.EVENT_BUS.register(playerTracker);
+
+
+
+		
 	}
+    public static NPlayerHandler playerTracker;
 
 	GuiHandlerNausicaa guiHandler = new GuiHandlerNausicaa();
 

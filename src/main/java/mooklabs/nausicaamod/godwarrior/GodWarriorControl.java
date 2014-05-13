@@ -101,6 +101,7 @@ public class GodWarriorControl extends Item {
 	public void register(ItemStack itemStack, EntityPlayer player, boolean wasCrafted) {
 		if (itemStack.stackTagCompound == null) itemStack.stackTagCompound = new NBTTagCompound();// create tag
 
+		
 		itemStack.stackTagCompound.setBoolean("creativeSpawned", false);
 		// itemStack.stackTagCompound.
 		itemStack.stackTagCompound.setString("owner", player.getCommandSenderName());// register to name

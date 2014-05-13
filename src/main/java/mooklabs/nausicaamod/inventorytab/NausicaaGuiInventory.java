@@ -16,6 +16,7 @@ import org.lwjgl.opengl.GL12;
 
 import tconstruct.client.tabs.AbstractTab;
 import tconstruct.client.tabs.TabRegistry;
+
 public class NausicaaGuiInventory extends InventoryEffectRenderer {
 
 

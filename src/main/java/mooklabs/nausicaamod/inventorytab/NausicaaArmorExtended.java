@@ -16,8 +16,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import tconstruct.library.armor.IHealthAccessory;
-import tconstruct.util.player.TPlayerStats;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.relauncher.Side;
@@ -60,7 +58,7 @@ public class NausicaaArmorExtended implements IInventory {
 				inventory[slot] = null;
 			}
 			EntityPlayer player = parent.get();
-			TPlayerStats stats = TPlayerStats.get(player);
+			NPlayerStats stats = NPlayerStats.get(player);
 			recalculateHealth(player, stats);
 			return split;
 		} else {
@@ -83,7 +81,7 @@ public class NausicaaArmorExtended implements IInventory {
 		}
 
 		EntityPlayer player = parent.get();
-		TPlayerStats stats = TPlayerStats.get(player);
+		NPlayerStats stats = NPlayerStats.get(player);
 		recalculateHealth(player, stats);
 	}
 
@@ -105,7 +103,7 @@ public class NausicaaArmorExtended implements IInventory {
 	@Override
 	public void markDirty() {
 		EntityPlayer player = parent.get();
-		TPlayerStats stats = TPlayerStats.get(player);
+		NPlayerStats stats = NPlayerStats.get(player);
 		// recalculateSkills(player, stats);
 		recalculateHealth(player, stats);
 
@@ -113,14 +111,14 @@ public class NausicaaArmorExtended implements IInventory {
 		 * stats.knapsack.unequipItems(); } */
 	}
 
-	/* public void recalculateSkills(EntityPlayer player, TPlayerStats stats) {
+	/* public void recalculateSkills(EntityPlayer player, NPlayerStats stats) {
 	 * if (inventory[1] != null && inventory[1].getItem() == TRepo.glove) { if
 	 * (stats.skillList.size() < 1) { try {
 	 * stats.skillList.add(SkillRegistry.skills.get("Wall Building").copy()); }
 	 * catch (Exception e) { e.printStackTrace(); } } } else { if
 	 * (stats.skillList.size() > 0) { stats.skillList.remove(0); } } } */
 
-	public void recalculateHealth(EntityPlayer player, TPlayerStats stats) {
+	public void recalculateHealth(EntityPlayer player, NPlayerStats stats) {
 		// REF for sideonly Side side = FMLCommonHandler.instance().getEffectiveSide();
 	}
 
