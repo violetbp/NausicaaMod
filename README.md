@@ -2,7 +2,7 @@ NausicaaMod
 ===========
 
 NausicaaMod tries to bring the world of Ghibli to Minecraft!
-
+Currently only has stuff from Nausicaa of the Valley of Wind.
 
 Licence: 
 Basicly: http://www.wtfpl.net/
