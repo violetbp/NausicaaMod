@@ -2,7 +2,7 @@ package mooklabs.nausicaamod.godwarrior;
 
 import java.util.List;
 
-import mooklabs.MLib;
+import mooklabs.mookcore.MLib;
 import mooklabs.nausicaamod.Main;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;

@@ -1,0 +1,132 @@
+itemGroup.tabNCombat=Nausicaa Combat
+itemGroup.tabNTools=Nausicaa Tools
+itemGroup.tabNBlocks=Nausicaa Blocks
+itemGroup.tabNGlider=Nausicaa Glider
+itemGroup.tabNItems=Nausicaa Items
+itemGroup.tabNPlants=Nausicaa Plants
+itemGroup.tabNCooking=Nausicaa Cooking
+itemGroup.tabNUtil=Nausicaa Utilities
+
+tile.posionLeaves.name=Toxic Leaves
+tile.poisonDirt.name=Toxic Dirt
+tile.poisonGrass.name=Toxic Grass
+tile.poisonLog.name=Toxic Log
+tile.fossilTrunk.name=Petrified Log
+tile.poisonThinLog.name=Thin Poison Log
+
+tile.poisonWood.name=Toxic Wood
+tile.poisonBrush.name=Toxic Brush
+tile.puffball.name=Puffball
+tile.quicksand.name=Quicksand
+tile.sporeSand.name=Spore Sand
+tile.pureDirt.name=Purified Dirt
+tile.invisibleLight.name=Invisible Light
+
+tile.gliderBuilder.name=Glider Builder
+tile.portalToxicBlock.name=Portal to the Toxic forest
+tile.craftingTable.name =Test Crafting Table
+tile.stoveIdle.name=Stove 
+tile.stoveBurning.name=Active Stove 
+tile.teapot.name=Teapot 
+
+key.tutorial.category=[NausicaaMod] Glider Control Keys
+key.nausicaa_extra.desc=Ignore this
+key.nausicaa_glider_increase.desc=Increase Glider Speed
+key.nausicaa_glider_decrease.desc=Decrease Glider Speed
+key.nausicaa_glider_minspeed.desc=Decrease Glider Speed to min
+key.nausicaa_glider_maxspeed.desc=Increase Glider Speed to max
+key.nausicaa_glider_on.desc=Toggle Glider On
+key.nausicaa_glider_off.desc=Toggle Glider Off
+
+
+item.wetClay.name=Wet Clay
+item.reinforcedWetClay.name=Reinforced Wet Clay
+item.shellFragment.name=Ohmu Shell Fragment
+item.shellShard.name=Ohmu Shell Shard
+item.ceramicIngot.name=Ceramic Ingot
+item.diamondStick.name=Diamond Stick
+
+item.metalPlate.name=Metal Plate
+tile.gliderWing.name=Glider Wing
+tile.gliderBody.name=Glider Body
+tile.gliderEngine.name=Glider Engine
+tile.gliderHandle.name=Glider Handle
+item.gliderFull.name=Glider
+
+tile.mineshaftBuilder.name=Mineshaft Builder
+tile.longshaftBuilder.name=Longshaft Builder
+tile.direHouseBuilder.name=DireHouse20 Builder
+tile.hologramUi.name=Hologram Text Testing Block
+tile.grinder.name=Grinder
+
+item.blowGun.name=Blow Gun
+item.blowDart.name=Blow Gun Dart
+item.insectWhistle.name=Worm Flute(insect whistle)
+item.flareGun.name=Flare Gun
+item.flare.name=Flare Gun Bullet
+item.flamethrower.name=Flamethrower
+item.strobeGrenade.name=Strobe Grenade
+
+item.ceramicSword.name=Ceramic Sword
+item.ceramicPickaxe.name=Ceramic Pickaxe
+item.ceramicAxe.name=Ceramic Axe
+item.ceramicShovel.name=Ceramic Shovel
+
+item.unfiredCeramicSword.name=Unfired Claymore
+item.ceramicSharpSword.name=Claymore
+
+item.shellSword.name=Shell Sword
+item.shellPickaxe.name=Shell Pickaxe
+item.shellAxe.name=Shell Axe
+item.shellShovel.name=Shell Shovel
+        
+
+item.unfiredCeramicHelmet.name=Unfired Ceramic Helmet
+item.unfiredCeramicChestplate.name=Unfired Ceramic Chestplate
+item.unfiredCeramicLegs.name=Unfired Ceramic Greaves
+item.unfiredCeramicBoots.name=Unfired Ceramic Boots
+
+item.ceramicHelmet.name=Ceramic Helmet
+item.ceramicChestplate.name=Ceramic Chestplate
+item.ceramicLegs.name=Ceramic Greaves
+item.ceramicBoots.name=Ceramic Boots
+
+item.shellHelmet.name=Shell Helmet
+item.shellChestplate.name=Shell Chestplate
+item.shellLegs.name=Shell Greaves
+item.shellBoots.name=Shell Boots
+
+item.specialHelmet.name=Special Helmet
+item.specialChestplate.name=Special Chestplate
+item.specialLegs.name=Special Leggings
+item.specialBoots.name=Special Boots
+
+
+entity.Ohmu.name=Ohmu
+entity.NPC.name=Nausicaa NPC
+entity.JungleJelly.name=JungleJelly
+entity.Dragonfly.name=Dragonfly
+entity.Beetle.name=Beetle
+entity.Fox Squirrel.name=Fox Squirrel
+entity.Spore.name=Spore
+entity.horseclaw.name=Horseclaw
+
+item.fuelCell.name=Fuel Cell
+tile.fuelBlock.name=Fuel Block
+
+tile.liquidSandBlock.name=Acid
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

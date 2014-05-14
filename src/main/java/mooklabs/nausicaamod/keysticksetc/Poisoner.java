@@ -2,9 +2,9 @@ package mooklabs.nausicaamod.keysticksetc;
 
 import java.util.ArrayList;
 
+import mooklabs.mookcore.Unused;
 import mooklabs.nausicaamod.ExtendedPlayer;
 import mooklabs.nausicaamod.Main;
-import mooklabs.nausicaamod.Unused;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;

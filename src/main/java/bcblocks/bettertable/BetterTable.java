@@ -32,7 +32,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
  * @author microjunk
  * @EditedBy mooklabs
  */
-@Mod(modid = BetterTable.modid, name = BetterTable.name, version = "0.2.0", dependencies = "required-after:nausicaamod;required-after:nausicaamodtech")
+@Mod(modid = BetterTable.modid, name = BetterTable.name, version = "0.2.3", dependencies = "required-after:nausicaamod;required-after:nausicaamodtech")
 public class BetterTable {
 
 	public static final String modid = "bettertable";

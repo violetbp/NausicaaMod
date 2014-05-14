@@ -1,6 +1,6 @@
 package mooklabs.nausicaamod.keysticksetc;
 
-import mooklabs.nausicaamod.Unused;
+import mooklabs.mookcore.Unused;
 import net.minecraft.client.Minecraft;
 
 @Unused

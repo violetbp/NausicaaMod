@@ -1,8 +1,8 @@
 package mooklabs.nausicaamodtech.builder;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mooklabs.mookcore.Unused;
 import mooklabs.nausicaamod.Main;
-import mooklabs.nausicaamod.Unused;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

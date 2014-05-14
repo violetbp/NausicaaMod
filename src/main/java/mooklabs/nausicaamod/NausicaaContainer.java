@@ -13,6 +13,8 @@
 package mooklabs.nausicaamod;
 
 import java.util.Arrays;
+
+import mooklabs.mookcore.Unused;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModMetadata;

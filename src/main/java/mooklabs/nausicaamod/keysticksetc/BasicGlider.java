@@ -1,7 +1,7 @@
 package mooklabs.nausicaamod.keysticksetc;
 
+import mooklabs.mookcore.Unused;
 import mooklabs.nausicaamod.Main;
-import mooklabs.nausicaamod.Unused;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.player.EntityPlayer;

@@ -2,11 +2,11 @@ package mooklabs.nausicaamodtech;
 
 import java.util.Iterator;
 
-import mooklabs.MMod;
+import mooklabs.mookcore.MMod;
+import mooklabs.mookcore.Requires;
+import mooklabs.mookcore.ToxicWorldGenerator;
+import mooklabs.mookcore.toolsandarmor.NArmor;
 import mooklabs.nausicaamod.FuelBlock;
-import mooklabs.nausicaamod.NArmor;
-import mooklabs.nausicaamod.Requires;
-import mooklabs.nausicaamod.ToxicWorldGenerator;
 import mooklabs.nausicaamod.glider.MetalPlate;
 import mooklabs.nausicaamodtech.builder.DireHouseBuilder;
 import mooklabs.nausicaamodtech.builder.HologramUi;
@@ -73,10 +73,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class TechMain extends MMod {
 
 	public static final String modid = "nausicaamodtech";
-	public static final String VERSION = "0.0.01";
+	public static final String VERSION = "0.0.02";
 	public static final String name = "NausicaaModTech";
 
-	//public static final Logger logger = LogManager.getLogger("NausicaaModTech");
+	public static final Logger logger = LogManager.getLogger("NausicaaModTech");
 
 	// Says where the client and server 'proxy' code is loaded.
 	@SidedProxy(clientSide = "mooklabs.nausicaamodtech.proxy.ClientProxy", serverSide = "mooklabs.nausicaamodtech.proxy.CommonProxy")

@@ -1,0 +1,19 @@
+{
+   "pack":{
+      "pack_format":1,
+      "description":"NausicaaMod"
+   }
+   "language":{
+       "en_US":{
+             "name":"English",
+             "region":"US",
+             "bidirectional":false
+          }
+         "eng_YOULA.lang":{
+             "name":"Fun Times",
+             "region":"US",
+             "bidirectional":false
+          }
+          
+   }
+}
