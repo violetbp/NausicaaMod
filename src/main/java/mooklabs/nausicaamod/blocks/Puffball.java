@@ -48,7 +48,7 @@ public class Puffball extends Block {
 		} catch (ArrayIndexOutOfBoundsException e) {
 			//System.err.println("[NausicaaMod][FatalErrorCought] Metadata or something");
 		}
-		return null;
+		return icons[0];
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class Puffball extends Block {
 	public void registerBlockIcons(IIconRegister par1IconRegister) {
 		for (int i = 0; i < puffballType.length; ++i) {
 			this.icons[i] = par1IconRegister.registerIcon(this.getTextureName() + puffballType[i]);
-			System.out.println(this.getTextureName() + puffballType[i]);
+			//System.out.println(this.getTextureName() + puffballType[i]);
 		}
 	}
 }

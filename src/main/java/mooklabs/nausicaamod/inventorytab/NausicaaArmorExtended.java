@@ -7,6 +7,9 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import tconstruct.TConstruct;
+
+import mooklabs.nausicaamod.Main;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
@@ -28,6 +31,7 @@ public class NausicaaArmorExtended implements IInventory {
 
 	public void init(EntityPlayer player) {
 		parent = new WeakReference<EntityPlayer>(player);
+		//System.out.println();
 	}
 
 	@Override
@@ -46,8 +50,11 @@ public class NausicaaArmorExtended implements IInventory {
 
 	@Override
 	public ItemStack decrStackSize(int slot, int quantity) {
+		System.out.println("decr " + slot);
+
 		if (inventory[slot] != null) {
-			// TConstruct.logger.info("Took something from slot " + slot);
+			System.out.println("Took something from slot " + slot);
+			 Main.logger.info("Took something from slot " + slot);
 			if (inventory[slot].stackSize <= quantity) {
 				ItemStack stack = inventory[slot];
 				inventory[slot] = null;
@@ -87,7 +94,7 @@ public class NausicaaArmorExtended implements IInventory {
 
 	@Override
 	public String getInventoryName() {
-		return "";
+		return "Inventory";
 	}
 
 	@Override
@@ -97,7 +104,7 @@ public class NausicaaArmorExtended implements IInventory {
 
 	@Override
 	public int getInventoryStackLimit() {
-		return 64;
+		return 50;
 	}
 
 	@Override
