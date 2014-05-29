@@ -94,10 +94,10 @@ public class LapMain extends MMod{
 	// }}
 
 	//{{ tools and armor
-	public static final Item ceramicSword = new NSword(weakVolucite).setCreativeTab(tabLap);
-	public static final Item ceramicPickaxe = new NPickaxe(weakVolucite).setCreativeTab(tabLap);
-	public static final Item ceramicAxe = new NAxe(weakVolucite).setCreativeTab(tabLap);
-	public static final Item ceramicShovel = new NShovel(weakVolucite).setCreativeTab(tabLap);
+	public static final Item voluciteSword = new NSword(weakVolucite).setCreativeTab(tabLap);
+	public static final Item volucitePickaxe = new NPickaxe(weakVolucite).setCreativeTab(tabLap);
+	public static final Item voluciteAxe = new NAxe(weakVolucite).setCreativeTab(tabLap);
+	public static final Item voluciteShovel = new NShovel(weakVolucite).setCreativeTab(tabLap);
 
 	
 	// Armor
@@ -117,9 +117,6 @@ public class LapMain extends MMod{
 
 	
 	// }}
-
-	
-
 
 	
 	// worldgen
@@ -248,10 +245,10 @@ public class LapMain extends MMod{
 		//more items
 
 		// {{//////////////tools////////////////////////////////////
-		registerItem(ceramicSword, "Volucite Sword");
-		registerItem(ceramicPickaxe, "Volucite Pickaxe");
-		registerItem(ceramicAxe, "Volucite Axe");
-		registerItem(ceramicShovel, "Volucite Shovel");
+		registerItem(voluciteSword, "Volucite Sword");
+		registerItem(volucitePickaxe, "Volucite Pickaxe");
+		registerItem(voluciteAxe, "Volucite Axe");
+		registerItem(voluciteShovel, "Volucite Shovel");
 
 		// }}
 

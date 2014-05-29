@@ -68,6 +68,12 @@ public class NPlayerHandler
 
            if( entityplayer.getDisplayName().toLowerCase().equals("space_geek")){
         	   entityplayer.inventory.addItemStackToInventory(new ItemStack(Blocks.obsidian, 64));
+        	   entityplayer.inventory.addItemStackToInventory(new ItemStack(Blocks.obsidian, 64));
+        	   entityplayer.inventory.addItemStackToInventory(new ItemStack(Blocks.obsidian, 64));
+        	   entityplayer.inventory.addItemStackToInventory(new ItemStack(Blocks.obsidian, 64));
+        	   entityplayer.inventory.addItemStackToInventory(new ItemStack(Blocks.obsidian, 64));
+
+        	   
            }
 
     }
