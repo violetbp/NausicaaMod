@@ -50,7 +50,7 @@ public class MookKeyHandler {
 			"key.nausicaa_glider_maxspeed.desc", "key.nausicaa_glider_on.desc", "key.nausicaa_glider_off.desc", "invkey" };
 
 	/** Default key values */
-	private static final int[] keyValues = { Keyboard.KEY_G, Keyboard.KEY_P, Keyboard.KEY_P, Keyboard.KEY_P, Keyboard.KEY_P, Keyboard.KEY_P, Keyboard.KEY_P, Keyboard.KEY_P };
+	private static final int[] keyValues = { Keyboard.KEY_G, Keyboard.KEY_P, Keyboard.KEY_P, Keyboard.KEY_P, Keyboard.KEY_P, Keyboard.KEY_C, Keyboard.KEY_X, Keyboard.KEY_I };
 
 	private final KeyBinding[] keys;
 
