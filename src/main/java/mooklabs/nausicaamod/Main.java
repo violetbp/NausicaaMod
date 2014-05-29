@@ -116,7 +116,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * 
  * @author mooklabs
  */
-@Mod(modid = Main.modid, version = Main.VERSION, guiFactory = "mooklabs.nausicaamod.NausicaaConfigGuiFactory")
+@Mod(modid = Main.modid, name = Main.name, version = Main.VERSION, guiFactory = "mooklabs.nausicaamod.NausicaaConfigGuiFactory")
 public class Main extends MMod{
 
 	public static final String modid = "nausicaamod";
@@ -834,7 +834,7 @@ public class Main extends MMod{
 		registerItem(unfiredCeramicLegs, "Unfired Ceramic Greaves");
 		registerItem(unfiredCeramicBoots, "Unfired Ceramic Boots");
 
-		registerItem(ceramicHelmet, "Ceramic Helmet");
+		//registerItem(ceramicHelmet, "Ceramic Helmet");
 		registerItem(ceramicChestplate, "Ceramic Chestplate");
 		registerItem(ceramicLegs, "Ceramic Greaves");
 		registerItem(ceramicBoots, "Ceramic Boots");
@@ -888,7 +888,7 @@ public class Main extends MMod{
 	 */
 	@SideOnly(Side.CLIENT)
 	public void initDebug() {
-		NausicaaDebugWindow.init();
+		//NausicaaDebugWindow.init();
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -897,7 +897,7 @@ public class Main extends MMod{
 	 * since I dont want to fill the mc console up!
 	 */
 	public static void debugWrite(String str) {
-		NausicaaDebugWindow.write(str);
+		//NausicaaDebugWindow.write(str);
 	}
 
 }
