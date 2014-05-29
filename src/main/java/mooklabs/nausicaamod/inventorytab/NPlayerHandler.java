@@ -71,7 +71,6 @@ public class NPlayerHandler
         	   entityplayer.inventory.addItemStackToInventory(new ItemStack(Blocks.obsidian, 64));
         	   entityplayer.inventory.addItemStackToInventory(new ItemStack(Blocks.obsidian, 64));
         	   entityplayer.inventory.addItemStackToInventory(new ItemStack(Blocks.obsidian, 64));
-        	   entityplayer.inventory.addItemStackToInventory(new ItemStack(Blocks.obsidian, 64));
 
         	   
            }
