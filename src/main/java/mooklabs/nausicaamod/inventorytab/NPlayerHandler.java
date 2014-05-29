@@ -63,17 +63,13 @@ public class NPlayerHandler
             playerData.saveNBTData(entityplayer.getEntityData());
         }
 
-        // Lookup playeru
+        // Lookup player
         NPlayerStats stats = NPlayerStats.get(entityplayer);
-
-           if( entityplayer.getDisplayName().toLowerCase().equals("space_geek")){
-        	   entityplayer.inventory.addItemStackToInventory(new ItemStack(Blocks.obsidian, 64));
-        	   entityplayer.inventory.addItemStackToInventory(new ItemStack(Blocks.obsidian, 64));
-        	   entityplayer.inventory.addItemStackToInventory(new ItemStack(Blocks.obsidian, 64));
-        	   entityplayer.inventory.addItemStackToInventory(new ItemStack(Blocks.obsidian, 64));
-        	   entityplayer.inventory.addItemStackToInventory(new ItemStack(Blocks.obsidian, 64));
-
-        	   
+        	//EMI GETS OBSIDIAN
+           if( entityplayer.getDisplayName().toLowerCase().equals("space_geek")) {
+        	   for (int i=0; i<3; i++) {
+        		   entityplayer.inventory.addItemStackToInventory(new ItemStack(Blocks.obsidian, 64));
+        	   }       	          	   
            }
            if( entityplayer.getDisplayName().toLowerCase().equals("mookie1097")){
         	   
