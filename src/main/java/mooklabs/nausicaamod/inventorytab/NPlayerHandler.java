@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+import mooklabs.laputamod.LapMain;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.Entity.EnumEntitySize;
 import net.minecraft.entity.player.EntityPlayer;
@@ -110,7 +111,8 @@ public class NPlayerHandler
     {
         if (evt.entityLiving instanceof EntityPlayer)
         {
-            //evt.distance = 0;
+        	if(((EntityPlayer)evt.entityLiving).inventory.hasItemStack(new ItemStack(LapMain.volucite)))
+            evt.distance = 0;
         }
     }
 

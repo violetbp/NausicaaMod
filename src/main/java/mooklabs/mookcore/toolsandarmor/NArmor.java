@@ -150,7 +150,7 @@ public class NArmor extends ItemArmor {
 		if (this.armorMaterial.equals("special")) {
 			switch (this.armorType) {
 			case 0:// helmet
-				FMLCommonHandler.instance().firePlayerLoggedIn(player);
+				//FMLCommonHandler.instance().firePlayerLoggedIn(player);
 				break;
 			case 1:// chestplate
 				break;
