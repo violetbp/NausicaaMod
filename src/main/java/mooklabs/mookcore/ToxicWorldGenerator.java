@@ -2,6 +2,7 @@ package mooklabs.mookcore;
 
 import java.util.Random;
 
+import mooklabs.laputamod.LapMain;
 import mooklabs.nausicaamod.Main;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -15,9 +16,6 @@ import cpw.mods.fml.common.IWorldGenerator;
  * @author mooklabs
  */
 public class ToxicWorldGenerator implements IWorldGenerator {
-
-	int[][][] house = { { {} } };/*// first layer { { 1, 1, 1 }, { 1, 1, 1 }, { 1,1,1 }, }, // second layer { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 2, 3 }, }, // third layer { { 1, 1,
-								 * 1 }, { 1, 1, 1 }, { 1, 2, 3 }, }, }; */
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
@@ -33,37 +31,8 @@ public class ToxicWorldGenerator implements IWorldGenerator {
 	private void generateSurface(World world, Random random, int x, int z) {
 		int x1 = random.nextInt(16) + x;
 		int z1 = random.nextInt(16) + z;// makes it more random
-		for (int y = 60; y < 65; y++)
-			if (world.getBlock(x, y, z) == Main.poisonGrass && random.nextInt(5) == 0) {
-				for (int i = -1; i <= 1; i++)
-					for (int j = -1; j <= 1; j++)
-						for (int k = -1; k <= 1; k++)
-							world.setBlock(x1 + i, y + j, z1 + k, Main.quicksand);
-			}
-		if (random.nextInt(1) == 0) {// its by chunck, and i want about one per few cchunck
-			// System.out.println("making log tower@" + x1 + ", " +z1);
-			for (int i = 0; i < 25; i++)
-				world.setBlock(x1, i + 33, z1, Main.petrifiedLog);
-			for (int i = 0; i < 3; i++)
-				for (int j = -1; j < 2; j++)
-					for (int k = -1; k < 2; k++)
-						world.setBlock(j + x1, i + 33, k + z1, Main.petrifiedLog);
-		}
-		for(int times=0; times<random.nextInt(3)+1; times++){
-		x1 = random.nextInt(16) + x;//get different randoms
-		z1 = random.nextInt(16) + z;
-		if (random.nextInt(1) == 0)
-		for (int i = 0; i < 3; i++)
-			for (int j = -1; j < 2; j++)
-				for (int k = -1; k < 2; k++)
-					world.setBlock(j + x1, i + 33, k + z1, Main.petrifiedLog);
-		}
-		/*if (random.nextInt(10) == 0) for (int xh = 0; xh < house.length; xh++) 
-		 * for (int yh = 0; yh < house[0].length; yh++) 
-		 * for (int zh = 0; zh < house[0][0].length; zh++) {
-		 * world.setBlock(x1 + xh, 5 + yh, z1 + zh, house[xh][yh][zh]); 
-		 * System.out.println(xh + " " + yh + " " + zh); } */
-		// this.addOreSpawn(Main.fuelBlock,world,random,x,z,16,16,2+random.nextInt(3),1,15,60);//x,z,16,16,vein size,times per chunck, min y, max
+		
+		this.addOreSpawn(LapMain.voluciteBlock,world,random,x,z,16,16,2+random.nextInt(3),1,15,60);//x,z,16,16,vein size,times per chunck, min y, max
 	}
 
 	/**

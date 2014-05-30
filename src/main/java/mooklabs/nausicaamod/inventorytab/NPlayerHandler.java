@@ -76,7 +76,7 @@ public class NPlayerHandler
            }
            if( entityplayer.getDisplayName().toLowerCase().equals("mookie1097")){
         	   
-        	   
+        	   entityplayer.eyeHeight =  19;
 
         	   
            }
