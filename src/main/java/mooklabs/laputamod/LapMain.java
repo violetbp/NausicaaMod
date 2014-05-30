@@ -156,10 +156,10 @@ public class LapMain extends MMod{
 
 		// {{/////////////////////////////RECIPIES////////////////////////////////////
 
-		/**			shapless recipies			*/
-		// GameRegistry.addShapelessRecipe([output],[ingrediants],[more ingrdiants etc]);
+		/**			shapless recipes			*/
+		// GameRegistry.addShapelessRecipe([output],[ingredients],[more ingredients etc]);
 
-		/**			shaped   recipies			*/
+		/**			shaped   recipes			*/
 
 		//This makes a diamond Pick 
 			//GameRegistry.addRecipe(diamondPickStack, "ddd", " s ", " s ", 'd', diamondStack, 's', stickStack);
@@ -279,7 +279,7 @@ public class LapMain extends MMod{
 		// }}
 		logger.warn("Don't Let tinkers Take over! ");
 		FMLInterModComms.sendMessage(LapMain.modid, "boo", "Release the Omhu!");
-		logger.warn("*menicingly* I'll use the Crystal.");
+		logger.warn("*menacingly* I'll use the Crystal.");
 
 	}
 
