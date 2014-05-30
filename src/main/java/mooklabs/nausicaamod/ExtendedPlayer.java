@@ -1,5 +1,6 @@
 package mooklabs.nausicaamod;
 
+import mooklabs.nausicaamod.inventorytab.NausicaaArmorExtended;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,7 +13,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	 * the top of each class as a constant makes it very easy to organize and avoid typos. It's easiest to keep the same constant name in every class, as it will be
 	 * distinguished by the class name: ExtendedPlayer.EXT_PROP_NAME vs. ExtendedEntity.EXT_PROP_NAME Note that a single entity can have multiple extended properties, so each
 	 * property should have a unique name. Try to come up with something more unique than the tutorial example. */
-	public final static String EXT_PROP_NAME = "ExtendedPlayer";
+	public final static String EXT_PROP_NAME = "NausicaaExtendedPlayer";
 
 	// I always include the entity to which the properties belong for easy access
 	// It's final because we won't be changing which player it is
@@ -23,8 +24,17 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	// We're adding mana to the player, so we'll need current and max mana
 	private int maxKindness;
 
+	
+	
 	public static final int KINDNESS_WATCHER = 20;
 
+	
+	public NausicaaArmorExtended armor;
+
+	
+	
+	
+	
 	public ExtendedPlayer(EntityPlayer player) {
 		this.player = player;
 		this.maxKindness = 2000;
@@ -38,6 +48,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	 */
 	public static final void register(EntityPlayer player) {
 		player.registerExtendedProperties(ExtendedPlayer.EXT_PROP_NAME, new ExtendedPlayer(player));
+
 	}
 
 	/**
@@ -52,6 +63,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void saveNBTData(NBTTagCompound compound) {
 		// We need to create a new tag compound that will save everything for our Extended Properties
 		NBTTagCompound properties = new NBTTagCompound();
+		this.armor.saveToNBT(properties);
 
 		// We only have 2 variables currently; save them both to the new tag
 		properties.setInteger("CurrentKindness", this.player.getDataWatcher().getWatchableObjectInt(KINDNESS_WATCHER));
@@ -68,6 +80,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void loadNBTData(NBTTagCompound compound) {
 		// Here we fetch the unique tag compound we set for this class of Extended Properties
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
+		this.armor.readFromNBT(properties);
 		// Get our data from the custom tag compound
 		this.player.getDataWatcher().updateObject(KINDNESS_WATCHER, properties.getInteger("CurrentKindness"));
 		this.maxKindness = properties.getInteger("maxKindness");

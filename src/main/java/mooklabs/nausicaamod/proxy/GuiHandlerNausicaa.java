@@ -1,5 +1,6 @@
 package mooklabs.nausicaamod.proxy;
 
+import mooklabs.nausicaamod.ExtendedPlayer;
 import mooklabs.nausicaamod.Main;
 import mooklabs.nausicaamod.godwarrior.ContainerGodWarrior;
 import mooklabs.nausicaamod.godwarrior.GodWarriorControlGui;
@@ -16,7 +17,6 @@ import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GuiHandlerNausicaa implements IGuiHandler {
 
-	public static NausicaaArmorExtended nausicaaArmorExtended = new NausicaaArmorExtended();
 
 	
 	@Override
@@ -26,8 +26,9 @@ public class GuiHandlerNausicaa implements IGuiHandler {
 		case Main.godControlGuiID:
 			return new ContainerGodWarrior(player.inventory);
 		case Main.nausicaaTabGuiId:
-			nausicaaArmorExtended.init(Minecraft.getMinecraft().thePlayer);
-			return new NausicaaTabExtendedContainer(player.inventory, nausicaaArmorExtended);
+			ExtendedPlayer e = ExtendedPlayer.get(player);
+			
+			return new NausicaaTabExtendedContainer(player.inventory, e.armor);
 
 		}
 
@@ -42,8 +43,8 @@ public class GuiHandlerNausicaa implements IGuiHandler {
 			return player != null ? new GodWarriorControlGui(new ContainerGodWarrior(player.inventory)) : null;
 			
 		case Main.nausicaaTabGuiId:
-			nausicaaArmorExtended.init(Minecraft.getMinecraft().thePlayer);
-			return new NausicaaGuiInventory(player.inventory, nausicaaArmorExtended);
+			ExtendedPlayer e = ExtendedPlayer.get(player);
+			return new NausicaaGuiInventory(player.inventory, e.armor);
 		}
 		return null;
 	}
