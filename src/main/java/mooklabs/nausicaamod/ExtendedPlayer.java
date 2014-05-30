@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
+import java.lang.ref.WeakReference;
 
 public class ExtendedPlayer implements IExtendedEntityProperties {
 
@@ -18,7 +19,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	// I always include the entity to which the properties belong for easy access
 	// It's final because we won't be changing which player it is
 	private final EntityPlayer player;
-
+	
 	// Declare other variables you want to add here
 
 	// We're adding mana to the player, so we'll need current and max mana
@@ -29,13 +30,12 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public static final int KINDNESS_WATCHER = 20;
 
 	
-	public NausicaaArmorExtended armor;
 
 	
 	
 	
 	
-	public ExtendedPlayer(EntityPlayer player) {
+	public ExtendedPlayer(EntityPlayer player) {		
 		this.player = player;
 		this.maxKindness = 2000;
 		// This adds the new object at our defined index and sets the value to max mana,
@@ -63,8 +63,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void saveNBTData(NBTTagCompound compound) {
 		// We need to create a new tag compound that will save everything for our Extended Properties
 		NBTTagCompound properties = new NBTTagCompound();
-		this.armor.saveToNBT(properties);
-
+		
 		// We only have 2 variables currently; save them both to the new tag
 		properties.setInteger("CurrentKindness", this.player.getDataWatcher().getWatchableObjectInt(KINDNESS_WATCHER));
 		properties.setInteger("maxKindness", this.maxKindness);
@@ -80,7 +79,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void loadNBTData(NBTTagCompound compound) {
 		// Here we fetch the unique tag compound we set for this class of Extended Properties
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
-		this.armor.readFromNBT(properties);
+
 		// Get our data from the custom tag compound
 		this.player.getDataWatcher().updateObject(KINDNESS_WATCHER, properties.getInteger("CurrentKindness"));
 		this.maxKindness = properties.getInteger("maxKindness");

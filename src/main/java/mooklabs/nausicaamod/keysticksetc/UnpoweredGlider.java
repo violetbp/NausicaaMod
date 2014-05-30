@@ -1,9 +1,8 @@
 package mooklabs.nausicaamod.keysticksetc;
 
 import mooklabs.mookcore.Unused;
-import mooklabs.nausicaamod.ExtendedPlayer;
 import mooklabs.nausicaamod.Main;
-import mooklabs.nausicaamod.proxy.GuiHandlerNausicaa;
+import mooklabs.nausicaamod.inventorytab.NPlayerStats;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -82,9 +81,9 @@ public class UnpoweredGlider extends Thread {
 			// System.out.println("running");
 			player = mc.thePlayer;
 			if (player != null) {
-				ExtendedPlayer.get(Minecraft.getMinecraft().thePlayer);
+				NPlayerStats.get(Minecraft.getMinecraft().thePlayer);
 				if ((player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == Main.glider && Main.enableGlider)
-						|| (MookKeyHandler.gliderOn && ExtendedPlayer.get(player).armor.isStackInSlot(4))) {
+						|| (MookKeyHandler.gliderOn && NPlayerStats.get(player).armor.isStackInSlot(4))) {
 					// System.out.println(player.getCurrentEquippedItem().itemID);
 
 						

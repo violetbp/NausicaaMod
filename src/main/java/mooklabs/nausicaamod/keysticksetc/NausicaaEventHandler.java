@@ -2,6 +2,7 @@ package mooklabs.nausicaamod.keysticksetc;
 
 import mooklabs.nausicaamod.ExtendedPlayer;
 import mooklabs.nausicaamod.Main;
+import mooklabs.nausicaamod.inventorytab.NPlayerStats;
 import mooklabs.nausicaamod.mobs.Ohmu;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
@@ -61,6 +62,9 @@ public class NausicaaEventHandler {
 		if (event.entity instanceof EntityPlayer && event.entity.getExtendedProperties(ExtendedPlayer.EXT_PROP_NAME) == null)
 			event.entity.registerExtendedProperties(ExtendedPlayer.EXT_PROP_NAME, new ExtendedPlayer((EntityPlayer) event.entity));
 		
+		//INV TAB
+		if (event.entity instanceof EntityPlayer && NPlayerStats.get((EntityPlayer) event.entity) == null)
+			NPlayerStats.register((EntityPlayer) event.entity);
 		
 	}
 }
