@@ -21,10 +21,11 @@ public class VoluciteIngot extends Item {
 	/**
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer)
     {
     	//TODO EMI slow down fall??
-        return par1ItemStack;
+		entityPlayer.fallDistance = 0;
+        return itemStack;
     }
 	
 }

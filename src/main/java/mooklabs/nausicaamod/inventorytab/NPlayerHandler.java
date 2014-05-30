@@ -110,7 +110,7 @@ public class NPlayerHandler
     {
         if (evt.entityLiving instanceof EntityPlayer)
         {
-            evt.distance = 0;
+            //evt.distance = 0;
         }
     }
 
