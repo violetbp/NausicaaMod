@@ -139,7 +139,7 @@ public class Main extends MMod{
 	public static final int nausicaaTabGuiId = 3;
 
 
-	// inits for ease of changeing
+	// inits for ease of changing
 	public final static String itemfold = "nausicaamod";
 	// TODO CANNOT USE THIS ID public final static int thinTreeRenderId = 40;
 	public final static int textRenderId = 50;
@@ -151,7 +151,7 @@ public class Main extends MMod{
 	@Unused
 	//public NausicaaGameSettings gameSettings;
 
-	//I dont think ill ever acctaully use this value, but its here anyway
+	//I don't think ill ever actually use this value, but its here anyway
 	public final static boolean debug = false;
 
 	// {{ Creative tab madness!
@@ -367,7 +367,7 @@ public class Main extends MMod{
 	/* //TODO this -Desert with occasional tree trunks and sporeballs (toxicDesert) -Jungle with huge crevasses (called airspaceJungle) -Jungle with large lakes for Ohmu to
 	 * live in (toxicLakes) -Jungle with ruined buildings (toxicVillage) -Swamp with toxic trees, dirt, plants (toxicSwamp) -Toxic jungle mountains (toxicHills) */
 
-	// /////////////Dimention//////////////////////
+	// /////////////Dimension//////////////////////
 	// public static BlockPortalToxic portalToxicBlock = (BlockPortalToxic) new BlockPortalToxic().setBlockName("portalToxicBlock").setCreativeTab(tabBlock);
 
 	public final static int dimensionId = 8;
@@ -375,7 +375,7 @@ public class Main extends MMod{
 	// worldgen
 	// This just changes some stuff, it is applied after chunck gen is your world generation file.
 	public static ToxicWorldGenerator modifyWorldGen = new ToxicWorldGenerator();
-	// /////end dimention
+	// /////end dimension
 
 	// attributes?
 	public static final IAttribute kindness = (new RangedAttribute("generic.kindness", 20.0D, 0.0D, Double.MAX_VALUE)).setDescription("Kindness Level").setShouldWatch(true);// MAYBE
@@ -481,9 +481,9 @@ public class Main extends MMod{
 
 		// {{/////////////////////////////RECIPIES////////////////////////////////////
 
-		// ///////////////shapless recipies//////////////////
-		// GameRegistry.addShapelessRecipe([output],[ingrediants],[more
-		// ingrdiants etc]);
+		// ///////////////shapeless recipes//////////////////
+		// GameRegistry.addShapelessRecipe([output],[ingredients],[more
+		// ingredients etc]);
 		GameRegistry.addShapelessRecipe(woodStack, poisonLogStack);
 
 		// //////////////////////////////shaped///////////////
@@ -586,7 +586,7 @@ public class Main extends MMod{
 
 		// CRIT MinecraftForge.EVENT_BUS.register(new NausicaaEventHandler());//kindness
 
-		// Dimention
+		// Dimension
 		// CRIT DimensionManager.registerProviderType(Main.dimensionId, WorldProviderToxic.class, false);
 		// CRIT DimensionManager.registerDimension(Main.dimensionId, Main.dimensionId);
 
@@ -599,7 +599,7 @@ public class Main extends MMod{
 
 		// {{//////////////ITEMSTACKS//////////////////
 
-		// {{ vanilia stacks////////////////////////////////
+		// {{ vanilla stacks////////////////////////////////
 
 		ItemStack goldStack = new ItemStack(Items.gold_ingot);
 		ItemStack coalStack = new ItemStack(Items.coal);
@@ -645,7 +645,7 @@ public class Main extends MMod{
 		 * GameRegistry.removeBiome(BiomeGenBase.swampland); GameRegistry.removeBiome(BiomeGenBase.desert); GameRegistry.removeBiome(BiomeGenBase.forest);
 		 * GameRegistry.removeBiome(BiomeGenBase.jungle); } */
 
-		// {{entittys
+		// {{entities
 
 		// BiomeGenBase[] nausicaaBiomes = { Main.poisonForest, Main.poisonSwamp, Main.poisonDesert, Main.poisonForestVillage, Main.poisonSwamp };
 		BiomeGenBase[] nausicaaBiomes = { BiomeGenBase.forest, BiomeGenBase.jungle, BiomeGenBase.desert, BiomeGenBase.taiga };
@@ -719,7 +719,7 @@ public class Main extends MMod{
 		Main.liquidSandBlock = new Liquid(liquidSand, Material.lava).setCreativeTab(tabUtil);
 		registerBlock(liquidSandBlock, "Poison Dirt");
 
-		// {{ block registation
+		// {{ block registration
 		registerBlock(poisonDirt, "Poison Dirt");
 		registerBlock(poisonGrass, "Poison Grass");
 		registerBlock(poisonLog, "Poison Log");
@@ -856,7 +856,7 @@ public class Main extends MMod{
 
 	}
 
-	// ///////////block reg agian////////////
+	// ///////////block reg again////////////
 	public static void registerBlock(Block block, String name) {
 		GameRegistry.registerBlock(block, block.getUnlocalizedName());
 		 LanguageRegistry.addName(block, name);

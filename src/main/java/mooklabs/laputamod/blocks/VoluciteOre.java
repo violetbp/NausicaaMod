@@ -22,7 +22,7 @@ public class VoluciteOre extends BlockOre {
 	}
 	@Override
 	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
-    {//TODO EMI Figure out hot to make it drop volucite ingot maybe...
+    {//TODO EMI Figure out how to make it drop volucite ingot maybe...
 		return null;
     }
 
