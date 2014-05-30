@@ -109,7 +109,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * GuiIngameModOptions
  * ModMetadata
  * FMLClientHandler**main forge class??
- * NausicaaMod: nau•si•ca•mod, {\iProper Noun};\r1. A Minecraft Mod Based on the anime and manga of Hayao Miyazaki's {\ uNausicaa of the Valley of Wind}.\n2. A very badly coded eclipse project.",
+ * NausicaaMod: NausicaaMod, {\iProper Noun};\r1. A Minecraft Mod Based on the anime and manga of Hayao Miyazaki's {\ uNausicaa of the Valley of Wind}.\n2. A very badly coded eclipse project.",
  *  */// }}
 /**
  * this is the main class for nausicaamod<br>
