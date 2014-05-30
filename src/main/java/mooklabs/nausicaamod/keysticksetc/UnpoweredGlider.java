@@ -23,7 +23,7 @@ public class UnpoweredGlider extends Thread {
 		mc = Minecraft.getMinecraft();
 		UnpoweredGlider g = new UnpoweredGlider();
 		g.start();
-		Main.debugWrite("glider Registred!");
+		Main.debugWrite("glider registered!");
 
 	}
 
@@ -52,7 +52,7 @@ public class UnpoweredGlider extends Thread {
 	public static double drag = .001;
 
 	public double fuel;
-	// changeing
+	// changing
 	private double maxSpeed = .9;
 	private double minSpeed = .08;
 	private boolean lastTickGliding = false;
@@ -65,7 +65,7 @@ public class UnpoweredGlider extends Thread {
 
 	@SideOnly(Side.CLIENT)
 	/**
-	 * gives magnitued of player speed vector
+	 * gives magnitude of player speed vector
 	 * 
 	 * @param player
 	 * @return the speed
@@ -143,7 +143,7 @@ public class UnpoweredGlider extends Thread {
 					}
 				}
 
-				else {// if not glideing
+				else {// if not gliding
 					player = mc.thePlayer;
 					if (player != null) {
 						// renderer = mc.entityRenderer;

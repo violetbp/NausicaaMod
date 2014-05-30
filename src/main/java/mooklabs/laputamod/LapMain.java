@@ -51,8 +51,8 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 
 /**
- * this is the main class for lauptaamod<br>
- * spacegeek will try to work on it
+ * this is the main class for laputamod<br>
+ * spacegeek will try to work on it (I will? -Spacegeek)
  * not dependent on nausicaamod
  * @author mooklabs(emiAndVic)
  */
@@ -69,7 +69,7 @@ public class LapMain extends MMod{
 	@SidedProxy(clientSide = "mooklabs.laputamod.proxy.ClientProxy", serverSide = "mooklabs.laputamod.proxy.CommonProxy")
 	public static CommonProxy proxy;
 
-	// The instance of your mod that Forge uses. basicy its the object, not the static class
+	// The instance of your mod that Forge uses. basically its the object, not the static class
 	@Instance("laputamod")
 	public static LapMain instance = new LapMain();
 
@@ -283,7 +283,7 @@ public class LapMain extends MMod{
 
 	}
 
-	// ///////////block reg agian////////////
+	// ///////////block reg again////////////
 	public static void registerBlock(Block block, String name) {
 		///tells forge(and mc) that the block exists
 		GameRegistry.registerBlock(block, block.getUnlocalizedName());
