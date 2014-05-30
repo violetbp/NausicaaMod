@@ -4,6 +4,9 @@ import java.util.Iterator;
 
 import mooklabs.laputamod.blocks.VoluciteIngot;
 import mooklabs.laputamod.blocks.VoluciteOre;
+import mooklabs.laputamod.items.NecklaceString;
+import mooklabs.laputamod.items.VoluciteNecklace;
+import mooklabs.laputamod.items.VolucitePendant;
 import mooklabs.laputamod.proxy.CommonProxy;
 import mooklabs.mookcore.MMod;
 import mooklabs.mookcore.ToxicWorldGenerator;
@@ -14,7 +17,6 @@ import mooklabs.mookcore.toolsandarmor.NShovel;
 import mooklabs.mookcore.toolsandarmor.NSword;
 import mooklabs.nausicaamod.proxy.GuiHandlerNausicaa;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -51,7 +53,8 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 /**
  * this is the main class for lauptaamod<br>
  * spacegeek will try to work on it
- * @author mooklabs
+ * not dependent on nausicaamod
+ * @author mooklabs(emiAndVic)
  */
 //the @mod annotation tells forge its a mod
 @Mod(modid = LapMain.modid, version = LapMain.VERSION, name = LapMain.name)
@@ -114,6 +117,11 @@ public class LapMain extends MMod{
 		public final static Block voluciteBlock = new VoluciteOre().setCreativeTab(tabLap);
 
 		public final static Item volucite = new VoluciteIngot().setCreativeTab(tabLap);
+		public final static Item volucitePendant = new VolucitePendant().setCreativeTab(tabLap);
+		public final static Item voluciteNecklace = new VoluciteNecklace().setCreativeTab(tabLap);
+		
+		public final static Item string = new NecklaceString().setCreativeTab(tabLap);
+		//public final static Item clasp = new hdfsa().setCreativeTab(tabLap);
 
 	
 	// }}
@@ -234,14 +242,21 @@ public class LapMain extends MMod{
 		
 
 		// {{ block registation
-		registerBlock(voluciteBlock, "Volucite Block");
+		registerBlock(voluciteBlock, "Infused Stone");
+		//registerBlock(solidVoluciteBlock, "Solid Volucite Block");//very powerfull!
+
 		//more blocks
 		
 		
 		// }}
 		
 		// {{ items
+		registerItem(string, "String");		
+		registerItem(volucitePendant, "Volucite Pendant");
+		registerItem(voluciteNecklace, "Volucite Necklace");
 		registerItem(volucite, "Volucite Crystal");
+
+		
 		//more items
 
 		// {{//////////////tools////////////////////////////////////
