@@ -148,7 +148,6 @@ public class NausicaaArmorExtended implements IInventory {
 
 	/* Save/Load */
 	public void saveToNBT(NBTTagCompound tagCompound) {
-		MLib.printToPlayer("nbtsave");
 		NBTTagList tagList = new NBTTagList();
 		NBTTagCompound invSlot;
 
@@ -165,9 +164,8 @@ public class NausicaaArmorExtended implements IInventory {
 	}
 
 	public void readFromNBT(NBTTagCompound tagCompound) {
-		System.out.println("nbtread");
 		if (tagCompound != null) {
-			System.out.println("nbtread2");
+			System.out.println("[NMod]nbtReadSuccess");
 
 			NBTTagList tagList = tagCompound.getTagList("NInventory", 10);
 			for (int i = 0; i < tagList.tagCount(); ++i) {

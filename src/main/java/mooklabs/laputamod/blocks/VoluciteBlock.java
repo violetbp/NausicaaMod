@@ -5,11 +5,12 @@ import java.util.Random;
 import mooklabs.laputamod.LapMain;
 import mooklabs.mookcore.MLib;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBeacon;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.util.ChatComponentStyle;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
 /**
@@ -24,9 +25,7 @@ public class VoluciteBlock extends Block {
 
 		setBlockName("voluciteBlock");
 		setStepSound(Block.soundTypeStone);
-		setBlockTextureName(LapMain.itemfold + ":voluciteOre");
-		
-
+		setBlockTextureName(LapMain.itemfold + ":voluciteBlock");
 	}
 
 	@Override
@@ -38,12 +37,23 @@ public class VoluciteBlock extends Block {
 	 * Called upon block activation (right click on the block.)
 	 */
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
-		if (isConstructedCorrectly(world, x, y, z)) {
-			MLib.printToPlayer("Sucess!");
-			return true;
+		if (player.getHeldItem() == null) {//will throw null pointer if you dont check if null first
+			MLib.printToPlayer("Right click with a necklace silly");
+			return false;
 		}
-		MLib.printToPlayer("failure ;(");
 
+		if (isConstructedCorrectly(world, x, y, z)) {
+			if (player.getHeldItem().getItem().equals(LapMain.voluciteNecklace)) {
+				MLib.printToPlayer(EnumChatFormatting.DARK_BLUE.toString() + EnumChatFormatting.ITALIC + "Access Granted");
+				// Suff happends here
+
+				return true;
+			} else {
+				MLib.printToPlayer("Right click with a neclace");
+			}
+		} else {
+			MLib.printToPlayer("constructed wrong");
+		}
 		return false;
 	}
 
