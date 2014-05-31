@@ -2,6 +2,7 @@ package mooklabs.laputamod;
 
 import java.util.Iterator;
 
+import mooklabs.laputamod.blocks.VoluciteBlock;
 import mooklabs.laputamod.blocks.VoluciteIngot;
 import mooklabs.laputamod.blocks.VoluciteOre;
 import mooklabs.laputamod.items.NecklaceString;
@@ -115,6 +116,7 @@ public class LapMain extends MMod{
 	
 	//since constructor isnt public adding "{}" causes it to be a subclass
 		public final static Block voluciteBlock = new VoluciteOre().setCreativeTab(tabLap);
+		public final static Block solidVoluciteBlock = new VoluciteBlock().setCreativeTab(tabLap);
 
 		public final static Item volucite = new VoluciteIngot().setCreativeTab(tabLap);
 		public final static Item volucitePendant = new VolucitePendant().setCreativeTab(tabLap);
@@ -243,7 +245,7 @@ public class LapMain extends MMod{
 
 		// {{ block registation
 		registerBlock(voluciteBlock, "Infused Stone");
-		//registerBlock(solidVoluciteBlock, "Solid Volucite Block");//very powerfull!
+		registerBlock(solidVoluciteBlock, "Solid Volucite Block");//very powerfull!
 
 		//more blocks
 		
