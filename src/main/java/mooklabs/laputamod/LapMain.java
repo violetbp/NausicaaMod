@@ -245,11 +245,9 @@ public class LapMain extends MMod{
 
 		// {{ block registration
 		registerBlock(voluciteBlock, "Infused Stone");
-<<<<<<< HEAD
-		//registerBlock(solidVoluciteBlock, "Solid Volucite Block");//very powerful!
-=======
-		registerBlock(solidVoluciteBlock, "Solid Volucite Block");//very powerfull!
->>>>>>> FETCH_HEAD
+
+		registerBlock(solidVoluciteBlock, "Solid Volucite Block");//very powerful!
+
 
 		//more blocks
 		
