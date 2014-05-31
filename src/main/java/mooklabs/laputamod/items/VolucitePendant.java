@@ -23,7 +23,6 @@ public class VolucitePendant extends Item {
      */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
-    	//TODO EMI slow down fall??
         return par1ItemStack;
     }
 	

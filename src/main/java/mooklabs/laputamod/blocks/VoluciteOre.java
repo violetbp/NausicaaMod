@@ -17,7 +17,7 @@ public class VoluciteOre extends BlockOre {
 		setBlockName("voluciteOre");
 		setStepSound(Block.soundTypeStone);
 		setBlockTextureName(LapMain.itemfold + ":voluciteOre");
-		setHarvestLevel("pickaxe", 3); //EMI can only be harvested by diamond pickaxe
+		setHarvestLevel("pickaxe", 3); //can only be harvested by diamond pickaxe
 											//GOOD JOB! :D	
 	}
 	//TODO this block should
@@ -32,7 +32,8 @@ public class VoluciteOre extends BlockOre {
      * Returns the quantity of items to drop on block destruction.
      */
     public int quantityDropped(Random rand)
-    {	//TOEMI why does this say lapis my i ask? it never will be
+    {	//EMI why does this say lapis my i ask? it never will be
+		//VIC i didnt do this?????? 
         return this == Blocks.lapis_ore ? 4 + rand.nextInt(5) : 1;
     }
 
