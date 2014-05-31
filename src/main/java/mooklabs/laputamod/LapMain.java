@@ -140,7 +140,7 @@ public class LapMain extends MMod{
 	public void preInit(FMLPreInitializationEvent event) {
 		init(this.name);
 
-		//quite importaint
+		//quite important
 		itemBlockNameReg();
 
 		//{{EVERYTHING
@@ -196,7 +196,7 @@ public class LapMain extends MMod{
 		
 
 		
-		// {{entittys
+		// {{entities
 
 		BiomeGenBase[] biomesToSpawnIn = { BiomeGenBase.forest, BiomeGenBase.jungle, BiomeGenBase.desert, BiomeGenBase.taiga };
 		
@@ -243,9 +243,11 @@ public class LapMain extends MMod{
 	private void itemBlockNameReg() {
 		
 
-		// {{ block registation
+		// {{ block registration
 		registerBlock(voluciteBlock, "Infused Stone");
-		registerBlock(solidVoluciteBlock, "Solid Volucite Block");//very powerfull!
+
+		registerBlock(solidVoluciteBlock, "Solid Volucite Block");//very powerful!
+
 
 		//more blocks
 		
