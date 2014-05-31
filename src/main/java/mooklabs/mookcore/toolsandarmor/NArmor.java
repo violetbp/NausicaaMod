@@ -6,6 +6,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import mooklabs.laputamod.LapMain;
 import mooklabs.nausicaamod.Main;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -59,11 +60,14 @@ public class NArmor extends ItemArmor {
 			typeStr = "Boots";
 			break;
 		default:
-			typeStr = "Error: number must be between 0 and 3 inclusive";
+			typeStr = "Error: armor type must be between 0 and 3 inclusive";
+			LapMain.logger.error(typeStr);
 		}
 		setUnlocalizedName(armorMaterial + typeStr);
 		setCreativeTab(Main.tabCombat);
-		setTextureName(Main.itemfold + ":" + armorMaterial + typeStr);// render armor in ui
+		if (!armorMaterial.equals(LapMain.weakVoluciteArmor)) setTextureName(Main.itemfold + ":" + armorMaterial + typeStr);// render armor in ui
+		else setTextureName(Main.itemfold + ":" + ArmorMaterial.CHAIN + typeStr);// render armor in ui
+		// CRIT when we get textures need to change this
 		// itemfolder + : + armor material +armor type ie "endcraft:crystalArmorHelmet"
 	}
 
@@ -88,6 +92,7 @@ public class NArmor extends ItemArmor {
 			player.curePotionEffects(itemstack);
 		}
 	}
+
 	@SideOnly(Side.CLIENT)
 	public void findBlock(int x, int y, int z, int radius) {
 		Minecraft mc = Minecraft.getMinecraft();
@@ -145,18 +150,18 @@ public class NArmor extends ItemArmor {
 
 	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemstack) {
-		//Main.debugWrite("armorTick");
+		// Main.debugWrite("armorTick");
 
 		if (this.armorMaterial.equals("special")) {
 			switch (this.armorType) {
 			case 0:// helmet
-				//FMLCommonHandler.instance().firePlayerLoggedIn(player);
+					// FMLCommonHandler.instance().firePlayerLoggedIn(player);
 				break;
 			case 1:// chestplate
 				break;
 			case 2:// legs
-				
-				 player.capabilities.setPlayerWalkSpeed(.3F);
+
+				player.capabilities.setPlayerWalkSpeed(.3F);
 
 				break;
 			case 3:// boots
@@ -167,13 +172,13 @@ public class NArmor extends ItemArmor {
 		} else {
 			switch (this.armorType) {
 			case 0:// helmet
-				
+
 				break;
 			case 1:// chestplate
-				
+
 				break;
 			case 2:// legs
-			
+
 				player.capabilities.setPlayerWalkSpeed(.1F);
 				break;
 			case 3:// boots
@@ -189,23 +194,11 @@ public class NArmor extends ItemArmor {
 	}
 }
 
-/*try {
-//if (player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getModifier(mod.getID()) != null) {
-	player.addChatMessage(new ChatComponentText("removed"));
-	player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
-//}
-} catch (IllegalArgumentException e) {
-System.out.println(e.getMessage());
-}// so it wont crash*/
+/* try { //if (player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getModifier(mod.getID()) != null) { player.addChatMessage(new ChatComponentText("removed"));
+ * player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod); //} } catch (IllegalArgumentException e) { System.out.println(e.getMessage()); }// so
+ * it wont crash */
 
-//if(player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getModifier(mod.getID()).getID(). < .2D)
-/*try {
-
-	player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
-	player.addChatMessage(new ChatComponentText("added"));
-} catch (IllegalArgumentException e) {
-}// so it wont crash
-*/
-
-
+// if(player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getModifier(mod.getID()).getID(). < .2D)
+/* try { player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod); player.addChatMessage(new ChatComponentText("added")); } catch
+ * (IllegalArgumentException e) { }// so it wont crash */
 
