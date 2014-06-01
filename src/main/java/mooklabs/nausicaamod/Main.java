@@ -190,7 +190,7 @@ public class Main extends MMod{
 			return Main.wetClay;
 		}
 	};
-	public static CreativeTabs tabNPlants = new CreativeTabs("tabNPlants") {
+	/*public static CreativeTabs tabNPlants = new CreativeTabs("tabNPlants") {
 
 		@Override
 		public Item getTabIconItem() {
@@ -210,15 +210,16 @@ public class Main extends MMod{
 		public Item getTabIconItem() {
 			return Main.wetClay;
 		}
-	};
-	public static CreativeTabs tabGlider = Main.tabNGlider;// CreativeTabs.tabBlock;
-	public static CreativeTabs tabTools = Main.tabNTools;// CreativeTabs.tabTools;
-	public static CreativeTabs tabCombat = Main.tabNCombat;// CreativeTabs.tabCombat;
+	};*/
+
+	public static CreativeTabs tabGlider = Main.tabNGlider;
+	public static CreativeTabs tabTools = Main.tabNTools;
+	public static CreativeTabs tabCombat = Main.tabNCombat;
 	public static CreativeTabs tabBlock = Main.tabNBlocks;
 	public static CreativeTabs tabItems = Main.tabNItems;
-	public static CreativeTabs tabPlants = Main.tabNPlants;
-	public static CreativeTabs tabCooking = Main.tabNCooking;
-	public static CreativeTabs tabUtil = Main.tabNUtil;
+	public static CreativeTabs tabPlants = Main.tabNBlocks;//Main.tabNPlants;
+	public static CreativeTabs tabCooking = Main.tabNBlocks;//Main.tabNCooking;
+	public static CreativeTabs tabUtil = Main.tabNBlocks;//Main.tabNUtil;
 
 	// }}
 
@@ -272,7 +273,7 @@ public class Main extends MMod{
 	public static final Item specialChestplate = new NArmor(specialArmor, 1, 1);
 	public static final Item specialLegs = new NArmor(specialArmor, 1, 2);
 	public static final Item specialBoots = new NArmor(specialArmor, 1, 3);
-	
+
 	public static final Item gasMask = new NArmor(ceramicArmor, 1, 0);
 
 	// }}
@@ -308,7 +309,7 @@ public class Main extends MMod{
 
 	// }}
 
-	public final static Block invisibleLight = new InvisibleLight().setCreativeTab(tabUtil);
+	public final static Block invisibleLight = new InvisibleLight().setCreativeTab(tabBlock);//TODO tabutil
 
 	public final static Block gliderBuilder = new BlockGliderBuilder().setCreativeTab(tabGlider);
 	// public final static Block craftingTable = new
@@ -390,7 +391,7 @@ public class Main extends MMod{
 	// TODO put in a config
 	public static final boolean removeMostOtherBiomes = false;
 
-	
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		init(this.name);
@@ -477,7 +478,7 @@ public class Main extends MMod{
 		// }}
 		// }}
 
-		
+
 
 		// {{/////////////////////////////RECIPIES////////////////////////////////////
 
@@ -494,7 +495,7 @@ public class Main extends MMod{
 		GameRegistry.addRecipe(reinforcedWetClayStack, "cwc", "cwc", "cwc", 'c', clayBlockStack, 'w', diamondStickStack);
 
 		GameRegistry.addRecipe(wetClayStack, new Object[] { "iii", "cwc", "ccc", 'c', clayBlockStack, 'w', waterBucketStack, 'i', clayStack });// i dont think this version is
-																																				// needed
+		// needed
 
 		// {{ ------------TOOLS-------------
 		// ceramic tools
@@ -507,16 +508,16 @@ public class Main extends MMod{
 
 		// shell Tools
 		GameRegistry.addRecipe(shellPickaxeStack, "ccc", " s ", " s ",// TODO
-																		// make
-																		// it
-																		// not
-																		// duplicates?
-																		// or
-																		// change
+				// make
+				// it
+				// not
+				// duplicates?
+				// or
+				// change
 				'c', shellShardStack, 's', diamondStickStack);
 		GameRegistry.addRecipe(shellSwordStack, "  c", "ec ", "se ", 'c', shellShardStack, 'e', ironStack, 's', diamondStickStack);// TODO
-																																	// fancy
-																																	// sword???????????
+		// fancy
+		// sword???????????
 		GameRegistry.addRecipe(shellAxeStack, "cc ", "cs ", " s ", 'c', shellShardStack, 's', diamondStickStack);
 		GameRegistry.addRecipe(shellShovelStack, " c ", " s ", " s ", 'c', shellShardStack, 's', diamondStickStack);
 
@@ -544,7 +545,7 @@ public class Main extends MMod{
 		GameRegistry.addRecipe(handleStack, "sss", "s s", "c c", 'c', leatherStack, 's', metalPlateStack);
 
 		// }}//////////////////////////Smelting recipes////////////////////////////////////
-		
+
 		//{{SMELTING
 		GameRegistry.addSmelting(unfiredCeramicHelmetStack, ceramicHelmetStack, 0.0f);
 		GameRegistry.addSmelting(unfiredCeramicChestplateStack, ceramicChestplateStack, 0.0f);
@@ -556,25 +557,22 @@ public class Main extends MMod{
 
 		GameRegistry.addSmelting(wetClay, ceramicIngotStack, 0.0f);
 		//}}
-		
-		// Inventory tabs????
-		// TODO ??????????????
-		/* EntityPlayer player = Minecraft.getMinecraft().thePlayer; GuiInventory inventory = new GuiInventory(player); TabRegistry.addTabsToInventory(inventory); */
+
 
 		// CRIT NausicaaWorldType.addRemoveNeededBiomes();
 		//}}
-	
-
-        playerTracker = new NPlayerHandler();
-        // GameRegistry.registerPlayerTracker(playerTracker);
-        FMLCommonHandler.instance().bus().register(playerTracker);
-        MinecraftForge.EVENT_BUS.register(playerTracker);
 
 
+		playerTracker = new NPlayerHandler();
+		// GameRegistry.registerPlayerTracker(playerTracker);
+		FMLCommonHandler.instance().bus().register(playerTracker);
+		MinecraftForge.EVENT_BUS.register(playerTracker);
 
-		
+
+
+
 	}
-    public static NPlayerHandler playerTracker;
+	public static NPlayerHandler playerTracker;
 
 	GuiHandlerNausicaa guiHandler = new GuiHandlerNausicaa();
 
@@ -681,6 +679,7 @@ public class Main extends MMod{
 	}
 
 	// /////////////Mobs!////////////
+	@Override
 	public void registerEntity(Class<? extends Entity> entityClass, String entityName, int bkEggColor, int fgEggColor) {
 		int id = EntityRegistry.findGlobalUniqueEntityId();
 
@@ -688,6 +687,7 @@ public class Main extends MMod{
 		EntityList.entityEggs.put(Integer.valueOf(id), new EntityEggInfo(id, bkEggColor, fgEggColor));
 	}
 
+	@Override
 	public void addSpawn(Class<? extends EntityLiving> entityClass, int spawnProb, int min, int max, BiomeGenBase[] biomes) {
 		if (spawnProb > 0) {
 			EntityRegistry.addSpawn(entityClass, spawnProb, min, max, EnumCreatureType.creature, biomes);
@@ -704,7 +704,7 @@ public class Main extends MMod{
 			FMLLog.severe("[NausicaaMod]: Something went wrong when checking for a mod being loaded");
 		}
 		//TabRegistry.addTabsToInventory(new NausicaaGuiInventory(Minecraft.getMinecraft().thePlayer));
-		
+
 
 		/* impliments later...better way to waila
 		 * if (Loader.isModLoaded("waila")) {
@@ -716,7 +716,7 @@ public class Main extends MMod{
 
 	private void itemBlockNameReg() {
 		FluidRegistry.registerFluid(liquidSand);
-		Main.liquidSandBlock = new Liquid(liquidSand, Material.lava).setCreativeTab(tabUtil);
+		Main.liquidSandBlock = new Liquid(liquidSand, Material.lava).setCreativeTab(tabBlock);//TODO tabutil
 		registerBlock(liquidSandBlock, "Poison Dirt");
 
 		// {{ block registration
@@ -848,7 +848,7 @@ public class Main extends MMod{
 		registerItem(specialChestplate, "Special Chestplate");
 		registerItem(specialLegs, "Special Greaves");
 		registerItem(specialBoots, "Special Boots");
-		
+
 		registerItem(gasMask, "Gas Mask");
 
 		// }}
@@ -859,27 +859,28 @@ public class Main extends MMod{
 	// ///////////block reg again////////////
 	public static void registerBlock(Block block, String name) {
 		GameRegistry.registerBlock(block, block.getUnlocalizedName());
-		 LanguageRegistry.addName(block, name);
+		LanguageRegistry.addName(block, name);
 	}
 
 	public static void registerItem(Item item, String name) {
 		GameRegistry.registerItem(item, modid + item.getUnlocalizedName());
-		 LanguageRegistry.addName(item, name);
+		LanguageRegistry.addName(item, name);
 	}
-	
+
 	/** this is more just for future reference than anything else */
+	@Override
 	@EventHandler
 	public void messageRecieve(IMCEvent event) {
-		
-		   Iterator<IMCMessage> itr = event.getMessages().iterator();
-	      while(itr.hasNext()) {
-	         IMCMessage element = itr.next();
-	         logger.info("Sender: " + element.getSender() + "Value: " + element.getStringValue() + " ");
-	      } 
-	      System.out.println();
+
+		Iterator<IMCMessage> itr = event.getMessages().iterator();
+		while(itr.hasNext()) {
+			IMCMessage element = itr.next();
+			logger.info("Sender: " + element.getSender() + "Value: " + element.getStringValue() + " ");
+		}
+		System.out.println();
 	}
-	
-	
+
+
 
 	// {{extrastuff
 	/**
