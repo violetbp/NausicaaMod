@@ -22,60 +22,51 @@ public class VolucitePendant extends Item {
 		setTextureName(LapMain.itemfold + ":volucitePendant");
 
 	}
-	//when player types in chat stuff happens!
 
 	@Override
 	/**
 	 * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
 	 */
-	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
-	{
+	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
 		return par1ItemStack;
 	}
 
 	/**
 	 * The bonemeal method!!!
-	 * @param p_150919_0_
-	 * @param p_150919_1_
+	 * 
+	 * @param itemstack
+	 * @param world
 	 * @param p_150919_2_
 	 * @param p_150919_3_
 	 * @param p_150919_4_
 	 * @param player
 	 * @return
 	 */
-	public static boolean applyBonemeal(ItemStack p_150919_0_, World p_150919_1_, int p_150919_2_, int p_150919_3_, int p_150919_4_, EntityPlayer player)
-	{
-		Block block = p_150919_1_.getBlock(p_150919_2_, p_150919_3_, p_150919_4_);
+	public static boolean applyBonemeal(ItemStack itemstack, World world, int p_150919_2_, int p_150919_3_, int p_150919_4_, EntityPlayer player) {
+		Block block = world.getBlock(p_150919_2_, p_150919_3_, p_150919_4_);
 
-		BonemealEvent event = new BonemealEvent(player, p_150919_1_, block, p_150919_2_, p_150919_3_, p_150919_4_);
-		if (MinecraftForge.EVENT_BUS.post(event))
-		{
+		BonemealEvent event = new BonemealEvent(player, world, block, p_150919_2_, p_150919_3_, p_150919_4_);
+		if (MinecraftForge.EVENT_BUS.post(event)) {
 			return false;
 		}
 
-		if (event.getResult() == Result.ALLOW)
-		{
-			if (!p_150919_1_.isRemote)
-			{
-				p_150919_0_.stackSize--;
+		if (event.getResult() == Result.ALLOW) {
+			if (!world.isRemote) {
+				itemstack.stackSize--;
 			}
 			return true;
 		}
 
-		if (block instanceof IGrowable)
-		{
-			IGrowable igrowable = (IGrowable)block;
+		if (block instanceof IGrowable) {
+			IGrowable igrowable = (IGrowable) block;
 
-			if (igrowable.func_149851_a(p_150919_1_, p_150919_2_, p_150919_3_, p_150919_4_, p_150919_1_.isRemote))
-			{
-				if (!p_150919_1_.isRemote)
-				{
-					if (igrowable.func_149852_a(p_150919_1_, p_150919_1_.rand, p_150919_2_, p_150919_3_, p_150919_4_))
-					{
-						igrowable.func_149853_b(p_150919_1_, p_150919_1_.rand, p_150919_2_, p_150919_3_, p_150919_4_);
+			if (igrowable.func_149851_a(world, p_150919_2_, p_150919_3_, p_150919_4_, world.isRemote)) {
+				if (!world.isRemote) {
+					if (igrowable.func_149852_a(world, world.rand, p_150919_2_, p_150919_3_, p_150919_4_)) {
+						igrowable.func_149853_b(world, world.rand, p_150919_2_, p_150919_3_, p_150919_4_);
 					}
 
-					--p_150919_0_.stackSize;
+					--itemstack.stackSize;
 				}
 
 				return true;
@@ -84,44 +75,32 @@ public class VolucitePendant extends Item {
 
 		return false;
 	}
+
 	/**
-	 * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
-	 * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
+	 * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return True if something happen and false if it don't. This is
+	 * for ITEMS, not BLOCKS
 	 */
-	//TODO fix this
+	// TODO fix this
 	@Override
-	public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
-	{
-		if (!par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7, par1ItemStack))
-		{
-			return false;
-		}
-		else
-		{
-			if (true)//par1ItemStack.getItemDamage() == 15)//TOEMI this was the problem, since the pendant doesent have metadata, this would be a good way ot add a cooldonw though
-			{
-				if (applyBonemeal(par1ItemStack, par3World, par4, par5, par6, par2EntityPlayer))
-				{
-					if (!par3World.isRemote)
-					{
-						par3World.playAuxSFX(2005, par4, par5, par6, 0);
-					}
+	public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
 
-					return true;
-				}
-			}
+		if (entityPlayer.canPlayerEdit(par4, par5, par6, par7, itemStack) && applyBonemeal(itemStack, world, par4, par5, par6, entityPlayer)) {
 
-			return false;
+			if (!world.isRemote) world.playAuxSFX(2005, par4, par5, par6, 0);
+
+			return true;
 		}
+		return false;
 	}
-	/**YOU CAN DELETE THIS
+
+	/**
+	 * I might use this later to make is affect wider area<br>
 	 * Im pritty sure this is for a block/item to use if it is not being held by a player(it has fakeplayer)
+	 * 
 	 * @return
 	 */
-	public static boolean func_150919_a(ItemStack p_150919_0_, World p_150919_1_, int p_150919_2_, int p_150919_3_, int p_150919_4_)
-	{
-		if (p_150919_1_ instanceof WorldServer)
-			return applyBonemeal(p_150919_0_, p_150919_1_, p_150919_2_, p_150919_3_, p_150919_4_, FakePlayerFactory.getMinecraft((WorldServer)p_150919_1_));
+	public static boolean func_150919_a(ItemStack itemstack, World p_150919_1_, int p_150919_2_, int p_150919_3_, int p_150919_4_) {
+		if (p_150919_1_ instanceof WorldServer) return applyBonemeal(itemstack, p_150919_1_, p_150919_2_, p_150919_3_, p_150919_4_, FakePlayerFactory.getMinecraft((WorldServer) p_150919_1_));
 		return false;
 	}
 }
