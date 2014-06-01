@@ -7,7 +7,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mooklabs.laputamod.LapMain;
 import mooklabs.mookcore.MLib;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -74,7 +76,9 @@ public class VoluciteNecklace extends Item {
 			itemStack.stackTagCompound = new NBTTagCompound();// create tag
 			itemStack.stackTagCompound.setBoolean("creativeSpawned", wasCrafted);
 			itemStack.stackTagCompound.setBoolean("launch", true);
+			itemStack.stackTagCompound.setBoolean("launchMob", true);
 			itemStack.stackTagCompound.setBoolean("hover", true);
+			itemStack.stackTagCompound.setBoolean("dig", true);
 
 			itemStack.stackTagCompound.setString("owner", player.getCommandSenderName());
 
@@ -108,10 +112,19 @@ public class VoluciteNecklace extends Item {
 			switch (tagC.getString("mode")) {
 			case "launch":
 				str = "hover";
-				if (tagC.getBoolean("launch")) break;//bit iffy but will work later
+				if (tagC.getBoolean("hover")) break;// bit iffy but will work later
+
 			case "hover":
+				str = "dig";
+				if (tagC.getBoolean("dig")) break;
+
+			case "dig":
+				str = "launchMob";
+				if (tagC.getBoolean("launchMob")) break;
+
+			case "launchMob":
 				str = "launch";
-				if (!tagC.getBoolean("hover")) break;
+				if (tagC.getBoolean("launch")) break;
 			default:
 				str = "launch";
 			}
@@ -127,8 +140,14 @@ public class VoluciteNecklace extends Item {
 			case "hover":
 				player.motionY = 0;
 				break;
+			case "dig":
+				dig(world, player);
+				break;
+			case "launchMob":// will change launch velocity
+				MLib.printToPlayer("You just need to left click on a mob to use this.");
+				break;
 			default:
-				MLib.printToPlayer("what you do to the spellbook?");
+				MLib.printToPlayer("Shift-right click to start using");
 			}
 		}
 
@@ -143,4 +162,69 @@ public class VoluciteNecklace extends Item {
 		entityPlayer.motionZ = amt * desiredDirection.zCoord;
 	}
 
+	public void dig(World w, EntityPlayer player) {
+		int yaw = (int) player.rotationYaw;
+
+		if (yaw < 0) // due to the yaw running a -360 to positive 360
+		yaw += 360; // not sure why it's that way
+
+		yaw += 22; // centers coordinates you may want to drop this line
+		yaw %= 360; // and this one if you want a strict interpretation of the zones
+
+		byte facing = (byte) (yaw / 90); // 360degrees divided by 45 == 8 zones
+		int st = 0, end = 0;
+		boolean nS = false;
+		switch (facing) {
+		case 0:
+			st = 0;
+			end = 10;
+			nS = false;
+			break;// south
+		case 1:
+			st = -10;
+			end = 0;
+			nS = true;
+			break;// west
+		case 2:
+			st = -10;
+			end = 0;
+			nS = false;
+			break;// north
+		case 3:
+			st = 0;
+			end = 10;
+			nS = true;
+			break;// east
+		}
+
+		int x = (int) Math.floor(player.posX);
+		int z = (int) Math.floor(player.posZ);
+		int y = (int) Math.floor(player.posY);
+		if (nS) 
+			for (int j = 0; j < 3; j++)
+			for (int i = st; i < end; i++)
+				breakBlock(w, x + i, y + j, z);
+
+		else 
+			for (int j = 0; j < 3; j++)
+			for (int i = st; i < end; i++)
+				breakBlock(w, x, y + j, z + i);
+
+	}
+
+	private void breakBlock(World world, int x, int y, int z) {
+		if (world.getBlock(x, y, z) != Blocks.bedrock) {// duh
+			world.getBlock(x, y, z).dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+			world.setBlockToAir(x, y, z);
+		}
+	}
+
+	@Override
+	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
+		if (stack.stackTagCompound.getBoolean("launchMob")) {
+			entity.motionY = 4;
+			return true;
+		}
+		return false;
+	}
 }
