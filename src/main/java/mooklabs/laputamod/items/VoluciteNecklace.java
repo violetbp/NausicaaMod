@@ -245,24 +245,25 @@ public class VoluciteNecklace extends Item {
 
 	@Override
 	public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
+		if (itemStack.stackTagCompound == null) return false;
+
 		NBTTagCompound tagC = itemStack.stackTagCompound;
 
-		
 		if (world.getBlock(par4, par5, par6) == LapMain.solidVoluciteBlock) {
 			itemStack.stackTagCompound.setInteger("power", itemStack.stackTagCompound.getInteger("maxPower"));
 			itemStack.stackTagCompound.setInteger("cooldown", 0);
 
 			return true;
 		}
-		else if (tagC.getInteger("power") <= 0) 
+		else if (tagC.getInteger("power") <= 0)
 			return false;
 		else if (entityPlayer.canPlayerEdit(par4, par5, par6, par7, itemStack) && applyBonemeal(itemStack, world, par4, par5, par6, entityPlayer)) {
 			tagC.setInteger("power", tagC.getInteger("power") - tagC.getInteger("cooldown"));
 			tagC.setInteger("cooldown", tagC.getInteger("cooldown") + 1);
 
-			if (!world.isRemote) 
+			if (!world.isRemote)
 				world.playAuxSFX(2005, par4, par5, par6, 0);
-			
+
 			return true;
 		}
 		return false;

@@ -55,7 +55,7 @@ public class NausicaaEventHandler {
 	@SubscribeEvent
 	public void onEntityConstructing(EntityJoinWorldEvent event) {
 		if (event.entity instanceof EntityPlayer)((EntityPlayer)event.entity).eyeHeight=0.12F;
-		MLib.printToPlayer("workesd")
+		MLib.printToPlayer("workesd");
 	}
 
 
