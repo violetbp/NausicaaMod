@@ -40,12 +40,13 @@ public class NausicaaEventHandler {
 			if (Main.debug) System.out.println(event.distance);
 			if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == Main.glider) {
 
-				double yMotion = Math.abs(player.motionY);//get absolute value of y motion
-				if(yMotion > .2){//check how large motion is
-					event.distance = (float) (yMotion) * 5;		// then compute fall distance
-					if (Main.debug)System.out.println("Fall dist: " + event.distance+"\nThrust: " + yMotion);//for debugging
-				}else {event.distance = 0;//if small (less than .2 bloks per ____(tick?), set to none
-				player.addChatMessage(new ChatComponentText("Perfect landing!"));
+				double yMotion = Math.abs(player.motionY);// get absolute value of y motion
+				if (yMotion > .2) {// check how large motion is
+					event.distance = (float) (yMotion) * 5; // then compute fall distance
+					if (Main.debug) System.out.println("Fall dist: " + event.distance + "\nThrust: " + yMotion);// for debugging
+				} else {
+					event.distance = 0;// if small (less than .2 bloks per ____(tick?), set to none
+					player.addChatMessage(new ChatComponentText("Perfect landing!"));
 				}
 			}
 
@@ -54,14 +55,13 @@ public class NausicaaEventHandler {
 
 	@SubscribeEvent
 	public void onEntityConstructing(EntityJoinWorldEvent event) {
-		if (event.entity instanceof EntityPlayer)((EntityPlayer)event.entity).eyeHeight=0.12F;
-		MLib.printToPlayer("workesd");
+		if (event.entity instanceof EntityPlayer) ((EntityPlayer) event.entity).eyeHeight = 0.12F;
+		System.out.println("workesd");
 	}
-
 
 	@SubscribeEvent
 	public void onEntityConstructing(EntityConstructing event) {
-		if (event.entity instanceof EntityPlayer)((EntityPlayer)event.entity).eyeHeight=0.12F;
+		if (event.entity instanceof EntityPlayer) ((EntityPlayer) event.entity).eyeHeight = 0.12F;
 
 		/* Be sure to check if the entity being constructed is the correct type for the extended properties you're about to add! The null check may not be necessary - I only
 		 * use it to make sure properties are only registered once per entity */
@@ -71,23 +71,23 @@ public class NausicaaEventHandler {
 		// That will call the constructor as well as cause the init() method to be called automatically
 
 		// If you didn't make the two convenient methods from earlier, your code would be much uglier:
-		if (event.entity instanceof EntityPlayer && event.entity.getExtendedProperties(ExtendedPlayer.EXT_PROP_NAME) == null)
-			event.entity.registerExtendedProperties(ExtendedPlayer.EXT_PROP_NAME, new ExtendedPlayer((EntityPlayer) event.entity));
+		if (event.entity instanceof EntityPlayer && event.entity.getExtendedProperties(ExtendedPlayer.EXT_PROP_NAME) == null) event.entity.registerExtendedProperties(ExtendedPlayer.EXT_PROP_NAME,
+				new ExtendedPlayer((EntityPlayer) event.entity));
 
-		//INV TAB
-		if (event.entity instanceof EntityPlayer && NPlayerStats.get((EntityPlayer) event.entity) == null)
-			NPlayerStats.register((EntityPlayer) event.entity);
+		// INV TAB
+		if (event.entity instanceof EntityPlayer && NPlayerStats.get((EntityPlayer) event.entity) == null) NPlayerStats.register((EntityPlayer) event.entity);
 
 	}
 
-	// for falling(with glider)
 	@SubscribeEvent
 	public void itemDespawn(ItemExpireEvent event) {
-		if(event.entityItem.getDataWatcher().getWatchableObjectItemStack(10).getItem() instanceof VoluciteNecklace)
-		{event.setCanceled(true);
-		event.extraLife=20;
-		}
+		MLib.printToPlayer("despawn");
 
+		if (event.entityItem.getDataWatcher().getWatchableObjectItemStack(10).getItem() instanceof VoluciteNecklace) {
+			event.setCanceled(true);
+			event.extraLife = 20;
+			MLib.printToPlayer("despawn");
+		}
 
 	}
 }

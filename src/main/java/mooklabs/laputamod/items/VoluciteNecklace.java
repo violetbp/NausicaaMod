@@ -15,9 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.relauncher.Side;
@@ -75,7 +73,6 @@ public class VoluciteNecklace extends Item {
 	 *           register(itemStack, player, false); if (player.capabilities.isCreativeMode) { itemStack.stackTagCompound.setBoolean("creativeSpawned", true); } } return
 	 *           itemStack; }
 	 */
-
 	public void register(ItemStack itemStack, EntityPlayer player, boolean wasCrafted) {
 		if (itemStack.stackTagCompound == null) {
 			itemStack.stackTagCompound = new NBTTagCompound();// create tag
@@ -106,8 +103,6 @@ public class VoluciteNecklace extends Item {
 
 		}
 	}
-
-	// when player types in chat stuff happens!
 
 	@Override
 	/**
@@ -170,6 +165,62 @@ public class VoluciteNecklace extends Item {
 		return itemStack;
 	}
 
+
+	@Override
+	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
+		if (stack.stackTagCompound == null) return false;
+		if (stack.stackTagCompound.getBoolean("launchMob")) {
+			entity.motionY = 4;
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
+		if (itemStack.stackTagCompound == null) return false;
+
+		NBTTagCompound tagC = itemStack.stackTagCompound;
+
+		if (world.getBlock(par4, par5, par6) == LapMain.solidVoluciteBlock) {
+			itemStack.stackTagCompound.setInteger("power", itemStack.stackTagCompound.getInteger("maxPower"));
+			itemStack.stackTagCompound.setInteger("cooldown", 0);
+
+			return true;
+		}
+		else if (tagC.getInteger("power") <= 0)
+			return false;
+		else if (entityPlayer.canPlayerEdit(par4, par5, par6, par7, itemStack) && applyBonemeal(itemStack, world, par4, par5, par6, entityPlayer)) {
+			tagC.setInteger("power", tagC.getInteger("power") - tagC.getInteger("cooldown"));
+			tagC.setInteger("cooldown", tagC.getInteger("cooldown") + 1);
+
+			if (!world.isRemote)
+				world.playAuxSFX(2005, par4, par5, par6, 0);
+
+			return true;
+		}
+		return false;
+	}
+
+
+	/**
+	 * Called each tick as long the item is on a player inventory. Uses by maps to check if is on a player hand and update it's contents.
+	 */
+	@Override
+	public void onUpdate(ItemStack itemStack, World world, Entity entity, int slotNumber, boolean isHeld) {
+		if (itemStack.stackTagCompound == null) return;
+		NBTTagCompound tagC = itemStack.stackTagCompound;
+		if (tagC.getByte("counter") == 0) {
+
+			addPower(itemStack, 1);//
+			addCooldown(itemStack, -1);
+
+			tagC.setByte("counter", (byte) 20);
+		}
+		tagC.setByte("counter", (byte) (tagC.getByte("counter") - 1));
+	}
+
+	//{{methods that run the actions
 	public void launchPlayer(EntityPlayer entityPlayer, double amt) {
 		Vec3 desiredDirection = entityPlayer.getLookVec();
 
@@ -233,59 +284,42 @@ public class VoluciteNecklace extends Item {
 		}
 	}
 
-	@Override
-	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
-		if (stack.stackTagCompound == null) return false;
-		if (stack.stackTagCompound.getBoolean("launchMob")) {
-			entity.motionY = 4;
-			return true;
-		}
-		return false;
-	}
+	public static boolean applyBonemeal(ItemStack itemstack, World world, int x, int y, int z, EntityPlayer player) {
+		Block block = world.getBlock(x, y, z);
 
-	@Override
-	public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
-		if (itemStack.stackTagCompound == null) return false;
-
-		NBTTagCompound tagC = itemStack.stackTagCompound;
-
-		if (world.getBlock(par4, par5, par6) == LapMain.solidVoluciteBlock) {
-			itemStack.stackTagCompound.setInteger("power", itemStack.stackTagCompound.getInteger("maxPower"));
-			itemStack.stackTagCompound.setInteger("cooldown", 0);
-
-			return true;
-		}
-		else if (tagC.getInteger("power") <= 0)
+		BonemealEvent event = new BonemealEvent(player, world, block, x, y, z);
+		if (MinecraftForge.EVENT_BUS.post(event)) {
 			return false;
-		else if (entityPlayer.canPlayerEdit(par4, par5, par6, par7, itemStack) && applyBonemeal(itemStack, world, par4, par5, par6, entityPlayer)) {
-			tagC.setInteger("power", tagC.getInteger("power") - tagC.getInteger("cooldown"));
-			tagC.setInteger("cooldown", tagC.getInteger("cooldown") + 1);
+		}
 
-			if (!world.isRemote)
-				world.playAuxSFX(2005, par4, par5, par6, 0);
-
+		if (event.getResult() == Result.ALLOW) {
+			if (!world.isRemote) {
+				itemstack.stackSize--;
+			}
 			return true;
 		}
+
+		if (block instanceof IGrowable) {
+			IGrowable igrowable = (IGrowable) block;
+
+			if (igrowable.func_149851_a(world, x, y, z, world.isRemote)) {
+				if (!world.isRemote) {
+					if (igrowable.func_149852_a(world, world.rand, x, y, z)) {
+						igrowable.func_149853_b(world, world.rand, x, y, z);
+					}
+
+					--itemstack.stackSize;
+				}
+
+				return true;
+			}
+		}
+
 		return false;
 	}
+	//}}
 
-	@Override
-	/**
-	 * Called each tick as long the item is on a player inventory. Uses by maps to check if is on a player hand and update it's contents.
-	 */
-	public void onUpdate(ItemStack itemStack, World world, Entity entity, int slotNumber, boolean isHeld) {
-		if (itemStack.stackTagCompound == null) return;
-		NBTTagCompound tagC = itemStack.stackTagCompound;
-		if (tagC.getByte("counter") == 0) {
-
-			addPower(itemStack, 1);//
-			addCooldown(itemStack, -1);
-
-			tagC.setByte("counter", (byte) 20);
-		}
-		tagC.setByte("counter", (byte) (tagC.getByte("counter") - 1));
-	}
-
+	//{{ unrelated stuff
 	// {{for gui mostly
 	public int getPower(ItemStack item) {
 		return item.stackTagCompound.getInteger("power");
@@ -328,59 +362,5 @@ public class VoluciteNecklace extends Item {
 	public int getEntityLifespan(ItemStack itemStack, World world) {
 		return 20;
 	}
-	/**
-	 * The bonemeal method!! :D
-	 * @param itemstack
-	 * @param world
-	 * @param p_150919_2_
-	 * @param p_150919_3_
-	 * @param p_150919_4_
-	 * @param player
-	 * @return
-	 */
-	public static boolean applyBonemeal(ItemStack itemstack, World world, int p_150919_2_, int p_150919_3_, int p_150919_4_, EntityPlayer player) {
-		Block block = world.getBlock(p_150919_2_, p_150919_3_, p_150919_4_);
-
-		BonemealEvent event = new BonemealEvent(player, world, block, p_150919_2_, p_150919_3_, p_150919_4_);
-		if (MinecraftForge.EVENT_BUS.post(event)) {
-			return false;
-		}
-
-		if (event.getResult() == Result.ALLOW) {
-			if (!world.isRemote) {
-				itemstack.stackSize--;
-			}
-			return true;
-		}
-
-		if (block instanceof IGrowable) {
-			IGrowable igrowable = (IGrowable) block;
-
-			if (igrowable.func_149851_a(world, p_150919_2_, p_150919_3_, p_150919_4_, world.isRemote)) {
-				if (!world.isRemote) {
-					if (igrowable.func_149852_a(world, world.rand, p_150919_2_, p_150919_3_, p_150919_4_)) {
-						igrowable.func_149853_b(world, world.rand, p_150919_2_, p_150919_3_, p_150919_4_);
-					}
-
-					--itemstack.stackSize;
-				}
-
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * I might use this later to make is affect wider area<br>
-	 * Im pretty sure this is for a block/item to use if it is not being held by a player(it has fakeplayer)
-	 * 
-	 * @return
-	 */
-	public static boolean func_150919_a(ItemStack itemstack, World p_150919_1_, int p_150919_2_, int p_150919_3_, int p_150919_4_) {
-		if (p_150919_1_ instanceof WorldServer) return applyBonemeal(itemstack, p_150919_1_, p_150919_2_, p_150919_3_, p_150919_4_, FakePlayerFactory.getMinecraft((WorldServer) p_150919_1_));
-		return false;
-	}
-
+	//}}
 }
