@@ -122,9 +122,16 @@ public class VoluciteNecklace extends Item {
 
 		tagC.setInteger("power", tagC.getInteger("power") - tagC.getInteger("cooldown"));
 		tagC.setInteger("cooldown", tagC.getInteger("cooldown") + 1);
-
 		if (player.isSneaking()) {
 			String str = "";
+			/*
+			if (tagC.getString"mode".equals("launch")) {
+				str = "hover";
+				if (tagC.getBoolean("hover")) break;
+			}
+		}
+		else if ()		
+				*/
 			switch (tagC.getString("mode")) {
 			case "launch":
 				str = "hover";
@@ -144,6 +151,7 @@ public class VoluciteNecklace extends Item {
 			default:
 				str = "launch";
 			}
+		
 			MLib.printToPlayer("Effect set to" + str);
 
 			itemStack.stackTagCompound.setString("mode", str);
