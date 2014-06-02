@@ -54,7 +54,7 @@ public class VoluciteNecklace extends Item {
 			} else {// if doesent belong to player
 				list.add(EnumChatFormatting.RED + "This Necklace belongs to someone with power," + " return it to any admin since you can't use it");
 			}
-		} else {// if has tags
+		} else {// if has no tags
 			list.add(EnumChatFormatting.BLUE + "NO INFO!");
 			list.add(EnumChatFormatting.RED + "Right click to register");
 		}
@@ -82,8 +82,6 @@ public class VoluciteNecklace extends Item {
 			itemStack.stackTagCompound.setInteger("maxPower", 50);
 			itemStack.stackTagCompound.setInteger("cooldown", 0);
 			itemStack.stackTagCompound.setInteger("maxCooldown", 50);
-
-
 
 			itemStack.stackTagCompound.setString("owner", player.getCommandSenderName());
 
@@ -113,11 +111,10 @@ public class VoluciteNecklace extends Item {
 		// NOT YET BECUAE ITS ITEM BASEDelse if (itemStack.stackTagCompound.getString("owner").equals(player.getCommandSenderName())) register(itemStack, player, false);
 		NBTTagCompound tagC = itemStack.stackTagCompound;
 
-		if(tagC.getInteger("power")<=0)return itemStack;
+		if (tagC.getInteger("power") <= 0) return itemStack;
 
-
-		tagC.setInteger("power", tagC.getInteger("power")-tagC.getInteger("cooldown"));
-		tagC.setInteger("cooldown", tagC.getInteger("cooldown")+1);
+		tagC.setInteger("power", tagC.getInteger("power") - tagC.getInteger("cooldown"));
+		tagC.setInteger("cooldown", tagC.getInteger("cooldown") + 1);
 
 		if (player.isSneaking()) {
 			String str = "";
@@ -212,15 +209,13 @@ public class VoluciteNecklace extends Item {
 		int x = (int) Math.floor(player.posX);
 		int z = (int) Math.floor(player.posZ);
 		int y = (int) Math.floor(player.posY);
-		if (nS)
-			for (int j = 0; j < 3; j++)
-				for (int i = st; i < end; i++)
-					breakBlock(w, x + i, y + j, z);
+		if (nS) for (int j = 0; j < 3; j++)
+			for (int i = st; i < end; i++)
+				breakBlock(w, x + i, y + j, z);
 
-		else
-			for (int j = 0; j < 3; j++)
-				for (int i = st; i < end; i++)
-					breakBlock(w, x, y + j, z + i);
+		else for (int j = 0; j < 3; j++)
+			for (int i = st; i < end; i++)
+				breakBlock(w, x, y + j, z + i);
 
 	}
 
@@ -233,6 +228,7 @@ public class VoluciteNecklace extends Item {
 
 	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
+		if (stack.stackTagCompound == null) return false;
 		if (stack.stackTagCompound.getBoolean("launchMob")) {
 			entity.motionY = 4;
 			return true;
@@ -243,7 +239,7 @@ public class VoluciteNecklace extends Item {
 	@Override
 	public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
 
-		if(world.getBlock(par4, par5, par6)==LapMain.solidVoluciteBlock){
+		if (world.getBlock(par4, par5, par6) == LapMain.solidVoluciteBlock) {
 			itemStack.stackTagCompound.setInteger("power", itemStack.stackTagCompound.getInteger("maxPower"));
 			itemStack.stackTagCompound.setInteger("cooldown", 0);
 
@@ -252,22 +248,64 @@ public class VoluciteNecklace extends Item {
 		return false;
 	}
 
+	@Override
+	/**
+	 * Called each tick as long the item is on a player inventory. Uses by maps to check if is on a player hand and update it's contents.
+	 */
+	public void onUpdate(ItemStack itemStack, World world, Entity entity, int slotNumber, boolean isHeld) {
+		if (itemStack.stackTagCompound == null) return;
+		NBTTagCompound tagC = itemStack.stackTagCompound;
+		if (tagC.getByte("counter") == 0) {
 
+			addPower(itemStack, 1);//
+			addCooldown(itemStack, -1);
 
-	//{{for gui mostly
-	public int getPower(ItemStack item){
+			tagC.setByte("counter", (byte) 20);
+		}
+		tagC.setByte("counter", (byte) (tagC.getByte("counter") - 1));
+	}
+
+	// {{for gui mostly
+	public int getPower(ItemStack item) {
 		return item.stackTagCompound.getInteger("power");
 	}
-	public int getCooldown(ItemStack item){
+
+	public int getCooldown(ItemStack item) {
 		return item.stackTagCompound.getInteger("cooldown");
 	}
-	public int getMaxPower(ItemStack item){
+
+	public void setPower(ItemStack item, int x) {
+		item.stackTagCompound.setInteger("power", x);
+	}
+
+	public void addPower(ItemStack item, int x) {
+		item.stackTagCompound.setInteger("power", item.stackTagCompound.getInteger("power") + x);
+
+	}
+
+	public void setCooldown(ItemStack item, int x) {
+		item.stackTagCompound.setInteger("cooldown", x);
+
+	}
+
+	public void addCooldown(ItemStack item, int x) {
+		item.stackTagCompound.setInteger("cooldown", item.stackTagCompound.getInteger("cooldown") + x);
+
+	}
+
+	public int getMaxPower(ItemStack item) {
 		return item.stackTagCompound.getInteger("maxPower");
 	}
-	public int getMaxCooldown(ItemStack item){
+
+	public int getMaxCooldown(ItemStack item) {
 		return item.stackTagCompound.getInteger("maxCooldown");
 	}
 
-	//}}
+	// }}
+
+	@Override
+	public int getEntityLifespan(ItemStack itemStack, World world) {
+		return 20;
+	}
 
 }

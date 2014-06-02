@@ -61,6 +61,7 @@ public class GuiManaBar extends Gui {
 		if (MLib.isPlayerHoldingItem(player, LapMain.voluciteNecklace)) {
 			necklace = (VoluciteNecklace) player.getHeldItem().getItem();
 			itemstack = player.getHeldItem();
+			if(itemstack.stackTagCompound == null)return;
 
 		}else
 			return;//if not holding it, exit
@@ -107,8 +108,9 @@ public class GuiManaBar extends Gui {
 		this.drawTexturedModalRect(xPos, windowHeight-4, 0, 4, thirstwidth, 2);
 		this.drawTexturedModalRect(windowWidth-xPos-50, windowHeight-4, 0, 4, viswidth, 2);
 
-		mc.fontRenderer.drawString("Power", 2, 0, 1,false);
-		mc.fontRenderer.drawString("Cooldown", 2, 20, 1,false);
+		//renders text to tell what stuff is, must be done last for some reason
+		mc.fontRenderer.drawString("Power", 2, windowHeight-20, 1,false);
+		mc.fontRenderer.drawString("Cooldown", windowWidth-50, windowHeight-20, 1,false);
 
 	}
 
