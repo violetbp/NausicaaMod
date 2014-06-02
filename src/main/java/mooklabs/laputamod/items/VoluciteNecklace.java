@@ -2,21 +2,19 @@ package mooklabs.laputamod.items;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mooklabs.laputamod.LapMain;
 import mooklabs.mookcore.MLib;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * DONT PLAY WITH THIS FOR AWHILE
@@ -80,6 +78,13 @@ public class VoluciteNecklace extends Item {
 			itemStack.stackTagCompound.setBoolean("hover", true);
 			itemStack.stackTagCompound.setBoolean("dig", true);
 
+			itemStack.stackTagCompound.setInteger("power", 50);
+			itemStack.stackTagCompound.setInteger("maxPower", 50);
+			itemStack.stackTagCompound.setInteger("cooldown", 0);
+			itemStack.stackTagCompound.setInteger("maxCooldown", 50);
+
+
+
 			itemStack.stackTagCompound.setString("owner", player.getCommandSenderName());
 
 		} else {// has allready been registed
@@ -107,6 +112,13 @@ public class VoluciteNecklace extends Item {
 		if (itemStack.stackTagCompound == null) register(itemStack, player, false);
 		// NOT YET BECUAE ITS ITEM BASEDelse if (itemStack.stackTagCompound.getString("owner").equals(player.getCommandSenderName())) register(itemStack, player, false);
 		NBTTagCompound tagC = itemStack.stackTagCompound;
+
+		if(tagC.getInteger("power")<=0)return itemStack;
+
+
+		tagC.setInteger("power", tagC.getInteger("power")-tagC.getInteger("cooldown"));
+		tagC.setInteger("cooldown", tagC.getInteger("cooldown")+1);
+
 		if (player.isSneaking()) {
 			String str = "";
 			switch (tagC.getString("mode")) {
@@ -166,7 +178,7 @@ public class VoluciteNecklace extends Item {
 		int yaw = (int) player.rotationYaw;
 
 		if (yaw < 0) // due to the yaw running a -360 to positive 360
-		yaw += 360; // not sure why it's that way
+			yaw += 360; // not sure why it's that way
 
 		yaw += 22; // centers coordinates you may want to drop this line
 		yaw %= 360; // and this one if you want a strict interpretation of the zones
@@ -200,15 +212,15 @@ public class VoluciteNecklace extends Item {
 		int x = (int) Math.floor(player.posX);
 		int z = (int) Math.floor(player.posZ);
 		int y = (int) Math.floor(player.posY);
-		if (nS) 
+		if (nS)
 			for (int j = 0; j < 3; j++)
-			for (int i = st; i < end; i++)
-				breakBlock(w, x + i, y + j, z);
+				for (int i = st; i < end; i++)
+					breakBlock(w, x + i, y + j, z);
 
-		else 
+		else
 			for (int j = 0; j < 3; j++)
-			for (int i = st; i < end; i++)
-				breakBlock(w, x, y + j, z + i);
+				for (int i = st; i < end; i++)
+					breakBlock(w, x, y + j, z + i);
 
 	}
 
@@ -227,4 +239,35 @@ public class VoluciteNecklace extends Item {
 		}
 		return false;
 	}
+
+	@Override
+	public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
+
+		if(world.getBlock(par4, par5, par6)==LapMain.solidVoluciteBlock){
+			itemStack.stackTagCompound.setInteger("power", itemStack.stackTagCompound.getInteger("maxPower"));
+			itemStack.stackTagCompound.setInteger("cooldown", 0);
+
+			return true;
+		}
+		return false;
+	}
+
+
+
+	//{{for gui mostly
+	public int getPower(ItemStack item){
+		return item.stackTagCompound.getInteger("power");
+	}
+	public int getCooldown(ItemStack item){
+		return item.stackTagCompound.getInteger("cooldown");
+	}
+	public int getMaxPower(ItemStack item){
+		return item.stackTagCompound.getInteger("maxPower");
+	}
+	public int getMaxCooldown(ItemStack item){
+		return item.stackTagCompound.getInteger("maxCooldown");
+	}
+
+	//}}
+
 }
