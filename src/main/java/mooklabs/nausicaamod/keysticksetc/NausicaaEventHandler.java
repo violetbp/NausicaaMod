@@ -1,6 +1,7 @@
 package mooklabs.nausicaamod.keysticksetc;
 
 import mooklabs.laputamod.items.VoluciteNecklace;
+import mooklabs.mookcore.MLib;
 import mooklabs.nausicaamod.ExtendedPlayer;
 import mooklabs.nausicaamod.Main;
 import mooklabs.nausicaamod.inventorytab.NPlayerStats;
@@ -8,6 +9,7 @@ import mooklabs.nausicaamod.mobs.Ohmu;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -32,10 +34,10 @@ public class NausicaaEventHandler {
 	// for falling(with glider)
 	@SubscribeEvent
 	public void entityfall(LivingFallEvent event) {
+
 		if (event.entityLiving instanceof EntityPlayer) {// make sure its a player
 			EntityPlayer player = (EntityPlayer) event.entityLiving;
 			if (Main.debug) System.out.println(event.distance);
-
 			if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == Main.glider) {
 
 				double yMotion = Math.abs(player.motionY);//get absolute value of y motion
@@ -50,9 +52,17 @@ public class NausicaaEventHandler {
 		}
 	}
 
-	// for kindness
+	@SubscribeEvent
+	public void onEntityConstructing(EntityJoinWorldEvent event) {
+		if (event.entity instanceof EntityPlayer)((EntityPlayer)event.entity).eyeHeight=0.12F;
+		MLib.printToPlayer("workesd")
+	}
+
+
 	@SubscribeEvent
 	public void onEntityConstructing(EntityConstructing event) {
+		if (event.entity instanceof EntityPlayer)((EntityPlayer)event.entity).eyeHeight=0.12F;
+
 		/* Be sure to check if the entity being constructed is the correct type for the extended properties you're about to add! The null check may not be necessary - I only
 		 * use it to make sure properties are only registered once per entity */
 		if (event.entity instanceof EntityPlayer && ExtendedPlayer.get((EntityPlayer) event.entity) == null)

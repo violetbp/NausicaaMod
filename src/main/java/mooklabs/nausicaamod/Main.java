@@ -149,7 +149,7 @@ public class Main extends MMod{
 	 * The game settings that currently hold effect.
 	 */
 	@Unused
-	//public NausicaaGameSettings gameSettings;
+	public NausicaaGameSettings gameSettings;
 
 	//I don't think ill ever actually use this value, but its here anyway
 	public final static boolean debug = false;
