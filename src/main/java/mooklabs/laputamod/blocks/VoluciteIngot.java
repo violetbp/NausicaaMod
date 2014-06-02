@@ -18,8 +18,7 @@ public class VoluciteIngot extends Item {
 		setTextureName(LapMain.itemfold + ":voluciteCrystal");
 		
 	}
-	//when player types in chat stuff happens!
-
+	
 	@Override
 	/**
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
@@ -61,6 +60,7 @@ public class VoluciteIngot extends Item {
      * Processed before damage is done, if return value is true further processing is canceled
      * and the entity is not attacked.
      * 
+     * 
      *
      * @param stack The Item being used
      * @param player The player that is attacking
@@ -72,17 +72,6 @@ public class VoluciteIngot extends Item {
         entity.motionY = 4;
     	return true;
     }
-    /**
-     * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
-     * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
-     */
-    /* TODOEMI will fix later
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
-    {
-    	world.getBlock();
-        return false;
-    }
-    */
-    
+
 	
 }
