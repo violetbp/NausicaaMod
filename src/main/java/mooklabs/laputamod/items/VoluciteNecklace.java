@@ -119,14 +119,26 @@ public class VoluciteNecklace extends Item {
 		tagC.setInteger("cooldown", tagC.getInteger("cooldown") + 1);
 		if (player.isSneaking()) {
 			String str = "";
-			/*
-			if (tagC.getString"mode".equals("launch")) {
+			/* VIC this can replace the switch case below if needed
+			if (tagC.getString("mode").equals("launch")) {
 				str = "hover";
 				if (tagC.getBoolean("hover")) break;
 			}
-		}
-		else if ()		
-				*/
+			else if (tagC.getString("mode").equals("hover")) {
+				str = "dig";
+				if (tagC.getBoolean("dig")) break;
+			}
+			else if (tagC.getString("mode").equals("dig")) {
+				str = "launchMob";
+				if (tagC.getBoolean("launchMob")) break;
+			}
+			else if (tagC.getString("mode").equals("launchMob")) {
+				str = "launch"
+				if (tagC.getBoolean("launch")) break;
+			else
+				str = "launch";
+			*/
+				
 			switch (tagC.getString("mode")) {
 			case "launch":
 				str = "hover";
@@ -152,6 +164,9 @@ public class VoluciteNecklace extends Item {
 			itemStack.stackTagCompound.setString("mode", str);
 
 		} else {
+			
+			
+			
 			switch (tagC.getString("mode")) {
 			case "launch":
 				launchPlayer(player, 1.3);
