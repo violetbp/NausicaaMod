@@ -150,7 +150,7 @@ public class VoluciteNecklace extends Item {
 			MLib.printToPlayer("Effect set to " + tagC.getString("mode"));
 
 		} else {
-			/* VIC heres this 
+
 			String str1 = tagC.getString("mode");
 			if (str1.equals("launch"))
 				launchPlayer(player, 1.3);
@@ -162,23 +162,7 @@ public class VoluciteNecklace extends Item {
 				MLib.printToPlayer("You just need to left click on a mob to use this.");
 			else
 				MLib.printToPlayer("Shift-right click to start using");
-			*/
-			switch (tagC.getString("mode")) {
-			case "launch":
-				launchPlayer(player, 1.3);
-				break;
-			case "hover":
-				player.motionY = 0;
-				break;
-			case "dig":
-				dig(world, player);
-				break;
-			case "launchMob":// will change launch velocity
-				MLib.printToPlayer("You just need to left click on a mob to use this.");
-				break;
-			default:
-				MLib.printToPlayer("Shift-right click to start using");
-			}
+
 		}
 
 		return itemStack;

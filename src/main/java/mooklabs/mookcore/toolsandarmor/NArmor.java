@@ -2,10 +2,6 @@ package mooklabs.mookcore.toolsandarmor;
 
 import java.util.ArrayList;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import mooklabs.laputamod.LapMain;
 import mooklabs.nausicaamod.Main;
 import net.minecraft.block.Block;
@@ -19,6 +15,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class NArmor extends ItemArmor {
 
@@ -66,7 +64,7 @@ public class NArmor extends ItemArmor {
 		setUnlocalizedName(armorMaterial + typeStr);
 		setCreativeTab(Main.tabCombat);
 		if (!armorMaterial.equals(LapMain.weakVoluciteArmor)) setTextureName(Main.itemfold + ":" + armorMaterial + typeStr);// render armor in ui
-		else setTextureName(Main.itemfold + ":" + ArmorMaterial.CHAIN + typeStr);// render armor in ui
+		else setTextureName(LapMain.itemfold + ":" + armorMaterial + typeStr);// render armor in ui
 		// CRIT when we get textures need to change this
 		// itemfolder + : + armor material +armor type ie "endcraft:crystalArmorHelmet"
 	}
@@ -74,7 +72,7 @@ public class NArmor extends ItemArmor {
 	// CRIT @Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, int layer) {// renders armor in world
 		if (stack.toString().toLowerCase().contains("legs")) return Main.itemfold + ":textures/items/" + armorMaterial + "_2.png";// i messed around with this until it worked,
-																																	// my leggings are called "legs"
+		// my leggings are called "legs"
 		if (stack.toString().contains("Legging")) return Main.itemfold + ":textures/items/" + armorMaterial + "_2.png";// leggings, (i dont think this includes boots)
 		return Main.itemfold + ":textures/items/" + armorMaterial + "_1.png";// chestplate,helmet
 		// return null;
@@ -105,8 +103,8 @@ public class NArmor extends ItemArmor {
 		y -= blocksBelow;
 		z -= radius;
 		for (int k = 0; k < blocksBelow + blocksAbove; k++)// y-val (from one
-		// block below to one
-		// above)
+			// block below to one
+			// above)
 		{
 			for (int j = 0; j < radius * 2; j++)// z-val
 			{
@@ -118,20 +116,20 @@ public class NArmor extends ItemArmor {
 
 						if (currtempblock == currblockid) {
 							if (player.getCurrentArmor(armorSlot) == null)
-							// System.out.println(player.getCurrentArmor(armorSlot));
-
-							if (player.getCurrentArmor(armorSlot) == null) {
-								player.addPotionEffect(new PotionEffect(Potion.poison.getId(), 7 * 20, 0));
-								player.addPotionEffect(new PotionEffect(Potion.weakness.getId(), 7 * 20, 0));
-
-							} else if (player.getCurrentArmor(armorSlot).getItem() != Main.ceramicHelmet) {
-
 								// System.out.println(player.getCurrentArmor(armorSlot));
-								player.addPotionEffect(new PotionEffect(Potion.poison.getId(), 7 * 20, 1));
-								player.addPotionEffect(new PotionEffect(Potion.weakness.getId(), 7 * 20, 1));
 
-							} else
-							;
+								if (player.getCurrentArmor(armorSlot) == null) {
+									player.addPotionEffect(new PotionEffect(Potion.poison.getId(), 7 * 20, 0));
+									player.addPotionEffect(new PotionEffect(Potion.weakness.getId(), 7 * 20, 0));
+
+								} else if (player.getCurrentArmor(armorSlot).getItem() != Main.ceramicHelmet) {
+
+									// System.out.println(player.getCurrentArmor(armorSlot));
+									player.addPotionEffect(new PotionEffect(Potion.poison.getId(), 7 * 20, 1));
+									player.addPotionEffect(new PotionEffect(Potion.weakness.getId(), 7 * 20, 1));
+
+								} else
+									;
 							player.curePotionEffects(new ItemStack(Items.milk_bucket));
 
 							return;
@@ -155,7 +153,7 @@ public class NArmor extends ItemArmor {
 		if (this.armorMaterial.equals("special")) {
 			switch (this.armorType) {
 			case 0:// helmet
-					// FMLCommonHandler.instance().firePlayerLoggedIn(player);
+				// FMLCommonHandler.instance().firePlayerLoggedIn(player);
 				break;
 			case 1:// chestplate
 				break;

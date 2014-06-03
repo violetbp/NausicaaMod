@@ -53,7 +53,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 /**
  * this is the main class for laputamod<br>
- * spacegeek will try to work on it 
+ * spacegeek will try to work on it
  * not dependent on nausicaamod
  * @author mooklabs(emiAndVic)
  */
@@ -88,11 +88,11 @@ public class LapMain extends MMod{
 
 	// {{Enums: this makes the tool and armor types and sets their stats! pritty simple really!
 	// diamond is(3, 1561, 8.0F, 3.0F, 10) IRON is(2, 250, 6.0F, 2.0F, 14)
-	public static ToolMaterial weakVolucite = EnumHelper.addToolMaterial("weakVolucite", 0, 2, 1F, 0F, 50);
+	public static ToolMaterial weakVolucite = EnumHelper.addToolMaterial("weakVolucite", 3, 1600, 40F, 7F, 50);
 
 	// DIAMOND is(33, {3, 8, 6, 3}, 10) iron is {2, 6, 5, 2}
 	// String name,int durability, int[] reductionAmounts, int enchantability
-	public static ArmorMaterial weakVoluciteArmor = EnumHelper.addArmorMaterial("weakVolucite", 10, new int[] {3,3,3,3}, 50);//very enchantable
+	public static ArmorMaterial weakVoluciteArmor = EnumHelper.addArmorMaterial("weakVolucite", 50, new int[] {6,10,8,6}, 50);//very enchantable
 
 
 	// }}
