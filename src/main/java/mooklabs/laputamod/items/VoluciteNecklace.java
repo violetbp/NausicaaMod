@@ -31,8 +31,6 @@ public class VoluciteNecklace extends Item {
 
 	public static DamageSource ownMagic = new DamageSource("ownMagic").setDamageBypassesArmor().setMagicDamage();
 
-
-
 	public VoluciteNecklace() {
 		super();
 		setUnlocalizedName("voluciteNecklace");
@@ -60,8 +58,8 @@ public class VoluciteNecklace extends Item {
 
 			if (owner.equals(player.getCommandSenderName())) {// if belongs to player
 				list.add(EnumChatFormatting.GREEN + "Correct owner");
-				list.add(EnumChatFormatting.GREEN + "Power: " + getPower(itemStack)+"/"+getMaxPower(itemStack));
-				list.add(EnumChatFormatting.RED + "Cooldown: " + getCooldown(itemStack)+"/"+getMaxCooldown(itemStack));
+				list.add(EnumChatFormatting.GREEN + "Power: " + getPower(itemStack) + "/" + getMaxPower(itemStack));
+				list.add(EnumChatFormatting.RED + "Cooldown: " + getCooldown(itemStack) + "/" + getMaxCooldown(itemStack));
 			} else {// if doesent belong to player//TODO logic here is wrong
 				list.add(EnumChatFormatting.RED + "This Necklace belongs to someone with power," + " return it to any admin since you can't use it");
 			}
@@ -120,87 +118,38 @@ public class VoluciteNecklace extends Item {
 		NBTTagCompound tagC = itemStack.stackTagCompound;
 
 		if (tagC.getInteger("power") <= getCooldown(itemStack)) {
-			return itemStack;//not enough power to execute
+			return itemStack;// not enough power to execute
 		}
 
 		addPower(itemStack, -getCooldown(itemStack));
-		addCooldown(itemStack,1);
+		addCooldown(itemStack, 1);
 
-		if(getCooldown(itemStack)>20)
-			player.attackEntityFrom(ownMagic, 4);
+		if (getCooldown(itemStack) > 20) player.attackEntityFrom(ownMagic, 4);
 
 		if (tagC.getInteger("power") <= 0) {
-			setPower(itemStack,0);//should never happen
+			setPower(itemStack, 0);// should never happen
 		}
 
 		if (player.isSneaking()) {
-			String str = "";
-			/* VIC this can replace the switch case below if needed
-			if (tagC.getString("mode").equals("launch")) {
-				str = "hover";
-				if (tagC.getBoolean("hover")) break;
-			}
-<<<<<<< HEAD
-					else if (tagC.getString("mode").equals("hover")) {
-				str = "dig";
-				if (tagC.getBoolean("dig")) break;
-			}
-			else if (tagC.getString("mode").equals("dig")) {
-				str = "launchMob";
-				if (tagC.getBoolean("launchMob")) break;
-			}
-			else if (tagC.getString("mode").equals("launchMob")) {
-				str = "launch"
-				if (tagC.getBoolean("launch")) break;
-			else
-				str = "launch";
-			 *
 
+			String str = switchMode(itemStack);
 
+			if (str.equals("")) {
+				str = switchMode(itemStack);
+				if (str.equals("")) {
+					tagC.setString("mode", "launch");
+				} else {
+					tagC.setString("mode", str);
 
+				}
+			} else {
+				tagC.setString("mode", str);
 
-			else if (tagC.getString("mode").equals("hover")) {
-				str = "dig";
-				if (tagC.getBoolean("dig")) break;
-			}
-			else if (tagC.getString("mode").equals("dig")) {
-				str = "launchMob";
-				if (tagC.getBoolean("launchMob")) break;
-			}
-			else if (tagC.getString("mode").equals("launchMob")) {
-				str = "launch"
-				if (tagC.getBoolean("launch")) break;
-			else
-				str = "launch";
-			 */
-
-			switch (tagC.getString("mode")) {
-			case "launch":
-				str = "hover";
-				if (tagC.getBoolean("hover")) break;// bit iffy but will work later
-
-			case "hover":
-				str = "dig";
-				if (tagC.getBoolean("dig")) break;
-
-			case "dig":
-				str = "launchMob";
-				if (tagC.getBoolean("launchMob")) break;
-
-			case "launchMob":
-				str = "launch";
-				if (tagC.getBoolean("launch")) break;
-			default:
-				str = "launch";
 			}
 
-			MLib.printToPlayer("Effect set to" + str);
-
-			itemStack.stackTagCompound.setString("mode", str);
+			MLib.printToPlayer("Effect set to " + tagC.getString("mode"));
 
 		} else {
-
-
 
 			switch (tagC.getString("mode")) {
 			case "launch":
@@ -223,7 +172,6 @@ public class VoluciteNecklace extends Item {
 		return itemStack;
 	}
 
-
 	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
 		if (stack.stackTagCompound == null) return false;
@@ -245,21 +193,17 @@ public class VoluciteNecklace extends Item {
 			itemStack.stackTagCompound.setInteger("cooldown", 0);
 
 			return true;
-		}
-		else if (tagC.getInteger("power") <= 0)
-			return false;
+		} else if (tagC.getInteger("power") <= 0) return false;
 		else if (entityPlayer.canPlayerEdit(par4, par5, par6, par7, itemStack) && applyBonemeal(itemStack, world, par4, par5, par6, entityPlayer)) {
 			tagC.setInteger("power", tagC.getInteger("power") - tagC.getInteger("cooldown"));
 			tagC.setInteger("cooldown", tagC.getInteger("cooldown") + 1);
 
-			if (!world.isRemote)
-				world.playAuxSFX(2005, par4, par5, par6, 0);
+			if (!world.isRemote) world.playAuxSFX(2005, par4, par5, par6, 0);
 
 			return true;
 		}
 		return false;
 	}
-
 
 	/**
 	 * Called each tick as long the item is on a player inventory. Uses by maps to check if is on a player hand and update it's contents.
@@ -278,7 +222,31 @@ public class VoluciteNecklace extends Item {
 		tagC.setByte("counter", (byte) (tagC.getByte("counter") - 1));
 	}
 
-	//{{methods that run the actions
+	public String switchMode(ItemStack stack) {
+		NBTTagCompound tagC = stack.stackTagCompound;
+		String str = tagC.getString("mode");
+		if (str.equals("launch")) {
+			str = "hover";
+			if (tagC.getBoolean("hover")) return str;
+		}
+		if (str.equals("hover")) {
+			str = "dig";
+			if (tagC.getBoolean("dig")) return str;
+		}
+		if (str.equals("dig")) {
+			str = "launchMob";
+			if (tagC.getBoolean("launchMob")) return str;
+		}
+		if (str.equals("launchMob")) {
+			str = "launch";
+			if (tagC.getBoolean("launch")) return str;
+		}
+
+		return "";
+
+	}
+
+	// {{methods that run the actions
 	public void launchPlayer(EntityPlayer entityPlayer, double amt) {
 		Vec3 desiredDirection = entityPlayer.getLookVec();
 
@@ -366,7 +334,6 @@ public class VoluciteNecklace extends Item {
 						igrowable.func_149853_b(world, world.rand, x, y, z);
 					}
 
-					--itemstack.stackSize;
 				}
 
 				return true;
@@ -375,9 +342,10 @@ public class VoluciteNecklace extends Item {
 
 		return false;
 	}
-	//}}
 
-	//{{ unrelated stuff
+	// }}
+
+	// {{ unrelated stuff
 	// {{for gui mostly
 	public int getPower(ItemStack item) {
 		return item.stackTagCompound.getInteger("power");
@@ -394,8 +362,8 @@ public class VoluciteNecklace extends Item {
 	public void addPower(ItemStack item, int x) {
 		NBTTagCompound tagC = item.stackTagCompound;
 		setPower(item, getPower(item) + x);
-		if(tagC.getInteger("maxPower")<tagC.getInteger("power"))setPower(item,tagC.getInteger("maxPower"));
-		if(0>tagC.getInteger("power"))setPower(item,0);
+		if (tagC.getInteger("maxPower") < tagC.getInteger("power")) setPower(item, tagC.getInteger("maxPower"));
+		if (0 > tagC.getInteger("power")) setPower(item, 0);
 
 	}
 
@@ -406,8 +374,8 @@ public class VoluciteNecklace extends Item {
 	public void addCooldown(ItemStack item, int x) {
 		NBTTagCompound tagC = item.stackTagCompound;
 		setCooldown(item, getCooldown(item) + x);
-		if(tagC.getInteger("maxCooldown")<tagC.getInteger("cooldown"))setCooldown(item,tagC.getInteger("maxCooldown"));
-		if(0>tagC.getInteger("cooldown"))setCooldown(item,0);
+		if (tagC.getInteger("maxCooldown") < tagC.getInteger("cooldown")) setCooldown(item, tagC.getInteger("maxCooldown"));
+		if (0 > tagC.getInteger("cooldown")) setCooldown(item, 0);
 
 	}
 
@@ -418,16 +386,18 @@ public class VoluciteNecklace extends Item {
 	public int getMaxCooldown(ItemStack item) {
 		return item.stackTagCompound.getInteger("maxCooldown");
 	}
+
 	/**
 	 * sec will be the amt added(normally 1 each per second)<br>
 	 * will not go over max
+	 * 
 	 * @param itemStack to affect
 	 * @param sec the number of seconds passed since last update(higher efficicny in chests etc)
 	 */
 	public void restorePower(ItemStack item, int sec) {
 		NBTTagCompound tagC = item.stackTagCompound;
-		addPower(item,sec);
-		addCooldown(item,sec);
+		addPower(item, sec);
+		addCooldown(item, sec);
 
 	}
 
@@ -437,5 +407,5 @@ public class VoluciteNecklace extends Item {
 	public int getEntityLifespan(ItemStack itemStack, World world) {
 		return 60;
 	}
-	//}}
+	// }}
 }
