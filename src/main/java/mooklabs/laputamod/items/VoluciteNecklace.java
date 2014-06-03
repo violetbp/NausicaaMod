@@ -12,6 +12,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -27,6 +28,10 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author moolabs
  */
 public class VoluciteNecklace extends Item {
+
+	public static DamageSource ownMagic = new DamageSource("ownMagic").setDamageBypassesArmor().setMagicDamage();
+
+
 
 	public VoluciteNecklace() {
 		super();
@@ -54,9 +59,10 @@ public class VoluciteNecklace extends Item {
 			else list.add("Owner: " + owner);
 
 			if (owner.equals(player.getCommandSenderName())) {// if belongs to player
-				list.add(EnumChatFormatting.GREEN + "Grinder: " + "Researched");
-
-			} else {// if doesent belong to player
+				list.add(EnumChatFormatting.GREEN + "Correct owner");
+				list.add(EnumChatFormatting.GREEN + "Power: " + getPower(itemStack)+"/"+getMaxPower(itemStack));
+				list.add(EnumChatFormatting.RED + "Cooldown: " + getCooldown(itemStack)+"/"+getMaxCooldown(itemStack));
+			} else {// if doesent belong to player//TODO logic here is wrong
 				list.add(EnumChatFormatting.RED + "This Necklace belongs to someone with power," + " return it to any admin since you can't use it");
 			}
 		} else {// if has no tags
@@ -113,10 +119,20 @@ public class VoluciteNecklace extends Item {
 		// NOT YET BECUAE ITS ITEM BASEDelse if (itemStack.stackTagCompound.getString("owner").equals(player.getCommandSenderName())) register(itemStack, player, false);
 		NBTTagCompound tagC = itemStack.stackTagCompound;
 
-		if (tagC.getInteger("power") <= 0) return itemStack;
+		if (tagC.getInteger("power") <= getCooldown(itemStack)) {
+			return itemStack;//not enough power to execute
+		}
 
-		tagC.setInteger("power", tagC.getInteger("power") - tagC.getInteger("cooldown"));
-		tagC.setInteger("cooldown", tagC.getInteger("cooldown") + 1);
+		addPower(itemStack, -getCooldown(itemStack));
+		addCooldown(itemStack,1);
+
+		if(getCooldown(itemStack)>20)
+			player.attackEntityFrom(ownMagic, 4);
+
+		if (tagC.getInteger("power") <= 0) {
+			setPower(itemStack,0);//should never happen
+		}
+
 		if (player.isSneaking()) {
 			String str = "";
 			/*
@@ -125,8 +141,8 @@ public class VoluciteNecklace extends Item {
 				if (tagC.getBoolean("hover")) break;
 			}
 		}
-		else if ()		
-				*/
+		else if ()
+			 */
 			switch (tagC.getString("mode")) {
 			case "launch":
 				str = "hover";
@@ -146,7 +162,7 @@ public class VoluciteNecklace extends Item {
 			default:
 				str = "launch";
 			}
-		
+
 			MLib.printToPlayer("Effect set to" + str);
 
 			itemStack.stackTagCompound.setString("mode", str);
@@ -342,17 +358,22 @@ public class VoluciteNecklace extends Item {
 	}
 
 	public void addPower(ItemStack item, int x) {
-		item.stackTagCompound.setInteger("power", item.stackTagCompound.getInteger("power") + x);
+		NBTTagCompound tagC = item.stackTagCompound;
+		setPower(item, getPower(item) + x);
+		if(tagC.getInteger("maxPower")<tagC.getInteger("power"))setPower(item,tagC.getInteger("maxPower"));
+		if(0>tagC.getInteger("power"))setPower(item,0);
 
 	}
 
 	public void setCooldown(ItemStack item, int x) {
 		item.stackTagCompound.setInteger("cooldown", x);
-
 	}
 
 	public void addCooldown(ItemStack item, int x) {
-		item.stackTagCompound.setInteger("cooldown", item.stackTagCompound.getInteger("cooldown") + x);
+		NBTTagCompound tagC = item.stackTagCompound;
+		setCooldown(item, getCooldown(item) + x);
+		if(tagC.getInteger("maxCooldown")<tagC.getInteger("cooldown"))setCooldown(item,tagC.getInteger("maxCooldown"));
+		if(0>tagC.getInteger("cooldown"))setCooldown(item,0);
 
 	}
 
@@ -363,12 +384,24 @@ public class VoluciteNecklace extends Item {
 	public int getMaxCooldown(ItemStack item) {
 		return item.stackTagCompound.getInteger("maxCooldown");
 	}
+	/**
+	 * sec will be the amt added(normally 1 each per second)<br>
+	 * will not go over max
+	 * @param itemStack to affect
+	 * @param sec the number of seconds passed since last update(higher efficicny in chests etc)
+	 */
+	public void restorePower(ItemStack item, int sec) {
+		NBTTagCompound tagC = item.stackTagCompound;
+		addPower(item,sec);
+		addCooldown(item,sec);
+
+	}
 
 	// }}
 
 	@Override
 	public int getEntityLifespan(ItemStack itemStack, World world) {
-		return 20;
+		return 60;
 	}
 	//}}
 }

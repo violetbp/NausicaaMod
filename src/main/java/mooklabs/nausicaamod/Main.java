@@ -582,7 +582,6 @@ public class Main extends MMod{
 
 		proxy.registerRenderers();// does more than just renders
 
-		// CRIT MinecraftForge.EVENT_BUS.register(new NausicaaEventHandler());//kindness
 
 		// Dimension
 		// CRIT DimensionManager.registerProviderType(Main.dimensionId, WorldProviderToxic.class, false);

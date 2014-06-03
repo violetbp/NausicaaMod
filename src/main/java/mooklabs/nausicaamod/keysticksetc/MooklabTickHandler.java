@@ -24,10 +24,10 @@ public abstract class MooklabTickHandler {
 	private void tickStartChecker(ServerTickEvent event) {
 		if (event.phase == Phase.START) {
 			tickStart();
-		
+
 		}
 	}
-	
+
 	@SubscribeEvent
 	private void tickEndChecker(ClientTickEvent event) {
 		if (event.phase == Phase.END) {

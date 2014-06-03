@@ -1,15 +1,14 @@
 package mooklabs.nausicaamod.keysticksetc;
 
 import mooklabs.laputamod.items.VoluciteNecklace;
-import mooklabs.mookcore.MLib;
 import mooklabs.nausicaamod.ExtendedPlayer;
 import mooklabs.nausicaamod.Main;
 import mooklabs.nausicaamod.inventorytab.NPlayerStats;
 import mooklabs.nausicaamod.mobs.Ohmu;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -53,11 +52,6 @@ public class NausicaaEventHandler {
 		}
 	}
 
-	@SubscribeEvent
-	public void onEntityConstructing(EntityJoinWorldEvent event) {
-		if (event.entity instanceof EntityPlayer) ((EntityPlayer) event.entity).eyeHeight = 0.12F;
-		System.out.println("workesd");
-	}
 
 	@SubscribeEvent
 	public void onEntityConstructing(EntityConstructing event) {
@@ -81,12 +75,14 @@ public class NausicaaEventHandler {
 
 	@SubscribeEvent
 	public void itemDespawn(ItemExpireEvent event) {
-		MLib.printToPlayer("despawn");
 
 		if (event.entityItem.getDataWatcher().getWatchableObjectItemStack(10).getItem() instanceof VoluciteNecklace) {
+			VoluciteNecklace item = (VoluciteNecklace)(event.entityItem.getDataWatcher().getWatchableObjectItemStack(10).getItem());
+			ItemStack stack = event.entityItem.getDataWatcher().getWatchableObjectItemStack(10);
+			item.addPower(stack, 2);
+			item.addCooldown(stack, -1);
 			event.setCanceled(true);
-			event.extraLife = 20;
-			MLib.printToPlayer("despawn");
+			event.extraLife = 60;
 		}
 
 	}
