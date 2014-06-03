@@ -119,10 +119,10 @@ public class LapMain extends MMod{
 	public final static Block solidVoluciteBlock = new VoluciteBlock().setCreativeTab(tabLap);
 
 	public final static Item volucite = new VoluciteIngot().setCreativeTab(tabLap);
-	public final static Item volucitePendant = new VolucitePendant().setCreativeTab(tabLap);
-	public final static Item voluciteNecklace = new VoluciteNecklace().setCreativeTab(tabLap);
+	public final static Item volucitePendant = new VolucitePendant().setCreativeTab(tabLap).setUnlocalizedName("volucitePendant").setTextureName(LapMain.itemfold + ":volucitePendant");
+	public final static Item voluciteNecklace = new VoluciteNecklace().setCreativeTab(tabLap).setUnlocalizedName("voluciteNecklace").setTextureName(LapMain.itemfold + ":voluciteNecklace");
 
-	public final static Item string = new NecklaceString().setCreativeTab(tabLap);
+	public final static Item string = new NecklaceString().setCreativeTab(tabLap).setUnlocalizedName("necklaceString").setTextureName(LapMain.itemfold + ":necklaceString");
 	//public final static Item clasp = new hdfsa().setCreativeTab(tabLap);
 
 
