@@ -140,6 +140,7 @@ public class VoluciteNecklace extends Item {
 				str = "hover";
 				if (tagC.getBoolean("hover")) break;
 			}
+<<<<<<< HEAD
 					else if (tagC.getString("mode").equals("hover")) {
 				str = "dig";
 				if (tagC.getBoolean("dig")) break;
@@ -153,8 +154,25 @@ public class VoluciteNecklace extends Item {
 				if (tagC.getBoolean("launch")) break;
 			else
 				str = "launch";
-			 */
+			 *
 
+
+
+
+			else if (tagC.getString("mode").equals("hover")) {
+				str = "dig";
+				if (tagC.getBoolean("dig")) break;
+			}
+			else if (tagC.getString("mode").equals("dig")) {
+				str = "launchMob";
+				if (tagC.getBoolean("launchMob")) break;
+			}
+			else if (tagC.getString("mode").equals("launchMob")) {
+				str = "launch"
+				if (tagC.getBoolean("launch")) break;
+			else
+				str = "launch";
+			 */
 
 			switch (tagC.getString("mode")) {
 			case "launch":
