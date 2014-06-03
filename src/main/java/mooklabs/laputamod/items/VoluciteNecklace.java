@@ -58,8 +58,14 @@ public class VoluciteNecklace extends Item {
 
 			if (owner.equals(player.getCommandSenderName())) {// if belongs to player
 				list.add(EnumChatFormatting.GREEN + "Correct owner");
-				list.add(EnumChatFormatting.GREEN + "Power: " + getPower(itemStack) + "/" + getMaxPower(itemStack));
-				list.add(EnumChatFormatting.RED + "Cooldown: " + getCooldown(itemStack) + "/" + getMaxCooldown(itemStack));
+				if (!itemStack.stackTagCompound.getBoolean("creativeSpawned")) {
+					list.add(EnumChatFormatting.GREEN + "Power: " + getPower(itemStack) + "/" + getMaxPower(itemStack));
+					list.add(EnumChatFormatting.RED + "Cooldown: " + getCooldown(itemStack) + "/" + getMaxCooldown(itemStack));
+				}else{
+					list.add(EnumChatFormatting.RED   + "--Creative mode enabled--");
+					list.add(EnumChatFormatting.GREEN + "Power: " + "9001" + "/" + getMaxPower(itemStack));
+					list.add(EnumChatFormatting.GREEN + "Cooldown: " + "-42" + "/" + getMaxCooldown(itemStack));
+				}
 			} else {// if doesent belong to player//TODO logic here is wrong
 				list.add(EnumChatFormatting.RED + "This Necklace belongs to someone with power," + " return it to any admin since you can't use it");
 			}
@@ -80,7 +86,7 @@ public class VoluciteNecklace extends Item {
 	public void register(ItemStack itemStack, EntityPlayer player, boolean wasCrafted) {
 		if (itemStack.stackTagCompound == null) {
 			itemStack.stackTagCompound = new NBTTagCompound();// create tag
-			itemStack.stackTagCompound.setBoolean("creativeSpawned", wasCrafted);
+			itemStack.stackTagCompound.setBoolean("creativeSpawned", player.capabilities.isCreativeMode);//if in creative make it infinate
 			itemStack.stackTagCompound.setBoolean("launch", true);
 			itemStack.stackTagCompound.setBoolean("launchMob", true);
 			itemStack.stackTagCompound.setBoolean("hover", true);
@@ -120,11 +126,10 @@ public class VoluciteNecklace extends Item {
 		if (tagC.getInteger("power") <= getCooldown(itemStack)) {
 			return itemStack;// not enough power to execute
 		}
+		if (!itemStack.stackTagCompound.getBoolean("creativeSpawned"))
+			reducePower(itemStack, -getCooldown(itemStack));
 
-		addPower(itemStack, -getCooldown(itemStack));
-		addCooldown(itemStack, 1);
-
-		if (getCooldown(itemStack) > 20) player.attackEntityFrom(ownMagic, 4);
+		if (getCooldown(itemStack) > 10) player.attackEntityFrom(ownMagic, 1);
 
 		if (tagC.getInteger("power") <= 0) {
 			setPower(itemStack, 0);// should never happen
@@ -184,7 +189,7 @@ public class VoluciteNecklace extends Item {
 
 		NBTTagCompound tagC = itemStack.stackTagCompound;
 
-		if (world.getBlock(par4, par5, par6) == LapMain.solidVoluciteBlock) {
+		if (world.getBlock(par4, par5, par6) == LapMain.solidVoluciteBlock) {//fully refreshes necklace
 			itemStack.stackTagCompound.setInteger("power", itemStack.stackTagCompound.getInteger("maxPower"));
 			itemStack.stackTagCompound.setInteger("cooldown", 0);
 
@@ -210,8 +215,8 @@ public class VoluciteNecklace extends Item {
 		NBTTagCompound tagC = itemStack.stackTagCompound;
 		if (tagC.getByte("counter") == 0) {
 
-			addPower(itemStack, 1);//
-			addCooldown(itemStack, -1);
+
+			restorePower(itemStack, 1);//
 
 			tagC.setByte("counter", (byte) 20);
 		}
@@ -393,7 +398,20 @@ public class VoluciteNecklace extends Item {
 	public void restorePower(ItemStack item, int sec) {
 		NBTTagCompound tagC = item.stackTagCompound;
 		addPower(item, sec);
-		addCooldown(item, sec);
+		addCooldown(item, -sec);
+
+	}
+	/**only one will be subtracted form cooldown
+	 * sec will be the amt added(normally 1 each per second)<br>
+	 * will not go over max
+	 * 
+	 * @param itemStack to affect
+	 * @param sec the number of seconds passed since last update(higher efficicny in chests etc)
+	 */
+	public void reducePower(ItemStack item, int sec) {
+		NBTTagCompound tagC = item.stackTagCompound;
+		addPower(item, -sec);
+		addCooldown(item, 1);
 
 	}
 
