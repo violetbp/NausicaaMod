@@ -149,7 +149,7 @@ public class LapMain extends MMod{
 		//itemstacks are what you have in your inventory slots, it can be up to 64 of an item, with metadata
 
 		ItemStack voluciteStack = new ItemStack(volucite);
-		ItemStack voluciteStackBlock = new ItemStack(voluciteBlock);
+		ItemStack voluciteBlockStack = new ItemStack(voluciteBlock);
 		ItemStack volucitePendantStack = new ItemStack(volucitePendant);
 		ItemStack voluciteNecklaceStack = new ItemStack(voluciteNecklace);
 		ItemStack necklaceStringStack = new ItemStack(string);
@@ -179,10 +179,8 @@ public class LapMain extends MMod{
 		//SMELTING
 		//GameRegistry.addSmelting(inputStack, outputStack, float valueOfExpFromSmelting);
 
+		GameRegistry.addSmelting(voluciteBlockStack, voluciteStack, 5);
 		//}}
-
-
-
 
 
 	}

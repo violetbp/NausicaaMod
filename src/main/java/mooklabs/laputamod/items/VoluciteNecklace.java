@@ -26,7 +26,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * DONT PLAY WITH THIS FOR AWHILE
  * CRIT VIC TODOVIC WHEN FALLING FROM A HIGH PLACE THE HOVER DOES NOT SAVE YOU
  * 
- * @author moolabs
+ * @author mooklabs
  */
 public class VoluciteNecklace extends Item {
 
