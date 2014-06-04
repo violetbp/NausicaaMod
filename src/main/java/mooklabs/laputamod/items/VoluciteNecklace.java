@@ -24,6 +24,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * DONT PLAY WITH THIS FOR AWHILE
+ * CRIT VIC TODOVIC WHEN FALLING FROM A HIGH PLACE THE HOVER DOES NOT SAVE YOU
  * 
  * @author moolabs
  */
@@ -129,7 +130,7 @@ public class VoluciteNecklace extends Item {
 		if (!itemStack.stackTagCompound.getBoolean("creativeSpawned"))
 			reducePower(itemStack, -getCooldown(itemStack));
 
-		if (getCooldown(itemStack) > 10) player.attackEntityFrom(ownMagic, 1);
+		if (getCooldown(itemStack) > 10) player.attackEntityFrom(ownMagic, 3);
 
 		if (tagC.getInteger("power") <= 0) {
 			setPower(itemStack, 0);// should never happen
@@ -159,14 +160,15 @@ public class VoluciteNecklace extends Item {
 			String str1 = tagC.getString("mode");
 			if (str1.equals("launch"))
 				launchPlayer(player, 1.3);
-			else if (str1.equals("hover"))
+			else if (str1.equals("hover")){
 				player.motionY = 0;
-			else if (str1.equals("dig"))
+				player.fallDistance=0;
+			}else if (str1.equals("dig"))
 				dig(world,player);
 			else if (str1.equals("launchMob"))
 				MLib.printToPlayer("You just need to left click on a mob to use this.");
 			else
-				MLib.printToPlayer("Shift-right click to start using");
+				MLib.printToPlayer("Shift-right click to switch modes");
 
 		}
 

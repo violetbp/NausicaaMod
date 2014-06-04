@@ -77,7 +77,7 @@ public class ClientProxy extends CommonProxy {
 		tileEntities();
 		networkRegisters();
 
-		MinecraftForge.EVENT_BUS.register(new NausicaaEventHandler());//kindness
+		MinecraftForge.EVENT_BUS.register(new NausicaaEventHandler());
 
 
 	}
