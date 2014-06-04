@@ -24,7 +24,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * DONT PLAY WITH THIS FOR AWHILE
- * CRIT VIC TODOVIC WHEN FALLING FROM A HIGH PLACE THE HOVER DOES NOT SAVE YOU
  * 
  * @author mooklabs
  */
@@ -128,7 +127,7 @@ public class VoluciteNecklace extends Item {
 			return itemStack;// not enough power to execute
 		}
 		if (!itemStack.stackTagCompound.getBoolean("creativeSpawned"))
-			reducePower(itemStack, -getCooldown(itemStack));
+			reducePower(itemStack, getCooldown(itemStack)>3?-getCooldown(itemStack):2);
 
 		if (getCooldown(itemStack) > 10) player.attackEntityFrom(ownMagic, 3);
 

@@ -159,7 +159,7 @@ public class NArmor extends ItemArmor {
 				break;
 			case 2:// legs
 
-				player.capabilities.setPlayerWalkSpeed(.3F);
+				//player.capabilities.setPlayerWalkSpeed(.3F);
 
 				break;
 			case 3:// boots
@@ -177,26 +177,16 @@ public class NArmor extends ItemArmor {
 				break;
 			case 2:// legs
 
-				player.capabilities.setPlayerWalkSpeed(.1F);
+				//player.capabilities.setPlayerWalkSpeed(.1F);
 				break;
 			case 3:// boots
 				player.stepHeight = 0;
 				break;
 			}
 			// figure it out later :P
-			// player.stepHeight = 0;
 			// player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.10000000149011612D);
 
 		}
 
 	}
 }
-
-/* try { //if (player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getModifier(mod.getID()) != null) { player.addChatMessage(new ChatComponentText("removed"));
- * player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod); //} } catch (IllegalArgumentException e) { System.out.println(e.getMessage()); }// so
- * it wont crash */
-
-// if(player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getModifier(mod.getID()).getID(). < .2D)
-/* try { player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod); player.addChatMessage(new ChatComponentText("added")); } catch
- * (IllegalArgumentException e) { }// so it wont crash */
-
