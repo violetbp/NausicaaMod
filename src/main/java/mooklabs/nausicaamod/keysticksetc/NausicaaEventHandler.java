@@ -1,10 +1,13 @@
 package mooklabs.nausicaamod.keysticksetc;
 
+import mooklabs.laputamod.LapMain;
 import mooklabs.laputamod.items.VoluciteNecklace;
+import mooklabs.mookcore.MLib;
 import mooklabs.nausicaamod.ExtendedPlayer;
 import mooklabs.nausicaamod.Main;
 import mooklabs.nausicaamod.mobs.Ohmu;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
@@ -36,7 +39,12 @@ public class NausicaaEventHandler {
 		if (event.entityLiving instanceof EntityPlayer) {// make sure its a player
 			EntityPlayer player = (EntityPlayer) event.entityLiving;
 			if (Main.debug) System.out.println(event.distance);
-			if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == Main.glider) {
+
+			if(MLib.doesPlayerHaveItems(player, LapMain.volucitePendant,LapMain.volucite,LapMain.voluciteNecklace, Item.getItemFromBlock(LapMain.voluciteBlock)))
+				event.distance = 0;
+
+
+			if (MLib.isPlayerHoldingItem(player, Main.glider)) {
 
 				double yMotion = Math.abs(player.motionY);// get absolute value of y motion
 				if (yMotion > .2) {// check how large motion is

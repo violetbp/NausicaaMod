@@ -5,7 +5,6 @@ import java.util.List;
 
 import mooklabs.mookcore.MMod;
 import mooklabs.mookcore.ToxicWorldGenerator;
-import mooklabs.mookcore.Unused;
 import mooklabs.mookcore.toolsandarmor.NArmor;
 import mooklabs.mookcore.toolsandarmor.NAxe;
 import mooklabs.mookcore.toolsandarmor.NPickaxe;
@@ -33,7 +32,6 @@ import mooklabs.nausicaamod.glider.GliderWing;
 import mooklabs.nausicaamod.glider.MetalPlate;
 import mooklabs.nausicaamod.godwarrior.EntityGodWarrior;
 import mooklabs.nausicaamod.godwarrior.GodWarriorControl;
-import mooklabs.nausicaamod.inventorytab.InventoryTabNausicaa;
 import mooklabs.nausicaamod.inventorytab.NPlayerHandler;
 import mooklabs.nausicaamod.mobs.EntityBug;
 import mooklabs.nausicaamod.mobs.EntityFoxSquirrel;
@@ -80,7 +78,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import tconstruct.client.tabs.TabRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
@@ -147,9 +144,9 @@ public class Main extends MMod{
 
 	/**
 	 * The game settings that currently hold effect.
-	 */
+	 *server doesent like
 	@Unused
-	public NausicaaGameSettings gameSettings;
+	public NausicaaGameSettings gameSettings;*/
 
 	//I don't think ill ever actually use this value, but its here anyway
 	public final static boolean debug = false;
@@ -396,7 +393,7 @@ public class Main extends MMod{
 	public void preInit(FMLPreInitializationEvent event) {
 		init(this.name);
 
-		TabRegistry.registerTab(new InventoryTabNausicaa());
+		//CRIT TabRegistry.registerTab(new InventoryTabNausicaa());
 		itemBlockNameReg();
 
 		//{{EVERYTHING
@@ -480,7 +477,7 @@ public class Main extends MMod{
 
 
 
-		// {{/////////////////////////////RECIPIES////////////////////////////////////
+		// {{/////////////////////////////RECIPES////////////////////////////////////
 
 		// ///////////////shapeless recipes//////////////////
 		// GameRegistry.addShapelessRecipe([output],[ingredients],[more
