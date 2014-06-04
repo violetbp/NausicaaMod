@@ -153,7 +153,7 @@ public class VoluciteNecklace extends Item {
 
 			}
 
-			MLib.printToPlayer("Effect set to " + tagC.getString("mode"));
+			MLib.printToPlayer("Effect set to " + tagC.getString("mode")); //TODO prints twice?
 
 		} else {
 

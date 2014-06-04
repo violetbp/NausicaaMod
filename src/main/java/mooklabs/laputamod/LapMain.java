@@ -150,6 +150,10 @@ public class LapMain extends MMod{
 
 		ItemStack voluciteStack = new ItemStack(volucite);
 		ItemStack voluciteStackBlock = new ItemStack(voluciteBlock);
+		ItemStack volucitePendantStack = new ItemStack(volucitePendant);
+		ItemStack voluciteNecklaceStack = new ItemStack(voluciteNecklace);
+		ItemStack necklaceStringStack = new ItemStack(string);
+		
 
 
 		// }}
@@ -157,17 +161,19 @@ public class LapMain extends MMod{
 
 
 
-		// {{/////////////////////////////RECIPIES////////////////////////////////////
+		// {{/////////////////////////////RECIPES////////////////////////////////////
 
-		/**			shapless recipes			*/
+		/**			shapeless recipes			*/
 		// GameRegistry.addShapelessRecipe([output],[ingredients],[more ingredients etc]);
-
+		
+		GameRegistry.addShapelessRecipe(voluciteNecklaceStack, volucitePendantStack, necklaceStringStack);
+		
 		/**			shaped   recipes			*/
 
 		//This makes a diamond Pick
 		//GameRegistry.addRecipe(diamondPickStack, "ddd", " s ", " s ", 'd', diamondStack, 's', stickStack);
 
-
+		GameRegistry.addRecipe(volucitePendantStack, " x ", "x x", " x ", 'x', volucite);
 
 
 		//SMELTING
