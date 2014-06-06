@@ -321,6 +321,8 @@ public class VoluciteNecklace extends Item {
 	}
 
 	private void breakBlock(World world, int x, int y, int z) {
+		MLib.breakBlock(world, x, y, z);
+		if(true)return;
 		if (world.getBlock(x, y, z) != Blocks.bedrock) {// duh
 			world.getBlock(x, y, z).dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
 			world.setBlockToAir(x, y, z);

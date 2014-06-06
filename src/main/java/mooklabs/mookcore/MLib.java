@@ -1,9 +1,14 @@
 package mooklabs.mookcore;
 
+import java.util.Random;
+
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -12,6 +17,11 @@ import net.minecraftforge.common.util.FakePlayerFactory;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 
+/**
+ * this class is so pe
+ * @author mooklabs
+ *
+ */
 
 public class MLib {
 
@@ -44,4 +54,41 @@ public class MLib {
 		for(Item i: item) if(player.inventory.hasItem(i))return true;
 		return false;
 	}
+
+	public static void breakBlock(World world, int x, int y, int z) {
+		if (!world.isRemote && world.getBlock(x, y, z) != Blocks.bedrock) {// duh
+
+			ItemStack stack = new ItemStack(world.getBlock(x, y, z).getItemDropped(0, new Random(), 0),world.getBlock(x, y, z).quantityDropped(new Random()));
+
+			ItemStack stacksmelted = FurnaceRecipes.smelting().getSmeltingResult(stack);
+			if(stacksmelted != null){
+				System.out.println("smelted");
+				dropBlockAsItem(world,x,y,z,stacksmelted);
+			}
+			else world.getBlock(x, y, z).dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+
+			world.setBlockToAir(x, y, z);
+		}
+	}
+	/**
+	 * Spawns EntityItem in the world for the given ItemStack if the world is not remote.
+	 */
+	public static void dropBlockAsItem(World world, int x, int y, int z, ItemStack stack)
+	{
+		if (!world.isRemote)
+		{
+			System.out.println("meh");
+			float f = 0.7F;
+			double d0 = .5;//world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
+			double d1 = .5;//world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
+			double d2 = .5;//world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
+			EntityItem entityitem = new EntityItem(world, x + d0, y + d1, z + d2, stack.copy());
+			//entityitem.delayBeforeCanPickup = 10;
+			System.out.println(entityitem);
+			entityitem.forceSpawn=true;
+			world.spawnEntityInWorld(entityitem);
+		}
+	}
+
+
 }

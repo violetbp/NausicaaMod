@@ -5,6 +5,7 @@ import java.util.Iterator;
 import mooklabs.laputamod.blocks.VoluciteBlock;
 import mooklabs.laputamod.blocks.VoluciteIngot;
 import mooklabs.laputamod.blocks.VoluciteOre;
+import mooklabs.laputamod.items.LPickaxe;
 import mooklabs.laputamod.items.NecklaceString;
 import mooklabs.laputamod.items.VoluciteNecklace;
 import mooklabs.laputamod.items.VolucitePendant;
@@ -13,7 +14,6 @@ import mooklabs.mookcore.MMod;
 import mooklabs.mookcore.ToxicWorldGenerator;
 import mooklabs.mookcore.toolsandarmor.NArmor;
 import mooklabs.mookcore.toolsandarmor.NAxe;
-import mooklabs.mookcore.toolsandarmor.NPickaxe;
 import mooklabs.mookcore.toolsandarmor.NShovel;
 import mooklabs.mookcore.toolsandarmor.NSword;
 import mooklabs.nausicaamod.proxy.GuiHandlerNausicaa;
@@ -99,7 +99,7 @@ public class LapMain extends MMod{
 
 	//{{ tools and armor
 	public static final Item voluciteSword = new NSword(weakVolucite).setCreativeTab(tabLap);
-	public static final Item volucitePickaxe = new NPickaxe(weakVolucite).setCreativeTab(tabLap);
+	public static final Item volucitePickaxe = new LPickaxe(weakVolucite).setCreativeTab(tabLap);
 	public static final Item voluciteAxe = new NAxe(weakVolucite).setCreativeTab(tabLap);
 	public static final Item voluciteShovel = new NShovel(weakVolucite).setCreativeTab(tabLap);
 
@@ -153,7 +153,7 @@ public class LapMain extends MMod{
 		ItemStack volucitePendantStack = new ItemStack(volucitePendant);
 		ItemStack voluciteNecklaceStack = new ItemStack(voluciteNecklace);
 		ItemStack necklaceStringStack = new ItemStack(string);
-		
+
 
 
 		// }}
@@ -165,9 +165,9 @@ public class LapMain extends MMod{
 
 		/**			shapeless recipes			*/
 		// GameRegistry.addShapelessRecipe([output],[ingredients],[more ingredients etc]);
-		
+
 		GameRegistry.addShapelessRecipe(voluciteNecklaceStack, volucitePendantStack, necklaceStringStack);
-		
+
 		/**			shaped   recipes			*/
 
 		//This makes a diamond Pick

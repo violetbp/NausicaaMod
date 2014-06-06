@@ -3,11 +3,13 @@ package mooklabs.laputamod.items;
 import java.util.List;
 
 import mooklabs.laputamod.LapMain;
+import mooklabs.mookcore.MLib;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -21,6 +23,20 @@ public class LPickaxe extends ItemPickaxe{
 		//tooltype = par2EnumToolMaterial + ""; //for tooltip dependant on type only leaving in this for reference
 		setUnlocalizedName(toolMaterial + "Pickaxe");
 		setTextureName(LapMain.itemfold + ":" + toolMaterial+"Pickaxe");
+	}
+
+	@Override
+	/**
+	 * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+	 */
+	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
+		return itemstack;
+	}
+
+	@Override
+	public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10) {
+		MLib.breakBlock(world, x, y, z);
+		return true;
 	}
 
 	@Override

@@ -14,20 +14,4 @@
   "screenshots": [],
   "dependencies": ["Waila"]
 }
-
-{
-  "modid": "laputamod",
-  "name": "LaputaMod",
-  "description": "NausicaaMod: nau•si•ca•mod, Proper Noun;\n1. A Minecraft Mod Based on the anime and manga of Hayao Miyazaki's Nausicaa of the Valley of Wind.\n2. A very badly coded eclipse project.",
-  "version": "Alpha",
-  "mcversion": "1.7.2",
-  "logoFile": "nausicaaModLogo.png",
-  "url": "http://nausicaamod.wikia.com/",
-  "updateUrl": "http://nausicaamod.wikia.com/wiki/Downloads/versions/notes",
-  "authorList": ["Mookie1097"],
-  "credits": "Skyapter and a few others",
-  "parent": "",
-  "screenshots": [],
-  "dependencies": ["Waila"]
-}
 ]
