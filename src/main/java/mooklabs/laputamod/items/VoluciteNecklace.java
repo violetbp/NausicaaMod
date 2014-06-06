@@ -17,6 +17,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.relauncher.Side;
@@ -123,6 +124,7 @@ public class VoluciteNecklace extends Item {
 		// NOT YET BECUAE ITS ITEM BASEDelse if (itemStack.stackTagCompound.getString("owner").equals(player.getCommandSenderName())) register(itemStack, player, false);
 		NBTTagCompound tagC = itemStack.stackTagCompound;
 
+
 		if (tagC.getInteger("power") <= getCooldown(itemStack)) {
 			return itemStack;// not enough power to execute
 		}
@@ -185,22 +187,35 @@ public class VoluciteNecklace extends Item {
 	}
 
 	@Override
-	public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
+	public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10) {
 		if (itemStack.stackTagCompound == null) return false;
+		FakePlayer fp= MLib.getFakePlayer(world);
+		if(fp != null){
+			fp.theItemInWorldManager.onBlockClicked(z, y, z, par7);
+			MLib.printToPlayer("breakblock");
+			return true;
 
+		}else if(fp == null){
+			for(int i = 0; i<10; i++)
+				world.destroyBlockInWorldPartially(player.getEntityId(), (int)player.posX, (int)player.posY, (int)player.posZ, i);
+
+			MLib.printToPlayer("breakblockplayer");
+
+			return true;
+		}
 		NBTTagCompound tagC = itemStack.stackTagCompound;
 
-		if (world.getBlock(par4, par5, par6) == LapMain.solidVoluciteBlock) {//fully refreshes necklace
+		if (world.getBlock(x, y, z) == LapMain.solidVoluciteBlock) {//fully refreshes necklace
 			itemStack.stackTagCompound.setInteger("power", itemStack.stackTagCompound.getInteger("maxPower"));
 			itemStack.stackTagCompound.setInteger("cooldown", 0);
 
 			return true;
 		} else if (tagC.getInteger("power") <= 0) return false;
-		else if (entityPlayer.canPlayerEdit(par4, par5, par6, par7, itemStack) && applyBonemeal(itemStack, world, par4, par5, par6, entityPlayer)) {
+		else if (player.canPlayerEdit(x, y, z, par7, itemStack) && applyBonemeal(itemStack, world, x, y, z, player)) {
 			tagC.setInteger("power", tagC.getInteger("power") - tagC.getInteger("cooldown"));
 			tagC.setInteger("cooldown", tagC.getInteger("cooldown") + 1);
 
-			if (!world.isRemote) world.playAuxSFX(2005, par4, par5, par6, 0);
+			if (!world.isRemote) world.playAuxSFX(2005, x, y, z, 0);
 
 			return true;
 		}

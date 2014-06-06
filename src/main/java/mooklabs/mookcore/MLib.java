@@ -19,7 +19,9 @@ public class MLib {
 		//nuffin ;(
 	}
 	public static FakePlayer getFakePlayer(World w){
-		return FakePlayerFactory.getMinecraft((WorldServer)w);
+		if (w instanceof WorldServer)
+			return FakePlayerFactory.getMinecraft((WorldServer)w);
+		return null;
 	}
 
 	public static void printToPlayer(String str) {
