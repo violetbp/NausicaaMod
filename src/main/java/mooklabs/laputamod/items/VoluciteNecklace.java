@@ -8,16 +8,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.relauncher.Side;
@@ -30,7 +27,6 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class VoluciteNecklace extends Item {
 
-	public static DamageSource ownMagic = new DamageSource("ownMagic").setDamageBypassesArmor().setMagicDamage();
 
 	public VoluciteNecklace() {
 		super();
@@ -62,8 +58,8 @@ public class VoluciteNecklace extends Item {
 				if (!itemStack.stackTagCompound.getBoolean("creativeSpawned")) {
 					list.add(EnumChatFormatting.GREEN + "Power: " + getPower(itemStack) + "/" + getMaxPower(itemStack));
 					list.add(EnumChatFormatting.RED + "Cooldown: " + getCooldown(itemStack) + "/" + getMaxCooldown(itemStack));
-				}else{
-					list.add(EnumChatFormatting.RED   + "--Creative mode enabled--");
+				} else {
+					list.add(EnumChatFormatting.RED + "--Creative mode enabled--");
 					list.add(EnumChatFormatting.GREEN + "Power: " + "9001" + "/" + getMaxPower(itemStack));
 					list.add(EnumChatFormatting.GREEN + "Cooldown: " + "-42" + "/" + getMaxCooldown(itemStack));
 				}
@@ -87,7 +83,7 @@ public class VoluciteNecklace extends Item {
 	public void register(ItemStack itemStack, EntityPlayer player, boolean wasCrafted) {
 		if (itemStack.stackTagCompound == null) {
 			itemStack.stackTagCompound = new NBTTagCompound();// create tag
-			itemStack.stackTagCompound.setBoolean("creativeSpawned", player.capabilities.isCreativeMode);//if in creative make it infinate
+			itemStack.stackTagCompound.setBoolean("creativeSpawned", player.capabilities.isCreativeMode);// if in creative make it infinate
 			itemStack.stackTagCompound.setBoolean("launch", true);
 			itemStack.stackTagCompound.setBoolean("launchMob", true);
 			itemStack.stackTagCompound.setBoolean("hover", true);
@@ -124,14 +120,12 @@ public class VoluciteNecklace extends Item {
 		// NOT YET BECUAE ITS ITEM BASEDelse if (itemStack.stackTagCompound.getString("owner").equals(player.getCommandSenderName())) register(itemStack, player, false);
 		NBTTagCompound tagC = itemStack.stackTagCompound;
 
-
 		if (tagC.getInteger("power") <= getCooldown(itemStack)) {
 			return itemStack;// not enough power to execute
 		}
-		if (!itemStack.stackTagCompound.getBoolean("creativeSpawned"))
-			reducePower(itemStack, getCooldown(itemStack)>3?-getCooldown(itemStack):2);
+		if (!itemStack.stackTagCompound.getBoolean("creativeSpawned")) reducePower(itemStack, getCooldown(itemStack) > 3 ? -getCooldown(itemStack) : 2);
 
-		if (getCooldown(itemStack) > 10) player.attackEntityFrom(ownMagic, 3);
+		if (getCooldown(itemStack) > 10) player.attackEntityFrom(MLib.ownMagic, 3);
 
 		if (tagC.getInteger("power") <= 0) {
 			setPower(itemStack, 0);// should never happen
@@ -154,22 +148,18 @@ public class VoluciteNecklace extends Item {
 
 			}
 
-			MLib.printToPlayer("Effect set to " + tagC.getString("mode")); //TODO prints twice?
+			MLib.printToPlayer("Effect set to " + tagC.getString("mode")); // TODO prints twice?
 
 		} else {
 
 			String str1 = tagC.getString("mode");
-			if (str1.equals("launch"))
-				launchPlayer(player, 1.3);
-			else if (str1.equals("hover")){
+			if (str1.equals("launch")) launchPlayer(player, 1.3);
+			else if (str1.equals("hover")) {
 				player.motionY = 0;
-				player.fallDistance=0;
-			}else if (str1.equals("dig"))
-				dig(world,player);
-			else if (str1.equals("launchMob"))
-				MLib.printToPlayer("You just need to left click on a mob to use this.");
-			else
-				MLib.printToPlayer("Shift-right click to switch modes");
+				player.fallDistance = 0;
+			} else if (str1.equals("dig")) dig(world, player);
+			else if (str1.equals("launchMob")) MLib.printToPlayer("You just need to left click on a mob to use this.");
+			else MLib.printToPlayer("Shift-right click to switch modes");
 
 		}
 
@@ -189,7 +179,8 @@ public class VoluciteNecklace extends Item {
 	@Override
 	public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10) {
 		if (itemStack.stackTagCompound == null) return false;
-		FakePlayer fp= MLib.getFakePlayer(world);
+
+		/*FakePlayer fp= MLib.getFakePlayer(world);
 		if(fp != null){
 			fp.theItemInWorldManager.onBlockClicked(z, y, z, par7);
 			MLib.printToPlayer("breakblock");
@@ -202,18 +193,17 @@ public class VoluciteNecklace extends Item {
 			MLib.printToPlayer("breakblockplayer");
 
 			return true;
-		}
+		}*/
 		NBTTagCompound tagC = itemStack.stackTagCompound;
 
-		if (world.getBlock(x, y, z) == LapMain.solidVoluciteBlock) {//fully refreshes necklace
+		if (world.getBlock(x, y, z) == LapMain.solidVoluciteBlock) {// fully refreshes necklace
 			itemStack.stackTagCompound.setInteger("power", itemStack.stackTagCompound.getInteger("maxPower"));
 			itemStack.stackTagCompound.setInteger("cooldown", 0);
 
 			return true;
 		} else if (tagC.getInteger("power") <= 0) return false;
 		else if (player.canPlayerEdit(x, y, z, par7, itemStack) && applyBonemeal(itemStack, world, x, y, z, player)) {
-			tagC.setInteger("power", tagC.getInteger("power") - tagC.getInteger("cooldown"));
-			tagC.setInteger("cooldown", tagC.getInteger("cooldown") + 1);
+			this.reducePower(itemStack, 2);
 
 			if (!world.isRemote) world.playAuxSFX(2005, x, y, z, 0);
 
@@ -230,7 +220,6 @@ public class VoluciteNecklace extends Item {
 		if (itemStack.stackTagCompound == null) return;
 		NBTTagCompound tagC = itemStack.stackTagCompound;
 		if (tagC.getByte("counter") == 0) {
-
 
 			restorePower(itemStack, 1);//
 
@@ -312,21 +301,12 @@ public class VoluciteNecklace extends Item {
 		int y = (int) Math.floor(player.posY);
 		if (nS) for (int j = 0; j < 3; j++)
 			for (int i = st; i < end; i++)
-				breakBlock(w, x + i, y + j, z);
+				MLib.breakBlock(w, x + i, y + j, z);
 
 		else for (int j = 0; j < 3; j++)
 			for (int i = st; i < end; i++)
-				breakBlock(w, x, y + j, z + i);
+				MLib.breakBlock(w, x, y + j, z + i);
 
-	}
-
-	private void breakBlock(World world, int x, int y, int z) {
-		MLib.breakBlock(world, x, y, z);
-		if(true)return;
-		if (world.getBlock(x, y, z) != Blocks.bedrock) {// duh
-			world.getBlock(x, y, z).dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-			world.setBlockToAir(x, y, z);
-		}
 	}
 
 	public static boolean applyBonemeal(ItemStack itemstack, World world, int x, int y, int z, EntityPlayer player) {
@@ -419,8 +399,9 @@ public class VoluciteNecklace extends Item {
 		addCooldown(item, -sec);
 
 	}
-	/**only one will be subtracted form cooldown
-	 * sec will be the amt added(normally 1 each per second)<br>
+
+	/**
+	 * only one will be subtracted form cooldown sec will be the amt added(normally 1 each per second)<br>
 	 * will not go over max
 	 * 
 	 * @param itemStack to affect
@@ -441,4 +422,3 @@ public class VoluciteNecklace extends Item {
 	}
 	// }}
 }
-

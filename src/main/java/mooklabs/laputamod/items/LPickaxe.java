@@ -35,7 +35,9 @@ public class LPickaxe extends ItemPickaxe{
 
 	@Override
 	public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10) {
-		MLib.breakBlock(world, x, y, z);
+		if(player.getHealth()>4)MLib.specialBreakBlock(world, x, y, z,1,5);
+		if(player.getHealth()>4)
+			player.attackEntityFrom(MLib.ownMagic, 4);
 		return true;
 	}
 
