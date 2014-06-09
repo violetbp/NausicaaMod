@@ -15,7 +15,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.FakePlayerFactory;
-import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 
@@ -98,7 +97,7 @@ public class MLib {
 			world.setBlockToAir(x, y, z);
 		}
 
-		OreDictionary.;
+
 	}
 
 	/**
