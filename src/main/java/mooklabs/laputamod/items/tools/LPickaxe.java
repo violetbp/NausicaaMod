@@ -1,4 +1,4 @@
-package mooklabs.laputamod.items;
+package mooklabs.laputamod.items.tools;
 
 import java.util.List;
 

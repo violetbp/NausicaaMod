@@ -5,17 +5,17 @@ import java.util.Iterator;
 import mooklabs.laputamod.blocks.VoluciteBlock;
 import mooklabs.laputamod.blocks.VoluciteIngot;
 import mooklabs.laputamod.blocks.VoluciteOre;
-import mooklabs.laputamod.items.LPickaxe;
 import mooklabs.laputamod.items.NecklaceString;
 import mooklabs.laputamod.items.VoluciteNecklace;
 import mooklabs.laputamod.items.VolucitePendant;
+import mooklabs.laputamod.items.tools.LArmor;
+import mooklabs.laputamod.items.tools.LAxe;
+import mooklabs.laputamod.items.tools.LPickaxe;
+import mooklabs.laputamod.items.tools.LShovel;
+import mooklabs.laputamod.items.tools.LSword;
 import mooklabs.laputamod.proxy.CommonProxy;
 import mooklabs.mookcore.MMod;
 import mooklabs.mookcore.ToxicWorldGenerator;
-import mooklabs.mookcore.toolsandarmor.NArmor;
-import mooklabs.mookcore.toolsandarmor.NAxe;
-import mooklabs.mookcore.toolsandarmor.NShovel;
-import mooklabs.mookcore.toolsandarmor.NSword;
 import mooklabs.nausicaamod.proxy.GuiHandlerNausicaa;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -88,7 +88,7 @@ public class LapMain extends MMod{
 
 	// {{Enums: this makes the tool and armor types and sets their stats! pritty simple really!
 	// diamond is(3, 1561, 8.0F, 3.0F, 10) IRON is(2, 250, 6.0F, 2.0F, 14)
-	public static ToolMaterial weakVolucite = EnumHelper.addToolMaterial("weakVolucite", 3, 1600, 40F, 7F, 50);
+	public static ToolMaterial weakVolucite = EnumHelper.addToolMaterial("crystal", 3, 1600, 40F, 7F, 50);
 
 	// DIAMOND is(33, {3, 8, 6, 3}, 10) iron is {2, 6, 5, 2}
 	// String name,int durability, int[] reductionAmounts, int enchantability
@@ -98,17 +98,17 @@ public class LapMain extends MMod{
 	// }}
 
 	//{{ tools and armor
-	public static final Item voluciteSword = new NSword(weakVolucite).setCreativeTab(tabLap);
+	public static final Item voluciteSword = new LSword(weakVolucite).setCreativeTab(tabLap);
 	public static final Item volucitePickaxe = new LPickaxe(weakVolucite).setCreativeTab(tabLap);
-	public static final Item voluciteAxe = new NAxe(weakVolucite).setCreativeTab(tabLap);
-	public static final Item voluciteShovel = new NShovel(weakVolucite).setCreativeTab(tabLap);
+	public static final Item voluciteAxe = new LAxe(weakVolucite).setCreativeTab(tabLap);
+	public static final Item voluciteShovel = new LShovel(weakVolucite).setCreativeTab(tabLap);
 
 
 	// Armor
-	public static final Item unfiredCeramicHelmet = new NArmor(weakVoluciteArmor, 1, 0).setCreativeTab(tabLap);
-	public static final Item unfiredCeramicChestplate = new NArmor(weakVoluciteArmor, 1, 1).setCreativeTab(tabLap);
-	public static final Item unfiredCeramicLegs = new NArmor(weakVoluciteArmor, 1, 2).setCreativeTab(tabLap);
-	public static final Item unfiredCeramicBoots = new NArmor(weakVoluciteArmor, 1, 3).setCreativeTab(tabLap);
+	public static final Item unfiredCeramicHelmet = new LArmor(weakVoluciteArmor, 1, 0).setCreativeTab(tabLap);
+	public static final Item unfiredCeramicChestplate = new LArmor(weakVoluciteArmor, 1, 1).setCreativeTab(tabLap);
+	public static final Item unfiredCeramicLegs = new LArmor(weakVoluciteArmor, 1, 2).setCreativeTab(tabLap);
+	public static final Item unfiredCeramicBoots = new LArmor(weakVoluciteArmor, 1, 3).setCreativeTab(tabLap);
 
 	// }}
 
