@@ -97,11 +97,12 @@ public class LapMain extends MMod{
 
 	// }}
 
-	//{{ tools and armor
-	public static final Item voluciteSword = new LSword(weakVolucite).setCreativeTab(tabLap);
-	public static final Item volucitePickaxe = new LPickaxe(weakVolucite).setCreativeTab(tabLap);
-	public static final Item voluciteAxe = new LAxe(weakVolucite).setCreativeTab(tabLap);
-	public static final Item voluciteShovel = new LShovel(weakVolucite).setCreativeTab(tabLap);
+	//{{ Tools
+	public static final Item voluciteSword = new LSword(weakVolucite).setCreativeTab(tabLap).setUnlocalizedName("voluciteSword").setTextureName(LapMain.itemfold + ":voluciteSword");
+	public static final Item volucitePickaxe = new LPickaxe(weakVolucite).setCreativeTab(tabLap).setUnlocalizedName("volucitePickaxe").setTextureName(LapMain.itemfold + ":volucitePickaxe");
+	public static final Item voluciteAxe = new LAxe(weakVolucite).setCreativeTab(tabLap).setUnlocalizedName("voluciteAxe").setTextureName(LapMain.itemfold + ":voluciteAxe");
+	public static final Item voluciteShovel = new LShovel(weakVolucite).setCreativeTab(tabLap).setUnlocalizedName("voluciteShovel").setTextureName(LapMain.itemfold + ":voluciteShovel");
+	
 
 
 	// Armor
@@ -118,7 +119,7 @@ public class LapMain extends MMod{
 	public final static Block voluciteBlock = new VoluciteOre().setCreativeTab(tabLap);
 	public final static Block solidVoluciteBlock = new VoluciteBlock().setCreativeTab(tabLap);
 
-	public final static Item volucite = new VoluciteIngot().setCreativeTab(tabLap);
+	public final static Item volucite = new VoluciteIngot().setCreativeTab(tabLap).setUnlocalizedName("voluciteCrystal").setTextureName(LapMain.itemfold + ":voluciteCrystal");
 	public final static Item volucitePendant = new VolucitePendant().setCreativeTab(tabLap).setUnlocalizedName("volucitePendant").setTextureName(LapMain.itemfold + ":volucitePendant");
 	public final static Item voluciteNecklace = new VoluciteNecklace().setCreativeTab(tabLap).setUnlocalizedName("voluciteNecklace").setTextureName(LapMain.itemfold + ":voluciteNecklace");
 
