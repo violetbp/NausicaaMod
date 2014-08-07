@@ -2,6 +2,7 @@ package mooklabs.laputamod.items.tools;
 
 import java.util.List;
 
+import mooklabs.laputamod.Data;
 import mooklabs.laputamod.LapMain;
 import mooklabs.mookcore.MLib;
 import net.minecraft.block.Block;
@@ -44,10 +45,11 @@ public class LPickaxe extends ItemPickaxe{
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack itemStack, EntityPlayer player, List dataList, boolean bool){
-		dataList.add("Can use special abilities");
+		dataList.add(Data.ability);
 		if(FMLClientHandler.instance().getClient().currentScreen.isShiftKeyDown()){//is shift down?
 			dataList.add("autosmelt");
 			dataList.add("instant mining");
+			dataList.add("Inate ability: digs though Stone like butter!");
 		}
 	}
 
@@ -59,5 +61,19 @@ public class LPickaxe extends ItemPickaxe{
 			return 10;
 		}
 		return super.getDigSpeed(stack, block, meta);
+	}
+
+	@Override
+	public boolean showDurabilityBar(ItemStack stack)
+	{return true;}
+
+	@Override
+	/**Queries the percentage of the 'Durability' bar that should be drawn.
+	 * @param stack The current ItemStack
+	 * @return 1.0 for 100% 0 for 0%
+	 */
+	public double getDurabilityForDisplay(ItemStack stack)
+	{
+		return (double)stack.getItemDamageForDisplay() / (double)stack.getMaxDamage();
 	}
 }

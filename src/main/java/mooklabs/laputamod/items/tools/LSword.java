@@ -2,8 +2,8 @@ package mooklabs.laputamod.items.tools;
 
 import java.util.List;
 
+import mooklabs.laputamod.Data;
 import mooklabs.laputamod.LapMain;
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,6 +11,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class LSword extends ItemSword {
 
@@ -21,6 +24,7 @@ public class LSword extends ItemSword {
 
 	}
 
+	//CRIT this is for pickaxe still
 	@Override
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
 		if (this.getToolMaterialName().equals("shell")) {
@@ -48,19 +52,32 @@ public class LSword extends ItemSword {
 		}
 	}
 
-	@Override
-	public void addInformation(ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
-		if (this.getToolMaterialName().equals("shell")) dataList.add("Try right clicking near some enemies, I dare you");
 
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List dataList, boolean bool){
+		dataList.add(Data.ability);
+		if(FMLClientHandler.instance().getClient().currentScreen.isShiftKeyDown()){//is shift down?
+			dataList.add("Range\n kill");
+			dataList.add("Data Removal");
+		}
+	}
+
+	public void changeChargeLevel(){
+		//todo DM like
 	}
 
 	@Override
-	public float getDigSpeed(ItemStack stack, Block block, int meta) {
-		if(this.getToolMaterialName().equals("ceramicSharp"))	return 10F;
-		//if (ForgeHooks.isToolEffective(stack, block, meta)) 	return 10F;
-		return super.getDigSpeed(stack, block, meta);
+	public boolean showDurabilityBar(ItemStack stack)
+	{return true;}
 
-
+	@Override
+	/**Queries the percentage of the 'Durability' bar that should be drawn.
+	 * @param stack The current ItemStack
+	 * @return 1.0 for 100% 0 for 0%
+	 */
+	public double getDurabilityForDisplay(ItemStack stack)
+	{
+		return (double)stack.getItemDamageForDisplay() / (double)stack.getMaxDamage();
 	}
-
 }
