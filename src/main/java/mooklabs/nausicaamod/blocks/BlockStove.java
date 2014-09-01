@@ -6,11 +6,13 @@ import net.minecraft.block.BlockFurnace;
  * 
  */
 
-public class Stove extends BlockFurnace {
+public class BlockStove extends BlockFurnace {
 
-	protected Stove(boolean p_i45407_1_) {
+	protected BlockStove(boolean p_i45407_1_) {
 		super(p_i45407_1_);
 		// TODO Auto-generated constructor stub
 	}
+
+	
 //someday there will be code here
 }
