@@ -8,8 +8,10 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+
 import java.util.ArrayList;
 import java.util.Random;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,11 +35,38 @@ public class BlockTeaLeaves extends BlockLeaves {
 
     public BlockTeaLeaves()
     {
-        super(Material.leaves, false);
+        super();
         this.setTickRandomly(true);
         this.setCreativeTab(CreativeTabs.tabDecorations);
         this.setHardness(0.2F);
         this.setLightOpacity(1);
         this.setStepSound(soundTypeGrass);
+    }
+
+	@Override
+	public IIcon getIcon(int var1, int var2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String[] func_150125_e() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	/**
+     * Returns the quantity of items to drop on block destruction.
+     */
+    public int quantityDropped(Random p_149745_1_)
+    {
+        return 1;
+    }
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+    {
+    	int choose = (int)Math.random();
+    	if (choose == 1)
+    		return Item.getItemFromBlock(Blocks.sapling); //Blocks.teaTreeSapling
+    	else
+    		return Item.getItemFromBlock(Blocks.sapling); //Blocks.teaLeaves
     }
 }
