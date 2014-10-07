@@ -1,5 +1,6 @@
 package mooklabs.nausicaamod.tea;
 
+import mooklabs.nausicaamod.Main;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
@@ -12,11 +13,11 @@ import net.minecraft.item.ItemBlock;
  *
  */
 
-public class Teapot extends ItemBlock implements LiquidTea {
+public class Teapot extends ItemBlock {
 
 	public Teapot() {
-		super();
-		setBlockName("teapot");
+		super(Main.blockTeapot);
+		setUnlocalizedName("teapot");
 		setTextureName(Main.itemfold + ":teapot");
 		setMaxStackSize(1);
 	}
