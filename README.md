@@ -1,9 +1,9 @@
 NausicaaMod
 ===========
 
-NausicaaMod tries to bring the world of Ghibli to Minecraft!
+NausicaaMod tries to bring the world of Ghibli into Minecraft!
 Currently has stuff from Nausicaa of the Valley of Wind, and Laputa.
-Currently working exclusivly on laputa.
+Currently working exclusively on Laputa.
 
 License: 
 
