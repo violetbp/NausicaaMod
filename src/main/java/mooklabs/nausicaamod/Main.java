@@ -44,6 +44,8 @@ import mooklabs.nausicaamod.mobs.flying.EntitySpore;
 import mooklabs.nausicaamod.mobs.npc.EntityNausicaaVillager;
 import mooklabs.nausicaamod.proxy.CommonProxy;
 import mooklabs.nausicaamod.proxy.GuiHandlerNausicaa;
+import mooklabs.nausicaamod.tea.BlockTeapot;
+import mooklabs.nausicaamod.tea.Teapot;
 import mooklabs.nausicaamod.tools.Blowgun;
 import mooklabs.nausicaamod.tools.InsectWhistle;
 import mooklabs.nausicaamod.tools.parts.CeramicIngot;
@@ -337,6 +339,15 @@ public class Main extends MMod{
 		}
 	}.setUnlocalizedName("flare").setCreativeTab(tabCombat).setTextureName(Main.itemfold + ":blowDart");
 
+	//{tea
+	public static Block blockTeapot = new BlockTeapot();
+	public static Item teapot = new Teapot();
+
+	//}
+	
+	
+	
+	
 	/* //plants //public static Item toxicSeeds = new Seeds().setCreativeTab(tabPlants); public static Block sporer = new Sporer().setCreativeTab(tabNPlants); //Drink public
 	 * final static Item drinks = new Drinks().setCreativeTab(tabItems).setUnlocalizedName("drinks");//TODO change???? public final static Block teapot = new
 	 * Teapot().setCreativeTab(tabCooking); public final static Block stoveIdle = new Stove(true).setHardness(3.5F).setStepSound(Block.soundStoneFootstep)

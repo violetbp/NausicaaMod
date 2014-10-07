@@ -8,9 +8,9 @@ import net.minecraft.item.ItemLeaves;
  * @author emilynewman
  *
  */
-public class ItemTeaLeaves extends ItemLeaves{
+public class TeaLeaves extends ItemLeaves{
 	private final BlockLeaves field_150940_b;
-	public ItemTeaLeaves(BlockLeaves p_i45344_1_)
+	public TeaLeaves(BlockLeaves p_i45344_1_)
     {
         super(p_i45344_1_);
         this.field_150940_b = p_i45344_1_;

@@ -7,10 +7,10 @@ import net.minecraft.item.Item;
  * ive forgotten entirely what i was doing frick
  * well here's commit 1...  only 49 to go!
  */
-
+@Deprecated
 public class Tea extends Item {
 	public Tea() {
-		super();
+		superd();
 		setUnlocalizedName("tea");
 		setTextureName(Main.itemfold + ":tea");
 		this.setMaxStackSize(16);
