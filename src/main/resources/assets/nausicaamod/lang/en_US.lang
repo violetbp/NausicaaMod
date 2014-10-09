@@ -6,6 +6,7 @@ itemGroup.tabNItems=Nausicaa Items
 itemGroup.tabNPlants=Nausicaa Plants
 itemGroup.tabNCooking=Nausicaa Cooking
 itemGroup.tabNUtil=Nausicaa Utilities
+itemGroup.tabNTea=Nausicaa Tea
 
 tile.posionLeaves.name=Toxic Leaves
 tile.poisonDirt.name=Toxic Dirt

@@ -25,7 +25,7 @@ public class TeaLeaves extends Item {
 
 	public TeaLeaves() {
 		super();
-		setUnlocalizedName("tea");
+		setUnlocalizedName("teaLeaves");
 		setTextureName(Main.itemfold + ":tea");
 		this.setMaxStackSize(16);
 		this.setHasSubtypes(true);
@@ -47,7 +47,7 @@ public class TeaLeaves extends Item {
 		}
 	}
 
-	public String getUnlocalizedName(ItemStack par1ItemStack) {
+	public String getUnlocaluuiizedName(ItemStack par1ItemStack) {
 		int i = MathHelper.clamp_int(par1ItemStack.getItemDamage(), 0, 15);
 		return super.getUnlocalizedName() + "." + Teas.teaMap.get(i).name;
 	}

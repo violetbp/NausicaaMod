@@ -22,9 +22,11 @@ public class Teapot extends ItemBlock {
 	}
 	
 	//TODO make it not error-prone
+	@Override
 	public String getUnlocalizedName(ItemStack itemstack)
     {
-          return getUnlocalizedName() + "." + Teas.teaMap.get(itemstack.getItemDamage()).name;
+		return "teapot";
+         // return getUnlocalizedName() + "." + Teas.teaMap.get(itemstack.getItemDamage()).name;
     }
    
     public int getMetadata(int meta)

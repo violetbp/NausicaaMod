@@ -1,5 +1,6 @@
 package mooklabs.nausicaamod.tea;
 
+import mooklabs.nausicaamod.Main;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
@@ -16,11 +17,12 @@ import net.minecraft.block.material.Material;
 
 public class TeaBush extends Block {
 
-	protected TeaBush() {
+	public TeaBush() {
 		super(Material.leaves);
-		this.setBlockName("");
-		this.setBlockTextureName("");
+		this.setBlockName("bush");
+		this.setBlockTextureName(Main.itemfold + ":" + "bush");
 
 	}
 
 }
+ 

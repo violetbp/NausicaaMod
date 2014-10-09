@@ -45,6 +45,8 @@ import mooklabs.nausicaamod.mobs.npc.EntityNausicaaVillager;
 import mooklabs.nausicaamod.proxy.CommonProxy;
 import mooklabs.nausicaamod.proxy.GuiHandlerNausicaa;
 import mooklabs.nausicaamod.tea.BlockTeapot;
+import mooklabs.nausicaamod.tea.TeaBush;
+import mooklabs.nausicaamod.tea.TeaLeaves;
 import mooklabs.nausicaamod.tea.Teapot;
 import mooklabs.nausicaamod.tools.Blowgun;
 import mooklabs.nausicaamod.tools.InsectWhistle;
@@ -155,38 +157,40 @@ public class Main extends MMod{
 
 	// {{ Creative tab madness!
 	public static CreativeTabs tabNCombat = new CreativeTabs("tabNCombat") {
-
+		
 		@Override
 		public Item getTabIconItem() {
 			return Main.ceramicKnife;
 		}
 	};
 	public static CreativeTabs tabNBlocks = new CreativeTabs("tabNBlocks") {
-
 		@Override
 		public Item getTabIconItem() {
 			return Item.getItemFromBlock(Main.poisonGrass);
 		}
 	};
 	public static CreativeTabs tabNTools = new CreativeTabs("tabNTools") {
-
 		@Override
 		public Item getTabIconItem() {
 			return Main.ceramicAxe;
 		}
 	};
 	public static CreativeTabs tabNGlider = new CreativeTabs("tabNGlider") {
-
 		@Override
 		public Item getTabIconItem() {
 			return Main.glider;
 		}
 	};
 	public static CreativeTabs tabNItems = new CreativeTabs("tabNItems") {
-
 		@Override
 		public Item getTabIconItem() {
 			return Main.wetClay;
+		}
+	};
+	public static CreativeTabs tabNTea = new CreativeTabs("tabNTea") {
+		@Override
+		public Item getTabIconItem() {
+			return Main.glider;
 		}
 	};
 	/*public static CreativeTabs tabNPlants = new CreativeTabs("tabNPlants") {
@@ -219,7 +223,7 @@ public class Main extends MMod{
 	public static CreativeTabs tabPlants = Main.tabNBlocks;//Main.tabNPlants;
 	public static CreativeTabs tabCooking = Main.tabNBlocks;//Main.tabNCooking;
 	public static CreativeTabs tabUtil = Main.tabNBlocks;//Main.tabNUtil;
-
+	public static CreativeTabs tabTea = Main.tabNTea;
 	// }}
 
 	// {{this makes the tool and armor types and sets their stats!
@@ -340,8 +344,10 @@ public class Main extends MMod{
 	}.setUnlocalizedName("flare").setCreativeTab(tabCombat).setTextureName(Main.itemfold + ":blowDart");
 
 	//{tea
-	public static Block blockTeapot = new BlockTeapot();
-	public static Item teapot = new Teapot();
+	//public final static Block blockTeapot = new BlockTeapot().setCreativeTab(tabCombat).setBlockName("teapot);
+	//public final static Item teapot = new Teapot().setCreativeTab(tabCombat);
+	//public final static Block teaBush = new TeaBush().setCreativeTab(tabCombat);
+	public final static Item teaLeaves = new TeaLeaves().setCreativeTab(tabCombat);
 
 	//}
 	
@@ -859,6 +865,15 @@ public class Main extends MMod{
 		registerItem(gasMask, "Gas Mask");
 
 		// }}
+		
+		//{{//////Tea/////
+		//registerBlock(blockTeapot, "teapot");
+		//registerBlock(teaBush, "bush");
+		//registerItem(teapot, "teapot");
+		registerItem(teaLeaves, "tea leaves");
+
+		//}}
+		for(int times =0; times <100; times++)System.out.println(times);
 		FMLInterModComms.sendMessage(TechMain.modid, "boo", "HAI");
 
 	}

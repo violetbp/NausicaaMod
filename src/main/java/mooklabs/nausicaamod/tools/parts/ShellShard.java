@@ -11,20 +11,20 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ShellShard extends Item {
 
-    public ShellShard() {
-    	super();
-	setMaxStackSize(32);
-	setUnlocalizedName("shellShard");
-	setTextureName(Main.itemfold + ":shellShard");
+	public ShellShard() {
+		super();
+		setMaxStackSize(32);
+		setUnlocalizedName("shellShard");
+		setTextureName(Main.itemfold + ":shellShard");
 
-    }
+	}
 
-    @Override
+	@Override
 	@SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
-	//if (ModLoader.getMinecraftInstance().currentScreen.isShiftKeyDown()) {
-	    dataList.add("Better than Diamond");
-	//} else
-	//    dataList.add("Hold Shift for tooltip");
-    }
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List dataList, boolean bool) {
+		// if (ModLoader.getMinecraftInstance().currentScreen.isShiftKeyDown()) {
+		dataList.add("Better than Diamond");
+		// } else
+		// dataList.add("Hold Shift for tooltip");
+	}
 }
