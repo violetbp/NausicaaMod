@@ -344,10 +344,10 @@ public class Main extends MMod{
 	}.setUnlocalizedName("flare").setCreativeTab(tabCombat).setTextureName(Main.itemfold + ":blowDart");
 
 	//{tea
-	//public final static Block blockTeapot = new BlockTeapot().setCreativeTab(tabCombat).setBlockName("teapot);
-	//public final static Item teapot = new Teapot().setCreativeTab(tabCombat);
-	//public final static Block teaBush = new TeaBush().setCreativeTab(tabCombat);
-	public final static Item teaLeaves = new TeaLeaves().setCreativeTab(tabCombat);
+	public final static Block blockTeapot = new BlockTeapot().setCreativeTab(tabTea).setBlockName("teapot");
+	public final static Item teapot = new Teapot().setCreativeTab(tabTea);
+	public final static Block teaBush = new TeaBush().setCreativeTab(tabTea);
+	public final static Item teaLeaves = new TeaLeaves().setCreativeTab(tabTea);
 
 	//}
 	
