@@ -66,7 +66,7 @@ public class TeaLeaves extends Item {
 	@Override
 	public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
 		if (itemStack.stackTagCompound != null) {
-			// taken from god warrior need to change
+			// TODO taken from god warrior need to change
 			String owner = itemStack.stackTagCompound.getString("owner");
 			list.add(EnumChatFormatting.GREEN + "Owner:" + owner);
 
