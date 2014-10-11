@@ -1,7 +1,10 @@
 package mooklabs.nausicaamod.tea;
 
+import java.util.Random;
+
 import mooklabs.nausicaamod.Main;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.EnumPlantType;
@@ -18,13 +21,18 @@ import net.minecraftforge.common.IPlantable;
 // look here:
 // https://github.com/SlimeKnights/TinkersConstruct/blob/80efde613ac73e98279e1ab8adb1107638f1a0e4/src/main/java/tconstruct/world/blocks/OreberryBush.java
 
-public class TeaBush extends Block implements IPlantable {
-
-	public TeaBush() {
-		super(Material.leaves);
+public class TeaBush extends BlockLeavesBase implements IPlantable {
+	public String[] teaTypes;
+	Random random;
+	public TeaBush(String[] teaTypes) {
+		super(Material.leaves, false);
 		this.setBlockName("bush");
 		this.setBlockTextureName(Main.itemfold + ":" + "bush");
-
+		this.setTickRandomly(true);
+		random = new Random();
+		this.teaTypes = teaTypes;
+		this.setHardness(0.3F);
+		this.setStepSound
 	}
 
 	@Override
