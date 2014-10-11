@@ -24,8 +24,10 @@ import net.minecraftforge.common.IPlantable;
 public class TeaBush extends BlockLeavesBase implements IPlantable {
 	public String[] teaTypes = {"type1", "chamomile", "stuff"};
 	Random random;
+	public int itemMeat;
 	public TeaBush() {
 		super(Material.leaves, false);
+		this.itemMeat = meta;
 		this.setBlockName("bush");
 		this.setBlockTextureName(Main.itemfold + ":" + "bush");
 		this.setTickRandomly(true);
