@@ -45,6 +45,7 @@ import mooklabs.nausicaamod.mobs.npc.EntityNausicaaVillager;
 import mooklabs.nausicaamod.proxy.CommonProxy;
 import mooklabs.nausicaamod.proxy.GuiHandlerNausicaa;
 import mooklabs.nausicaamod.tea.BlockTeapot;
+import mooklabs.nausicaamod.tea.Tea;
 import mooklabs.nausicaamod.tea.TeaBush;
 import mooklabs.nausicaamod.tea.TeaLeaves;
 import mooklabs.nausicaamod.tea.Teapot;
@@ -344,10 +345,11 @@ public class Main extends MMod{
 	}.setUnlocalizedName("flare").setCreativeTab(tabCombat).setTextureName(Main.itemfold + ":blowDart");
 
 	//{tea
-	public final static Block blockTeapot = new BlockTeapot().setCreativeTab(tabTea).setBlockName("teapot");
+	public final static Block blockTeapot = new BlockTeapot().setCreativeTab(tabTea);
 	public final static Item teapot = new Teapot().setCreativeTab(tabTea);
 	public final static Block teaBush = new TeaBush().setCreativeTab(tabTea);
 	public final static Item teaLeaves = new TeaLeaves().setCreativeTab(tabTea);
+	public final static Item tea = new Tea().setCreativeTab(tabTea);
 
 	//}
 	
@@ -867,10 +869,11 @@ public class Main extends MMod{
 		// }}
 		
 		//{{//////Tea/////
-		//registerBlock(blockTeapot, "teapot");
-		//registerBlock(teaBush, "bush");
-		//registerItem(teapot, "teapot");
-		registerItem(teaLeaves, "tea leaves");
+		registerBlock(blockTeapot, "Teapot");
+		registerBlock(teaBush, "Tea Bush");
+		registerItem(teapot, "Teapot");
+		registerItem(teaLeaves, "Tea Leaves");
+		registerItem(tea, "Tea");
 
 		//}}
 		for(int times =0; times <100; times++)System.out.println(times);

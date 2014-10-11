@@ -47,7 +47,7 @@ public class TeaLeaves extends Item {
 		}
 	}
 
-	public String getUnlocaluuiizedName(ItemStack par1ItemStack) {
+	public String getUnlocalizedName(ItemStack par1ItemStack) {
 		int i = MathHelper.clamp_int(par1ItemStack.getItemDamage(), 0, 15);
 		return super.getUnlocalizedName() + "." + Teas.teaMap.get(i).name;
 	}
