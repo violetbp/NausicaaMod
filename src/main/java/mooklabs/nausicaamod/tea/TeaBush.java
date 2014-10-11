@@ -27,7 +27,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 // https://github.com/SlimeKnights/TinkersConstruct/blob/80efde613ac73e98279e1ab8adb1107638f1a0e4/src/main/java/tconstruct/world/blocks/OreberryBush.java
 
 public class TeaBush extends BlockLeavesBase implements IPlantable {
-	public String[] teaTypes = {"type1", "chamomile", "stuff"};
+	public String[] teaTypes = {"Black", "Chamomile", "Green", "Matte", "Mint", "White"};
 	Random random;
 	//TODO VIC I DONT GET HOW THIS WORKS?? public int itemMeat;
 	public TeaBush() {
