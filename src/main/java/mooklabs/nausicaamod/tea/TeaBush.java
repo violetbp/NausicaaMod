@@ -42,6 +42,24 @@ public class TeaBush extends BlockLeavesBase implements IPlantable {
 		this.setCreativeTab(Main.tabTea);
 	}
 
+	/* implement later
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerBlockIcons (IIconRegister iconRegister)
+    {
+        this.fastIcons = new IIcon[textureNames.length];
+        this.fancyIcons = new IIcon[textureNames.length];
+
+        for (int i = 0; i < this.fastIcons.length; i++)
+        {
+            if (textureNames[i] != "")
+            {
+                this.fastIcons[i] = iconRegister.registerIcon("tinker:crops/" + textureNames[i] + "_fast");
+                this.fancyIcons[i] = iconRegister.registerIcon("tinker:crops/" + textureNames[i] + "_fancy");
+            }
+        }
+    }
+    */
 	@Override
 	public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {
 		// TODO Auto-generated method stub
