@@ -13,6 +13,12 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+
+/**
+ * Somehow this is going to hold tea?
+ * What does this do
+ *
+ */
 public class BlockTeapot extends Block {
 
 	public BlockTeapot() {
