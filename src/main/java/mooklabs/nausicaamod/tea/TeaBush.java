@@ -58,8 +58,8 @@ public class TeaBush extends BlockLeavesBase implements IPlantable {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	 /* Left-click harvests TEA */
+/** I DONT GET THIS AT ALL
+	 // Left-click harvests TEA 
     @Override
     public void onBlockClicked (World world, int x, int y, int z, EntityPlayer player)
     {
@@ -73,5 +73,6 @@ public class TeaBush extends BlockLeavesBase implements IPlantable {
             }
         }
     }
+    **/
 }
  
