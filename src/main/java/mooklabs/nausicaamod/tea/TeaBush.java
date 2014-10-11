@@ -2,11 +2,15 @@ package mooklabs.nausicaamod.tea;
 
 import java.util.Random;
 
+import tconstruct.library.tools.AbilityHelper;
 import mooklabs.nausicaamod.Main;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 
@@ -24,10 +28,10 @@ import net.minecraftforge.common.IPlantable;
 public class TeaBush extends BlockLeavesBase implements IPlantable {
 	public String[] teaTypes = {"type1", "chamomile", "stuff"};
 	Random random;
-	public int itemMeat;
+	//TODO VIC I DONT GET HOW THIS WORKS?? public int itemMeat;
 	public TeaBush() {
 		super(Material.leaves, false);
-		this.itemMeat = meta;
+		//this.itemMeat = meta;
 		this.setBlockName("bush");
 		this.setBlockTextureName(Main.itemfold + ":" + "bush");
 		this.setTickRandomly(true);
@@ -55,5 +59,19 @@ public class TeaBush extends BlockLeavesBase implements IPlantable {
 		return 0;
 	}
 
+	 /* Left-click harvests TEA */
+    @Override
+    public void onBlockClicked (World world, int x, int y, int z, EntityPlayer player)
+    {
+        if (!world.isRemote)
+        {
+            int meta = world.getBlockMetadata(x, y, z);
+            if (meta >= 12)
+            {
+                world.setBlock(x, y, z, this, meta - 4, 3);
+                AbilityHelper.spawnItemAtPlayer(player, new ItemStack(tea));
+            }
+        }
+    }
 }
  
