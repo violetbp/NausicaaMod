@@ -17,7 +17,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  * how do i make a bush
- * WILL BE ITEMBLOCK PROBLAY
+ * WILL BE ITEMBLOCK PROBABLY
  * @author emilynewman
  *
  *temporary will get random tea from block
