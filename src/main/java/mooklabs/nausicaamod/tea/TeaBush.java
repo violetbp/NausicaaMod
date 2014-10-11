@@ -22,17 +22,17 @@ import net.minecraftforge.common.IPlantable;
 // https://github.com/SlimeKnights/TinkersConstruct/blob/80efde613ac73e98279e1ab8adb1107638f1a0e4/src/main/java/tconstruct/world/blocks/OreberryBush.java
 
 public class TeaBush extends BlockLeavesBase implements IPlantable {
-	public String[] teaTypes;
+	public String[] teaTypes = {"type1", "chamomile", "stuff"};
 	Random random;
-	public TeaBush(String[] teaTypes) {
+	public TeaBush() {
 		super(Material.leaves, false);
 		this.setBlockName("bush");
 		this.setBlockTextureName(Main.itemfold + ":" + "bush");
 		this.setTickRandomly(true);
 		random = new Random();
-		this.teaTypes = teaTypes;
 		this.setHardness(0.3F);
-		this.setStepSound
+		this.setStepSound(Block.soundTypeGrass);
+		this.setCreativeTab(Main.tabTea);
 	}
 
 	@Override
