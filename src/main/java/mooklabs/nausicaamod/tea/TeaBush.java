@@ -13,6 +13,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  * how do i make a tree
@@ -95,5 +96,85 @@ public class TeaBush extends BlockLeavesBase implements IPlantable {
         return false;
     }
     **/
+    /* Render logic */
+
+    @Override
+    public boolean isOpaqueCube ()
+    {
+        return false;
+    }
+
+    public void setGraphicsLevel (boolean flag)
+    {
+        field_150121_P = flag;
+    }
+
+    @Override
+    public boolean renderAsNormalBlock ()
+    {
+        return false;
+    }
+    /* may not be necessary?
+    @Override
+    public int getRenderType ()
+    {
+        return OreberryRender.model;
+    }
+    */
+
+    @Override
+    public boolean shouldSideBeRendered (IBlockAccess iblockaccess, int x, int y, int z, int meta)
+    {
+        if (meta > 7 || field_150121_P)
+        {
+            return super.shouldSideBeRendered(iblockaccess, x, y, z, meta);
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    /* Bush growth */
+
+    @Override
+    public void updateTick (World world, int x, int y, int z, Random random1)
+    {
+        if (world.isRemote)
+        {
+            return;
+        }
+
+        if (random1.nextInt(20) == 0)// && world.getBlockLightValue(x, y, z) <= 8)
+        {
+            if (world.getFullBlockLightValue(x, y, z) < 10)
+            {
+                int meta = world.getBlockMetadata(x, y, z);
+                if (meta < 12)
+                {
+                    world.setBlock(x, y, z, this, meta + 4, 3);
+                }
+            }
+            /*else if (meta < 8)
+            {
+            	world.setBlock(x, y, z, blockID, meta + 4, 3);
+            }*/
+        }
+    }
+
+    public boolean canSustainPlant (World world, int x, int y, int z, ForgeDirection direction, IPlantable plant)
+    {
+        if (plant instanceof TeaBush)
+            return (world.getBlockMetadata(x, y, z) > 7);
+        return super.canSustainPlant(world, x, y, z, direction, plant);
+    }
+
+    @Override
+    public boolean canPlaceBlockAt (World world, int x, int y, int z)
+    {
+        if (world.getFullBlockLightValue(x, y, z) < 13)
+            return super.canPlaceBlockAt(world, x, y, z);
+        return false;
+    }
 }
  
