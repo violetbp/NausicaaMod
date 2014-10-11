@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public enum Teas {	
 	
-	Black("Black","Black tea is __ and etc",10), Chamomile("Chamomile","",10), Green("Green","",10), Mate("Mate","",10), Mint("Mint","",10), White("White","",10);
+	Black("Black","Black tea is __ and etc",10), Chamomile("Chamomile","",10), Green("Green","",10), Matte("Matte","",10), Mint("Mint","",10), White("White","",10);
 	
 	String name;
 	String desc;
