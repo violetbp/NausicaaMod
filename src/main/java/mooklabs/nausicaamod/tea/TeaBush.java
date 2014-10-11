@@ -73,6 +73,27 @@ public class TeaBush extends BlockLeavesBase implements IPlantable {
             }
         }
     }
+    
+	/* Right-click harvests berries 
+    @Override
+    public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    {
+        /*if (world.isRemote)
+            return false;
+
+        int meta = world.getBlockMetadata(x, y, z);
+        if (meta >= 12)
+        {
+            if (world.isRemote)
+                return true;
+
+            world.setBlock(x, y, z, this, meta - 4, 3);
+            AbilityHelper.spawnItemAtPlayer(player, new ItemStack(TinkerWorld.oreBerries, random.nextInt(3) + 1, meta % 4 + itemMeat));
+            return true;
+        }
+
+        return false;
+    }
     **/
 }
  
