@@ -2,13 +2,20 @@ package mooklabs.nausicaamod.tea;
 
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 import tconstruct.library.tools.AbilityHelper;
 import mooklabs.nausicaamod.Main;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
@@ -19,15 +26,14 @@ import net.minecraftforge.common.util.ForgeDirection;
  * how do i make a bush
  * WILL BE ITEMBLOCK PROBABLY
  * @author emilynewman
- *
- *temporary will get random tea from block
+ * temporary may get random tea from block
  */
 
 // look here:
 // https://github.com/SlimeKnights/TinkersConstruct/blob/80efde613ac73e98279e1ab8adb1107638f1a0e4/src/main/java/tconstruct/world/blocks/OreberryBush.java
 
 public class TeaBush extends BlockLeavesBase implements IPlantable {
-	public String[] teaTypes = {"Black", "Chamomile", "Green", "Matte", "Mint", "White"};
+	public String[] teaTypes = new String[16];
 	Random random;
 	//TODO VIC I DONT GET HOW THIS WORKS?? public int itemMeat;
 	public TeaBush() {
@@ -40,9 +46,13 @@ public class TeaBush extends BlockLeavesBase implements IPlantable {
 		this.setHardness(0.3F);
 		this.setStepSound(Block.soundTypeGrass);
 		this.setCreativeTab(Main.tabTea);
+		for(int i = 0; i < Teas.values().length-1; i+=2){
+			teaTypes[i] = Teas.teaMap.get(i).name;
+			teaTypes[i+1] = Teas.teaMap.get(i).name;
+		}
 	}
 
-	/* implement later
+	
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons (IIconRegister iconRegister)
@@ -59,9 +69,9 @@ public class TeaBush extends BlockLeavesBase implements IPlantable {
             }
         }
     }
-    */
-	/*also implement later
-	 * @Override
+    
+	
+	@Override
     public IIcon getIcon (int side, int metadata)
     {
         this.setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
@@ -168,7 +178,7 @@ public class TeaBush extends BlockLeavesBase implements IPlantable {
         }
         setBlockBounds(minX, minY, minZ, maxX, maxY, maxZ);
     }
-	 */
+	 
 	@Override
 	public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {
 		// TODO Auto-generated method stub
@@ -186,7 +196,7 @@ public class TeaBush extends BlockLeavesBase implements IPlantable {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-/** I DONT GET THIS AT ALL
+	
 	 // Left-click harvests TEA 
     @Override
     public void onBlockClicked (World world, int x, int y, int z, EntityPlayer player)
@@ -202,11 +212,11 @@ public class TeaBush extends BlockLeavesBase implements IPlantable {
         }
     }
     
-	/* Right-click harvests berries 
+	// Right-click harvests berries 
     @Override
     public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-        /*if (world.isRemote)
+        if (world.isRemote)
             return false;
 
         int meta = world.getBlockMetadata(x, y, z);
@@ -222,7 +232,7 @@ public class TeaBush extends BlockLeavesBase implements IPlantable {
 
         return false;
     }
-    **/
+    
     /* Render logic */
 
     @Override
@@ -241,6 +251,7 @@ public class TeaBush extends BlockLeavesBase implements IPlantable {
     {
         return false;
     }
+    
     /* may not be necessary?
     @Override
     public int getRenderType ()
