@@ -5,8 +5,10 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityTeapot extends TileEntity {
 
+	public Teas teatype;
+	
 	public TileEntityTeapot() {
-		// TODO Auto-generated constructor stub
+		teatype = Teas.Black;
 	}
 
 }

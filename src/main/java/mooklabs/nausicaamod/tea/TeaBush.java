@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import tconstruct.library.tools.AbilityHelper;
+import mooklabs.mookcore.MLib;
 import mooklabs.nausicaamod.Main;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
@@ -51,8 +52,10 @@ public class TeaBush extends BlockLeavesBase implements IPlantable {
 			teaTypes[i+1] = Teas.teaMap.get(i).name;
 		}
 	}
-
 	
+	String textureNames[] = {""};
+	private IIcon[] fastIcons;
+	private IIcon[] fancyIcons;
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons (IIconRegister iconRegister)
@@ -197,7 +200,7 @@ public class TeaBush extends BlockLeavesBase implements IPlantable {
 		return 0;
 	}
 	
-	 // Left-click harvests TEA 
+	 // Left-click does nothing, maybe duplicates bush or something  
     @Override
     public void onBlockClicked (World world, int x, int y, int z, EntityPlayer player)
     {
@@ -207,7 +210,7 @@ public class TeaBush extends BlockLeavesBase implements IPlantable {
             if (meta >= 12)
             {
                 world.setBlock(x, y, z, this, meta - 4, 3);
-                AbilityHelper.spawnItemAtPlayer(player, new ItemStack(tea));
+               // AbilityHelper.spawnItemAtPlayer(player, new ItemStack(tea));
             }
         }
     }
@@ -224,9 +227,9 @@ public class TeaBush extends BlockLeavesBase implements IPlantable {
         {
             if (world.isRemote)
                 return true;
-
+            MLib.printToPlayer("bush activated");
             world.setBlock(x, y, z, this, meta - 4, 3);
-            AbilityHelper.spawnItemAtPlayer(player, new ItemStack(TinkerWorld.oreBerries, random.nextInt(3) + 1, meta % 4 + itemMeat));
+            //AbilityHelper.spawnItemAtPlayer(player, new ItemStack(TinkerWorld.oreBerries, random.nextInt(3) + 1, meta % 4 + itemMeat));
             return true;
         }
 
