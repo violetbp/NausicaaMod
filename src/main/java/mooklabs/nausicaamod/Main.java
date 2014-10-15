@@ -346,10 +346,10 @@ public class Main extends MMod{
 
 	//{tea
 	public final static Block blockTeapot = new BlockTeapot().setCreativeTab(tabTea);
-	public final static Item teapot = new Teapot().setCreativeTab(tabTea);
+	public final static Item  teapot = new Teapot().setCreativeTab(tabTea);
 	public final static Block teaBush = new TeaBush().setCreativeTab(tabTea);
-	public final static Item teaLeaves = new TeaLeaves().setCreativeTab(tabTea);
-	public final static Item tea = new Tea().setCreativeTab(tabTea);
+	public final static Item  teaLeaves = new TeaLeaves().setCreativeTab(tabTea);
+	public final static Item  tea = new Tea().setCreativeTab(tabTea);
 
 	//}
 	
@@ -869,7 +869,8 @@ public class Main extends MMod{
 		// }}
 		
 		//{{//////Tea/////
-		registerBlock(blockTeapot, "Teapot");
+		GameRegistry.registerBlock(blockTeapot, Teapot.class, blockTeapot.getUnlocalizedName());
+		LanguageRegistry.addName(blockTeapot, "Teapot");//registerBlock(blockTeapot, "Tea pot");
 		registerBlock(teaBush, "Tea Bush");
 		registerItem(teapot, "Teapot");
 		registerItem(teaLeaves, "Tea Leaves");

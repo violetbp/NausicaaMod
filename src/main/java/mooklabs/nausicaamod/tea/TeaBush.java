@@ -34,7 +34,18 @@ import net.minecraftforge.common.util.ForgeDirection;
 // https://github.com/SlimeKnights/TinkersConstruct/blob/80efde613ac73e98279e1ab8adb1107638f1a0e4/src/main/java/tconstruct/world/blocks/OreberryBush.java
 
 public class TeaBush extends BlockLeavesBase implements IPlantable {
-	public String[] teaTypes = new String[16];
+	public static String[] teaTypes = new String[16];
+	
+	static {//this inits the teatype array
+		int x=1;
+		for(int i = 0; i < Teas.values().length*2-1; i+=2){
+			teaTypes[i] = Teas.values()[x].name;
+			teaTypes[i+1] = Teas.values()[x].name;
+		}
+		for(String t: teaTypes)
+			System.err.println(t);
+	}
+	
 	Random random;
 	//TODO VIC I DONT GET HOW THIS WORKS?? public int itemMeat;
 	public TeaBush() {
@@ -47,10 +58,7 @@ public class TeaBush extends BlockLeavesBase implements IPlantable {
 		this.setHardness(0.3F);
 		this.setStepSound(Block.soundTypeGrass);
 		this.setCreativeTab(Main.tabTea);
-		for(int i = 0; i < Teas.values().length-1; i+=2){
-			teaTypes[i] = Teas.teaMap.get(i).name;
-			teaTypes[i+1] = Teas.teaMap.get(i).name;
-		}
+		
 	}
 	
 	String textureNames[] = {""};
