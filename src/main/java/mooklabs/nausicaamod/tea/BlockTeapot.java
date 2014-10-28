@@ -22,6 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Somehow this is going to hold tea? What does this do
+ * TODO on the google doc it said we wanted a teapot. so here is a teapot
  */
 public class BlockTeapot extends Block {
 
