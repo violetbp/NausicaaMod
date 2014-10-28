@@ -15,7 +15,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
-
+/**
+ * TODO should move this to another place?
+ * 
+ *
+ */
 
 public class Flaregun extends ItemBow {
 	
