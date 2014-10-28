@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 /**
  * teapots are important for tea right?
  * 
- * here's number 2
+ * 
  * @author emilynewman
  *
  */
