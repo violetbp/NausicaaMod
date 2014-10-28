@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
-
+//TODO should move this class somewhere else
 
 public class FuelBlock extends Block{
 
