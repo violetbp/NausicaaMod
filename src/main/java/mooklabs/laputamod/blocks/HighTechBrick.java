@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 
 /**
  * that suff that laputas made out of
+ * VIC WHY IS IT CALLED HIGH TECH
  * @author vicky
  */
 public class HighTechBrick extends Block {
