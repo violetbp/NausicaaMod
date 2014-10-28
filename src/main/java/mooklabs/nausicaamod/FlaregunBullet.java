@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 /**
  * This is the ENTITY, the item's class is defined in main
  * @author victor
- *
+ *TODO should move this somewhere else
  */
 public class FlaregunBullet extends EntityArrow {
 
