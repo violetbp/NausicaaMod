@@ -212,7 +212,7 @@ public class LapMain extends MMod{
 
 	}
 
-	// /////////////Mobs!////////////
+	// /////////////MOBS////////////
 
 	/**
 	 * @param entityClass a Entity__.class
