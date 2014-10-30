@@ -38,7 +38,7 @@ public class VoluciteBlock extends Block {
 	 */
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
 		if (player.getHeldItem() == null) {//will throw null pointer if you dont check if null first
-			MLib.printToPlayer("Right click with a necklace silly");
+			MLib.printToPlayer("This doesn't do anything! Perhaps you need a necklace...");
 			return false;
 		}
 
