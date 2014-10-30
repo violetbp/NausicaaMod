@@ -52,7 +52,7 @@ public class VoluciteBlock extends Block {
 				MLib.printToPlayer("Right click with a necklace");
 			}
 		} else {
-			MLib.printToPlayer("constructed wrong");
+			MLib.printToPlayer("Constructed wrong. Sorry!");
 		}
 		return false;
 	}
