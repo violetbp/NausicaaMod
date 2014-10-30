@@ -270,7 +270,7 @@ public class LapMain extends MMod{
 
 		//more items
 
-		// {{//////////////tools////////////////////////////////////
+		// {{//////////////TOOLS////////////////////////////////////
 		registerItem(voluciteSword, "Volucite Sword");
 		registerItem(volucitePickaxe, "Volucite Pickaxe");
 		registerItem(voluciteAxe, "Volucite Axe");
