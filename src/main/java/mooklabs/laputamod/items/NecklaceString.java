@@ -5,7 +5,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
+/**
+ * 
+ * this item is solely for crafting a necklace
+ *
+ */
 public class NecklaceString extends Item {
 
 	public NecklaceString() {
