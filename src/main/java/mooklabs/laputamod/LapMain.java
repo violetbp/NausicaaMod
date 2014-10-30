@@ -53,7 +53,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 /**
  * this is the main class for laputamod<br>
- * spacegeek will try to work on it
+ * spacegeek did to work on it (AND THEN SHE FOUND TEA)
  * not dependent on nausicaamod
  * @author mooklabs(emiAndVic)
  */
