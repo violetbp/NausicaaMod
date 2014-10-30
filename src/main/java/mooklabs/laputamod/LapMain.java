@@ -194,7 +194,7 @@ public class LapMain extends MMod{
 
 
 
-
+//why "blow up the world"?
 
 		logger.info("\n************************\nWelcome to LaputaMod!!!\nBlow up the World!...\n..if you can!\n***************************");
 
