@@ -405,7 +405,7 @@ public class VoluciteNecklace extends Item {
 	 * will not go over max
 	 * 
 	 * @param itemStack to affect
-	 * @param sec the number of seconds passed since last update(higher efficicny in chests etc)
+	 * @param sec the number of seconds passed since last update(higher efficiency in chests etc)
 	 */
 	public void reducePower(ItemStack item, int sec) {
 		NBTTagCompound tagC = item.stackTagCompound;
