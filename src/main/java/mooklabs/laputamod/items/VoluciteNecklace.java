@@ -64,7 +64,7 @@ public class VoluciteNecklace extends Item {
 					list.add(EnumChatFormatting.GREEN + "Cooldown: " + "-42" + "/" + getMaxCooldown(itemStack));
 				}
 			} else {// if doesent belong to player//TODO logic here is wrong
-				list.add(EnumChatFormatting.RED + "This Necklace belongs to someone with power," + " return it to any admin since you can't use it");
+				list.add(EnumChatFormatting.RED + "This Necklace belongs to someone with power," + " please return it to an admin since you can't use it");
 			}
 		} else {// if has no tags
 			list.add(EnumChatFormatting.BLUE + "NO INFO!");
