@@ -278,7 +278,7 @@ public class LapMain extends MMod{
 
 		// }}
 
-		// {{////////////////armor////////////////////////
+		// {{////////////////TOOLS////////////////////////
 
 		registerItem(unfiredCeramicHelmet, "Volucite Helmet");
 		registerItem(unfiredCeramicChestplate, "Volucite Chestplate");
