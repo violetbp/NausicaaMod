@@ -13,7 +13,7 @@ import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 /**
- * solely used for crafting a necklace.. for now
+ * solely used for crafting a necklace... for now
  *
  */
 public class VolucitePendant extends Item {
