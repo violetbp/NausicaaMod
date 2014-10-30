@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 
 /**
  * 
- * TODO VIC we should delete this? 
+ * TODO VIC we should delete this? unless its being used for something 
  */
 @Deprecated @Unused
 public class Tea extends Item {
